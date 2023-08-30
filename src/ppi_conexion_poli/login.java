@@ -4,6 +4,7 @@
  */
 package ppi_conexion_poli;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -40,8 +41,10 @@ public class login extends javax.swing.JFrame {
         setTitle("Conexión Poli");
         setBackground(new java.awt.Color(255, 255, 255));
         setLocationByPlatform(true);
+        setMaximumSize(null);
+        setPreferredSize(new java.awt.Dimension(1000, 500));
 
-        background.setBackground(new java.awt.Color(255, 255, 255));
+        background.setBackground(new java.awt.Color(102, 204, 0));
         background.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         background.setForeground(new java.awt.Color(0, 0, 0));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -55,7 +58,7 @@ public class login extends javax.swing.JFrame {
 
         inputUser.setBackground(new java.awt.Color(255, 255, 255));
         inputUser.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
-        inputUser.setForeground(new java.awt.Color(0, 0, 0));
+        inputUser.setForeground(new java.awt.Color(153, 153, 153));
         inputUser.setText("Ingrese su nombre de usuario");
         inputUser.setBorder(null);
         inputUser.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -89,7 +92,7 @@ public class login extends javax.swing.JFrame {
         background.add(separator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 400, 20));
 
         passUser.setBackground(new java.awt.Color(255, 255, 255));
-        passUser.setForeground(new java.awt.Color(0, 0, 0));
+        passUser.setForeground(new java.awt.Color(153, 153, 153));
         passUser.setText("****");
         passUser.setToolTipText("");
         passUser.setBorder(null);
@@ -109,7 +112,7 @@ public class login extends javax.swing.JFrame {
         separator2.setForeground(new java.awt.Color(0, 0, 0));
         background.add(separator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 400, 20));
 
-        botonIngresar.setBackground(new java.awt.Color(153, 153, 153));
+        botonIngresar.setBackground(new java.awt.Color(255, 255, 255));
         botonIngresar.setForeground(new java.awt.Color(0, 0, 0));
         botonIngresar.setText("Ingresar");
         botonIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -118,7 +121,7 @@ public class login extends javax.swing.JFrame {
                 botonIngresarMouseClicked(evt);
             }
         });
-        background.add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, -1, -1));
+        background.add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 510, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,7 +134,7 @@ public class login extends javax.swing.JFrame {
             .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(1016, 659));
+        setSize(new java.awt.Dimension(914, 637));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -160,7 +163,8 @@ public class login extends javax.swing.JFrame {
     private void inputUserMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputUserMousePressed
         
         if (inputUser.getText().equals("Ingrese su nombre de usuario")){
-            inputUser.setText("");       
+            inputUser.setText("");
+            inputUser.setForeground(Color.black);
         }
         
         if(String.valueOf(passUser.getPassword()).isEmpty()){
@@ -176,6 +180,7 @@ public class login extends javax.swing.JFrame {
         if(String.valueOf(passUser.getPassword()).equals("****")){
             
             passUser.setText("");
+            passUser.setForeground(Color.black);
         }
         
         if (inputUser.getText().isEmpty()){
@@ -186,10 +191,11 @@ public class login extends javax.swing.JFrame {
 
     private void botonIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonIngresarMouseClicked
         
-        if (inputUser.getText().equals("Ingrese su nombre de usuario") || inputUser.getText().equals("")){
+        if (inputUser.getText().equals("Ingrese su nombre de usuario") || inputUser.getText().equals("") || String.valueOf(passUser.getPassword()).equals("****")){
             JOptionPane.showMessageDialog(null, "Los campos están vacíos");
         } else{
-            JOptionPane.showMessageDialog(null, "El usuario ingresado es " + inputUser.getText());
+            JOptionPane.showMessageDialog(null, "El usuario ingresado es: " + inputUser.getText()+"\n"+
+                    "La contraseña ingresada es: " + String.valueOf(passUser.getPassword()));
         }
     }//GEN-LAST:event_botonIngresarMouseClicked
 
