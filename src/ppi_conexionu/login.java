@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package ppi_conexion_poli;
+package ppi_conexionu;
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -41,8 +41,6 @@ public class login extends javax.swing.JFrame {
         setTitle("Conexión Poli");
         setBackground(new java.awt.Color(255, 255, 255));
         setLocationByPlatform(true);
-        setMaximumSize(null);
-        setPreferredSize(new java.awt.Dimension(1000, 500));
 
         background.setBackground(new java.awt.Color(102, 204, 0));
         background.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
