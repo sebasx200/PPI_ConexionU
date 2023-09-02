@@ -35,14 +35,14 @@ public class RegistroDocente extends javax.swing.JFrame {
         jTextField9 = new javax.swing.JTextField();
         jTextField11 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        nombreTxt = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        apellidoTxt = new javax.swing.JLabel();
+        Departamento = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        documentoTxt = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
         jPasswordField2 = new javax.swing.JPasswordField();
         municipios = new javax.swing.JComboBox<>();
@@ -50,6 +50,7 @@ public class RegistroDocente extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         instituciones = new javax.swing.JComboBox<>();
         departamentos = new javax.swing.JComboBox<>();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -60,68 +61,68 @@ public class RegistroDocente extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Registro Docente");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 200, 60));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 200, 60));
 
         inputOficina.setEnabled(false);
-        jPanel2.add(inputOficina, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 150, -1));
-        jPanel2.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 150, -1));
-        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 150, -1));
+        jPanel2.add(inputOficina, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 270, 170, 25));
+        jPanel2.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 170, 25));
+        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 170, 25));
 
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField8ActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 150, -1));
-        jPanel2.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 150, -1));
-        jPanel2.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 150, -1));
+        jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, 170, 25));
+        jPanel2.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 170, 25));
+        jPanel2.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 170, 25));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Ubicación oficina");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, 150, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 250, 150, -1));
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Nombre");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 150, -1));
+        nombreTxt.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        nombreTxt.setForeground(new java.awt.Color(0, 0, 0));
+        nombreTxt.setText("Nombre");
+        jPanel2.add(nombreTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 150, -1));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Usuario");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 150, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 150, -1));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Contraseña");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 150, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, 150, -1));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Confirmar Contraseña");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, 150, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 440, 180, -1));
 
-        jLabel8.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Apellido");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 150, -1));
+        apellidoTxt.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        apellidoTxt.setForeground(new java.awt.Color(0, 0, 0));
+        apellidoTxt.setText("Apellido");
+        jPanel2.add(apellidoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 150, -1));
 
-        jLabel12.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setText("Nombre");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 150, -1));
+        Departamento.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        Departamento.setForeground(new java.awt.Color(0, 0, 0));
+        Departamento.setText("Nombre");
+        jPanel2.add(Departamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 310, 150, -1));
 
         jLabel13.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel13.setText("Nombre");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, 150, -1));
+        jLabel13.setText("Universidad");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 440, 150, -1));
 
-        jLabel14.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel14.setText("C.C");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 150, -1));
-        jPanel2.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 150, -1));
-        jPanel2.add(jPasswordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 150, -1));
+        documentoTxt.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        documentoTxt.setForeground(new java.awt.Color(0, 0, 0));
+        documentoTxt.setText("Documento de identidad");
+        jPanel2.add(documentoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 200, -1));
+        jPanel2.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, 170, 25));
+        jPanel2.add(jPasswordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 470, 170, 25));
 
         municipios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         municipios.setEnabled(false);
@@ -130,7 +131,7 @@ public class RegistroDocente extends javax.swing.JFrame {
                 municipiosActionPerformed(evt);
             }
         });
-        jPanel2.add(municipios, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, 150, -1));
+        jPanel2.add(municipios, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 410, 170, 25));
 
         check.setText("¿Tiene oficina física?");
         check.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -143,12 +144,12 @@ public class RegistroDocente extends javax.swing.JFrame {
                 checkActionPerformed(evt);
             }
         });
-        jPanel2.add(check, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 150, -1));
+        jPanel2.add(check, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, 170, 25));
 
         jLabel10.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Correo");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 150, -1));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 140, 150, -1));
 
         instituciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         instituciones.setEnabled(false);
@@ -157,7 +158,7 @@ public class RegistroDocente extends javax.swing.JFrame {
                 institucionesActionPerformed(evt);
             }
         });
-        jPanel2.add(instituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 350, 150, -1));
+        jPanel2.add(instituciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 470, 170, 25));
 
         departamentos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Antioquia", "Córdoba", "Bogota D.C.", "Caldas" }));
         departamentos.addActionListener(new java.awt.event.ActionListener() {
@@ -165,20 +166,26 @@ public class RegistroDocente extends javax.swing.JFrame {
                 departamentosActionPerformed(evt);
             }
         });
-        jPanel2.add(departamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 250, 150, -1));
+        jPanel2.add(departamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 340, 170, 25));
+
+        jLabel14.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("Ciudad");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 380, 150, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
@@ -274,21 +281,21 @@ public class RegistroDocente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Departamento;
+    private javax.swing.JLabel apellidoTxt;
     private javax.swing.JCheckBox check;
     private javax.swing.JComboBox<String> departamentos;
+    private javax.swing.JLabel documentoTxt;
     private javax.swing.JTextField inputOficina;
     private javax.swing.JComboBox<String> instituciones;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
@@ -298,5 +305,6 @@ public class RegistroDocente extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JComboBox<String> municipios;
+    private javax.swing.JLabel nombreTxt;
     // End of variables declaration//GEN-END:variables
 }

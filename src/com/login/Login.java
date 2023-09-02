@@ -48,6 +48,7 @@ public class Login extends JFrame {
         setTitle("Conexión U");
         setBackground(new java.awt.Color(255, 255, 255));
         setLocationByPlatform(true);
+        setResizable(false);
 
         background.setBackground(new java.awt.Color(183, 214, 163));
         background.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -60,7 +61,7 @@ public class Login extends JFrame {
         textoTitulo2.setText("Inicio de sesión");
         textoTitulo2.setToolTipText("");
         textoTitulo2.setAutoscrolls(true);
-        background.add(textoTitulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, 270, 40));
+        background.add(textoTitulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 140, 270, 40));
 
         passUser.setBackground(new java.awt.Color(255, 255, 255));
         passUser.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
@@ -78,7 +79,7 @@ public class Login extends JFrame {
                 passUserActionPerformed(evt);
             }
         });
-        background.add(passUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 290, 230, 30));
+        background.add(passUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 290, 230, 30));
 
         botonIngresar.setBackground(new java.awt.Color(255, 255, 255));
         botonIngresar.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
@@ -90,7 +91,12 @@ public class Login extends JFrame {
                 botonIngresarMouseClicked(evt);
             }
         });
-        background.add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 500, 120, 30));
+        botonIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonIngresarActionPerformed(evt);
+            }
+        });
+        background.add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 430, 120, 30));
 
         textoTitulo.setFont(new java.awt.Font("Rockwell", 0, 36)); // NOI18N
         textoTitulo.setForeground(new java.awt.Color(0, 0, 0));
@@ -98,7 +104,7 @@ public class Login extends JFrame {
         textoTitulo.setText("Conexión U");
         textoTitulo.setToolTipText("");
         textoTitulo.setAutoscrolls(true);
-        background.add(textoTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, 270, 40));
+        background.add(textoTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 270, 40));
 
         perfiles.setBackground(new java.awt.Color(255, 255, 255));
         perfiles.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
@@ -109,12 +115,12 @@ public class Login extends JFrame {
                 perfilesActionPerformed(evt);
             }
         });
-        background.add(perfiles, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 380, 150, 30));
+        background.add(perfiles, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 380, 150, 30));
 
         textoPerfil.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
         textoPerfil.setForeground(new java.awt.Color(0, 0, 0));
         textoPerfil.setText("Seleccione un perfil");
-        background.add(textoPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 340, -1, -1));
+        background.add(textoPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 340, -1, -1));
 
         background2.setBackground(new java.awt.Color(91, 140, 58));
         background2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -122,7 +128,7 @@ public class Login extends JFrame {
         imagen1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/Imagen2.png"))); // NOI18N
         background2.add(imagen1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 300, 340));
 
-        background.add(background2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 370, 580));
+        background.add(background2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 370, 610));
 
         inputUser.setBackground(new java.awt.Color(255, 255, 255));
         inputUser.setFont(new java.awt.Font("Rockwell", 0, 15)); // NOI18N
@@ -135,32 +141,30 @@ public class Login extends JFrame {
                 inputUserFocusGained(evt);
             }
         });
-        background.add(inputUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 250, 230, 30));
+        background.add(inputUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 250, 230, 30));
 
         userTxt.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         userTxt.setForeground(new java.awt.Color(0, 0, 0));
         userTxt.setText("Usuario");
-        background.add(userTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, -1, -1));
+        background.add(userTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 260, -1, -1));
 
         passTxt.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         passTxt.setForeground(new java.awt.Color(0, 0, 0));
         passTxt.setText("Contraseña");
-        background.add(passTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, -1, -1));
+        background.add(passTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
         );
 
-        getAccessibleContext().setAccessibleName("Conexión U");
-
-        setSize(new java.awt.Dimension(914, 637));
+        setSize(new java.awt.Dimension(1016, 669));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -222,6 +226,10 @@ public class Login extends JFrame {
         }
         
     }//GEN-LAST:event_inputUserFocusGained
+
+    private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonIngresarActionPerformed
 
     /**
      * @param args the command line arguments
