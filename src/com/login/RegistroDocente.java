@@ -4,6 +4,20 @@
  */
 package com.login;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import org.apache.poi.sl.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 /**
  *
  * @author Daniel Henao
@@ -221,6 +235,11 @@ public class RegistroDocente extends javax.swing.JFrame {
         botonRegistro.setForeground(new java.awt.Color(0, 0, 0));
         botonRegistro.setText("Registrase");
         botonRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonRegistroMouseClicked(evt);
+            }
+        });
         backgroud.add(botonRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 530, 120, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -244,55 +263,67 @@ public class RegistroDocente extends javax.swing.JFrame {
 
     private void checkOficinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOficinaActionPerformed
 
-            
+
     }//GEN-LAST:event_checkOficinaActionPerformed
 
     private void checkOficinaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkOficinaMouseClicked
-       
-        if (checkOficina.isSelected()){
-            
+
+        if (checkOficina.isSelected()) {
+
             inputOficina.setEnabled(true);
-            
-        }else{
+
+        } else {
             inputOficina.setText("");
             inputOficina.setEnabled(false);
         }
     }//GEN-LAST:event_checkOficinaMouseClicked
 
     private void departamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departamentosActionPerformed
-        
-        if(departamentos.getSelectedItem().toString() != "Seleccionar"){
-            
+
+        if (departamentos.getSelectedItem().toString() != "Seleccionar") {
+
             ciudades.setEnabled(true);
-            String [] ciudadesAnt = new String[] {"Medellín", "Sabaneta"};
-        
-        if(departamentos.getSelectedItem().toString() == "Antioquia"){
-            
-            //municipios.addItem("");
-            for(int i = 0; i < ciudadesAnt.length; i++){
-                ciudades.addItem(ciudadesAnt[i]);
+            String[] ciudadesAnt = new String[]{"Medellín", "Sabaneta"};
+
+            if (departamentos.getSelectedItem().toString() == "Antioquia") {
+
+                //municipios.addItem("");
+                for (int i = 0; i < ciudadesAnt.length; i++) {
+                    ciudades.addItem(ciudadesAnt[i]);
+                }
+
             }
-            
-        }
-            
-        } else{
+
+        } else {
             ciudades.setEnabled(false);
         }
-        
-       
-        
-        
-        
+
+
     }//GEN-LAST:event_departamentosActionPerformed
 
     private void ciudadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciudadesActionPerformed
-        
-        
+
+
     }//GEN-LAST:event_ciudadesActionPerformed
 
     private void universidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_universidadesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_universidadesActionPerformed
+
+    private void botonRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistroMouseClicked
+        
+        boolean datosOk = validarDatos();
+        
+        if(datosOk == true){
+            
+            JOptionPane.showMessageDialog(this, "Los datos están ingresados correctamente");
+            
+        } else{
+            JOptionPane.showMessageDialog(this, "Los datos no están correctos");
+        
+        }
+        
+    }//GEN-LAST:event_botonRegistroMouseClicked
 
     /**
      * @param args the command line arguments
@@ -329,6 +360,50 @@ public class RegistroDocente extends javax.swing.JFrame {
             }
         });
     }
+
+    public boolean validarDatos() {
+
+        boolean datosValidados = true;
+        
+        char [] pass1 = inputPass.getPassword();
+        char [] pass2 = inputPassCheck.getPassword();
+        
+        String strPass1 = new String(pass1);
+        String strPass2 = new String(pass2);
+        
+        if (strPass1.equals(strPass2)) {
+    
+            JOptionPane.showMessageDialog(this, "Las contraseñas coinciden");
+        } else {
+            datosValidados = false;
+            JOptionPane.showMessageDialog(this, "Las contraseñas no coninciden");
+        }
+            
+        Arrays.fill(pass1, ' ');
+        Arrays.fill(pass2, ' ');
+        
+        strPass1 = null;
+        strPass2 = null;
+        
+
+        if (inputNombre.getText().isEmpty()
+                || inputApellido.getText().isEmpty()
+                || inputDocumento.getText().isEmpty()
+                || inputUser.getText().isEmpty()
+                || inputPass.getPassword().length == 0
+                || inputPassCheck.getPassword().length == 0
+                || inputCorreo.getText().isEmpty()
+                || (checkOficina.isSelected() && inputOficina.getText().isEmpty())) {
+
+            datosValidados = false;
+            JOptionPane.showMessageDialog(this, "Favor llenar todos los campos ");
+        }
+
+
+        return datosValidados;
+
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel apellidoTxt;
