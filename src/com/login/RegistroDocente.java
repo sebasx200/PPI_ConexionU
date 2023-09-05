@@ -4,6 +4,7 @@
  */
 package com.login;
 
+import com.clases.Docente;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -311,18 +312,7 @@ public class RegistroDocente extends javax.swing.JFrame {
     }//GEN-LAST:event_universidadesActionPerformed
 
     private void botonRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistroMouseClicked
-        
-        boolean datosOk = validarDatos();
-        
-        if(datosOk == true){
-            
-            JOptionPane.showMessageDialog(this, "Los datos están ingresados correctamente");
-            
-        } else{
-            JOptionPane.showMessageDialog(this, "Los datos no están correctos");
-        
-        }
-        
+      
     }//GEN-LAST:event_botonRegistroMouseClicked
 
     /**
@@ -371,12 +361,10 @@ public class RegistroDocente extends javax.swing.JFrame {
         String strPass1 = new String(pass1);
         String strPass2 = new String(pass2);
         
-        if (strPass1.equals(strPass2)) {
-    
-            JOptionPane.showMessageDialog(this, "Las contraseñas coinciden");
-        } else {
+        if (!strPass1.equals(strPass2)) {
+            
             datosValidados = false;
-            JOptionPane.showMessageDialog(this, "Las contraseñas no coninciden");
+            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden");
         }
             
         Arrays.fill(pass1, ' ');
@@ -402,6 +390,32 @@ public class RegistroDocente extends javax.swing.JFrame {
 
         return datosValidados;
 
+    }
+    
+    public void agregarDocente(Docente docente){
+        
+        boolean datosOk = validarDatos();
+ 
+        if(datosOk == true){
+   
+            docente.setNombre(inputNombre.getText());
+            docente.setApellido(inputApellido.getText());
+            docente.setDocumento(Integer.parseInt(inputDocumento.getText()));
+            docente.setUsuario(inputUser.getText());
+            docente.setCorreo(inputCorreo.getText());
+            if (checkOficina.isSelected()){docente.setCheckOficina(true);}else{docente.setCheckOficina(false);}
+            docente.setOficina(inputOficina.getText());
+            
+            char [] pass1 = inputPass.getPassword();
+            String strPass1 = new String(pass1);
+            docente.setPassword(strPass1);
+            
+            System.out.println("Nombre: " + docente.getNombre() + " Apellido: " + docente.getApellido() + " Documento: " + docente.getDocumento() +
+                " Usuario " + docente.getUsuario() + " Contraseña " + docente.getPassword() + " Correo " + docente.getCorreo() +
+                " Tiene oficina " + docente.getCheckOficina() +" Oficina " + docente.getOficina());
+            
+        }   
+        
     }
 
 
