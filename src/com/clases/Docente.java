@@ -88,4 +88,9 @@ public class Docente {
     public void setOficina(String oficina){
         this.oficina = oficina;
     }
+    
+    @Override
+    public String toString() {
+        return nombre + apellido +  usuario + password + correo + checkOficina + oficina;
+    }
 }
