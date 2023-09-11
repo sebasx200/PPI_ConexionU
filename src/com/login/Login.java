@@ -4,10 +4,20 @@
  */
 package com.login;
 
+import com.clases.Docente;
 import java.awt.Color;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -33,7 +43,7 @@ public class Login extends JFrame {
 
         background = new javax.swing.JPanel();
         textoTitulo2 = new javax.swing.JLabel();
-        passUser = new javax.swing.JPasswordField();
+        inputPass = new javax.swing.JPasswordField();
         botonIngresar = new javax.swing.JButton();
         textoTitulo = new javax.swing.JLabel();
         perfiles = new javax.swing.JComboBox<>();
@@ -66,22 +76,22 @@ public class Login extends JFrame {
         textoTitulo2.setAutoscrolls(true);
         background.add(textoTitulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, 300, 50));
 
-        passUser.setBackground(new java.awt.Color(255, 255, 255));
-        passUser.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        passUser.setForeground(new java.awt.Color(153, 153, 153));
-        passUser.setToolTipText("");
-        passUser.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, java.awt.Color.darkGray, java.awt.Color.darkGray));
-        passUser.addMouseListener(new java.awt.event.MouseAdapter() {
+        inputPass.setBackground(new java.awt.Color(255, 255, 255));
+        inputPass.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        inputPass.setForeground(new java.awt.Color(153, 153, 153));
+        inputPass.setToolTipText("");
+        inputPass.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, java.awt.Color.darkGray, java.awt.Color.darkGray));
+        inputPass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                passUserMousePressed(evt);
+                inputPassMousePressed(evt);
             }
         });
-        passUser.addActionListener(new java.awt.event.ActionListener() {
+        inputPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passUserActionPerformed(evt);
+                inputPassActionPerformed(evt);
             }
         });
-        background.add(passUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, 230, 30));
+        background.add(inputPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, 230, 30));
 
         botonIngresar.setBackground(new java.awt.Color(255, 255, 255));
         botonIngresar.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
@@ -211,43 +221,52 @@ public class Login extends JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void passUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passUserActionPerformed
+    private void inputPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passUserActionPerformed
+    }//GEN-LAST:event_inputPassActionPerformed
 
-    private void passUserMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passUserMousePressed
-     
-        if (inputUser.getText().isEmpty()){
+    private void inputPassMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputPassMousePressed
+
+        if (inputUser.getText().isEmpty()) {
             inputUser.setText("Ingrese su nombre de usuario");
             inputUser.setForeground(Color.gray);
         }
-        
-    }//GEN-LAST:event_passUserMousePressed
+
+    }//GEN-LAST:event_inputPassMousePressed
 
     private void botonIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonIngresarMouseClicked
-        
-         
-        if (inputUser.getText().equals("Ingrese su nombre de usuario") || inputUser.getText().equals("") || String.valueOf(passUser.getPassword()).equals("****")){
+
+        if (inputUser.getText().equals("Ingrese su nombre de usuario") || inputUser.getText().equals("") || String.valueOf(inputPass.getPassword()).equals("****")) {
             JOptionPane.showMessageDialog(null, "Los campos están vacíos");
-        } else{
-            JOptionPane.showMessageDialog(null, "El usuario ingresado es: " + inputUser.getText()+"\n"+
-                    "La contraseña ingresada es: " + String.valueOf(passUser.getPassword()));
+        } else if(perfiles.getSelectedItem().equals("Seleccionar")){
+            JOptionPane.showMessageDialog(null, "No seleccionó ningún perfil");
         }
         
-        switch(perfiles.getSelectedItem().toString()){
-            
+
+        switch (perfiles.getSelectedItem().toString()) {
+
             case "Docente" -> {
-                JOptionPane.showMessageDialog(this, "Seleccionó el perfil de docente");
+
+                String user = (inputUser.getText());
+                char[] pass = inputPass.getPassword();
+                String strPass = new String(pass);
+                int validacion = datosCorrectos(user, strPass);
+                if(validacion == 0){
+                    JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+                } else if(validacion== -1){
+                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+                } else
+                    JOptionPane.showMessageDialog(null, "bienvenido " + user);
             }
-            case "Mentor" ->{
+            case "Mentor" -> {
                 JOptionPane.showMessageDialog(this, "Seleccionó el perfil de mentor");
             }
-            case "Estudiante" ->{
+            case "Estudiante" -> {
                 JOptionPane.showMessageDialog(this, "Seleccionó el perfil de estudiante");
             }
         }
-        
-        
+
+
     }//GEN-LAST:event_botonIngresarMouseClicked
 
     private void perfilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilesActionPerformed
@@ -255,15 +274,14 @@ public class Login extends JFrame {
     }//GEN-LAST:event_perfilesActionPerformed
 
     private void inputUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputUserFocusGained
-        
-        if (inputUser.getText().equals("Ingrese su nombre de usuario")){
-        
-        
+
+        if (inputUser.getText().equals("Ingrese su nombre de usuario")) {
+
             inputUser.setText("");
             inputUser.setForeground(Color.black);
-            
+
         }
-        
+
     }//GEN-LAST:event_inputUserFocusGained
 
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
@@ -319,10 +337,72 @@ public class Login extends JFrame {
             public void run() {
                 new Login().setVisible(true);
             }
-            
-            
         });
-        
+    }
+
+    public int datosCorrectos(String user, String pass) {
+
+        ArrayList<Docente> registrosActuales = new ArrayList<>();
+        int resultado=0;
+
+        try {
+
+            FileInputStream archivoExcel = new FileInputStream("src/datos/registros.xlsx");
+
+            XSSFWorkbook libroExcel = new XSSFWorkbook(archivoExcel);
+            XSSFSheet hoja = libroExcel.getSheetAt(0);
+
+            DataFormatter dataFormatter = new DataFormatter();
+
+            int primeraFila = hoja.getFirstRowNum() + 1;
+            int ultimaFila = hoja.getLastRowNum();
+
+            for (int i = primeraFila; i <= ultimaFila; i++) {
+                Row fila = hoja.getRow(i);
+
+                if (fila != null || fila.equals("")) {
+
+                    for (int j = 0; j < fila.getLastCellNum(); j++) {
+
+                        String nombre = dataFormatter.formatCellValue(fila.getCell(0));
+                        String apellido = dataFormatter.formatCellValue(fila.getCell(1));
+                        int documento = Integer.parseInt(dataFormatter.formatCellValue(fila.getCell(2)));
+                        String usuario = dataFormatter.formatCellValue(fila.getCell(3));
+                        String password = dataFormatter.formatCellValue(fila.getCell(4));
+                        String correo = dataFormatter.formatCellValue(fila.getCell(5));
+                        String oficina = dataFormatter.formatCellValue(fila.getCell(6));
+
+                        Docente docente = new Docente(nombre, apellido, documento, usuario, password, correo, true, oficina);
+                        registrosActuales.add(docente);
+                    }
+                }
+            }
+
+            Map<String, Docente> mapaDocentes = new HashMap<>();
+
+            for (Docente docente : registrosActuales) {
+                mapaDocentes.put(docente.getUsuario(), docente);
+            }
+
+            if (mapaDocentes.containsKey(user)) {
+
+                Docente docenteEncontrado = mapaDocentes.get(user);
+                String passRegistrada = docenteEncontrado.getPassword();
+                if (pass.equals(passRegistrada)) {
+                    resultado = 1;
+                } else {
+                    resultado = -1;
+                }
+
+            } else {
+                resultado = 0;
+            }
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return resultado;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -331,10 +411,10 @@ public class Login extends JFrame {
     private javax.swing.JButton botonRegistro;
     private javax.swing.JButton botonVolver;
     private javax.swing.JLabel fondo;
+    private javax.swing.JPasswordField inputPass;
     private javax.swing.JTextField inputUser;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel passTxt;
-    private javax.swing.JPasswordField passUser;
     private javax.swing.JComboBox<String> perfiles;
     private javax.swing.JLabel textoPerfil1;
     private javax.swing.JLabel textoRegistro;

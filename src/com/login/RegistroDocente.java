@@ -473,7 +473,6 @@ public class RegistroDocente extends javax.swing.JFrame {
                 XSSFWorkbook libroExcel = new XSSFWorkbook(archivoExcel);
                 XSSFSheet hoja = libroExcel.getSheetAt(0);
                 
-                CellReference inicioTabla = new CellReference("A1");
                 int ultimaFila = hoja.getLastRowNum();    
                 
                 for (Docente d : nuevoRegistro) {
@@ -495,8 +494,7 @@ public class RegistroDocente extends javax.swing.JFrame {
                     libroExcel.write(archivoSalida);
                     JOptionPane.showMessageDialog(null, "Datos agregados correctamente");
                     }
-                }
-                else{JOptionPane.showMessageDialog(null,"El documento ingresado ya está registrado");}
+                } else{JOptionPane.showMessageDialog(null, "El usuario o documento ingresado ya está registrado");}
             }catch (IOException e){
             System.out.println(e.getMessage());}
         }    
@@ -546,6 +544,8 @@ public class RegistroDocente extends javax.swing.JFrame {
                 for(Docente a : registrosActuales){
                     if(n.getDocumento() == a.getDocumento()){
                         exisiteRegistro = true;      
+                    } else if(n.getUsuario().equals(n.getUsuario())){
+                        exisiteRegistro = true;
                     }
                 }       
             }
