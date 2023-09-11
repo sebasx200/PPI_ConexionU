@@ -4,10 +4,20 @@
  */
 package com.login;
 
+import com.clases.Docente;
 import java.awt.Color;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -33,55 +43,58 @@ public class Login extends JFrame {
 
         background = new javax.swing.JPanel();
         textoTitulo2 = new javax.swing.JLabel();
-        passUser = new javax.swing.JPasswordField();
+        inputPass = new javax.swing.JPasswordField();
         botonIngresar = new javax.swing.JButton();
         textoTitulo = new javax.swing.JLabel();
         perfiles = new javax.swing.JComboBox<>();
-        textoPerfil = new javax.swing.JLabel();
-        background2 = new javax.swing.JPanel();
-        imagen1 = new javax.swing.JLabel();
+        textoRegistro = new javax.swing.JLabel();
         inputUser = new javax.swing.JTextField();
         userTxt = new javax.swing.JLabel();
         passTxt = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
+        botonVolver = new javax.swing.JButton();
+        botonRegistro = new javax.swing.JButton();
+        textoPerfil1 = new javax.swing.JLabel();
+        fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Conexión U");
         setBackground(new java.awt.Color(255, 255, 255));
         setLocationByPlatform(true);
+        setResizable(false);
 
         background.setBackground(new java.awt.Color(183, 214, 163));
         background.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         background.setForeground(new java.awt.Color(0, 0, 0));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        textoTitulo2.setFont(new java.awt.Font("Rockwell", 0, 36)); // NOI18N
+        textoTitulo2.setFont(new java.awt.Font("Berlin Sans FB", 0, 30)); // NOI18N
         textoTitulo2.setForeground(new java.awt.Color(0, 0, 0));
         textoTitulo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textoTitulo2.setText("Inicio de sesión");
         textoTitulo2.setToolTipText("");
         textoTitulo2.setAutoscrolls(true);
-        background.add(textoTitulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, 270, 40));
+        background.add(textoTitulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, 300, 50));
 
-        passUser.setBackground(new java.awt.Color(255, 255, 255));
-        passUser.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
-        passUser.setForeground(new java.awt.Color(153, 153, 153));
-        passUser.setText("****");
-        passUser.setToolTipText("");
-        passUser.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
-        passUser.addMouseListener(new java.awt.event.MouseAdapter() {
+        inputPass.setBackground(new java.awt.Color(255, 255, 255));
+        inputPass.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        inputPass.setForeground(new java.awt.Color(153, 153, 153));
+        inputPass.setToolTipText("");
+        inputPass.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, java.awt.Color.darkGray, java.awt.Color.darkGray));
+        inputPass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                passUserMousePressed(evt);
+                inputPassMousePressed(evt);
             }
         });
-        passUser.addActionListener(new java.awt.event.ActionListener() {
+        inputPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passUserActionPerformed(evt);
+                inputPassActionPerformed(evt);
             }
         });
-        background.add(passUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 290, 230, 30));
+        background.add(inputPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, 230, 30));
 
         botonIngresar.setBackground(new java.awt.Color(255, 255, 255));
-        botonIngresar.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        botonIngresar.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         botonIngresar.setForeground(new java.awt.Color(0, 0, 0));
         botonIngresar.setText("Ingresar");
         botonIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -90,62 +103,108 @@ public class Login extends JFrame {
                 botonIngresarMouseClicked(evt);
             }
         });
-        background.add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 500, 120, 30));
+        botonIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonIngresarActionPerformed(evt);
+            }
+        });
+        background.add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 120, 35));
 
-        textoTitulo.setFont(new java.awt.Font("Rockwell", 0, 36)); // NOI18N
+        textoTitulo.setFont(new java.awt.Font("Berlin Sans FB", 0, 36)); // NOI18N
         textoTitulo.setForeground(new java.awt.Color(0, 0, 0));
         textoTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textoTitulo.setText("Conexión U");
         textoTitulo.setToolTipText("");
         textoTitulo.setAutoscrolls(true);
-        background.add(textoTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, 270, 40));
+        background.add(textoTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 300, 50));
 
         perfiles.setBackground(new java.awt.Color(255, 255, 255));
-        perfiles.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        perfiles.setFont(new java.awt.Font("Berlin Sans FB", 0, 15)); // NOI18N
         perfiles.setForeground(new java.awt.Color(0, 0, 0));
         perfiles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Docente", "Mentor", "Estudiante" }));
+        perfiles.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         perfiles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 perfilesActionPerformed(evt);
             }
         });
-        background.add(perfiles, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 380, 150, 30));
+        background.add(perfiles, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 300, 150, 25));
 
-        textoPerfil.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
-        textoPerfil.setForeground(new java.awt.Color(0, 0, 0));
-        textoPerfil.setText("Seleccione un perfil");
-        background.add(textoPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 340, -1, -1));
-
-        background2.setBackground(new java.awt.Color(91, 140, 58));
-        background2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        imagen1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/Imagen2.png"))); // NOI18N
-        background2.add(imagen1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 300, 340));
-
-        background.add(background2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 370, 580));
+        textoRegistro.setFont(new java.awt.Font("Berlin Sans FB", 0, 15)); // NOI18N
+        textoRegistro.setForeground(new java.awt.Color(0, 0, 0));
+        textoRegistro.setText("¿No tienes cuenta?");
+        background.add(textoRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 560, -1, 25));
 
         inputUser.setBackground(new java.awt.Color(255, 255, 255));
-        inputUser.setFont(new java.awt.Font("Rockwell", 0, 15)); // NOI18N
+        inputUser.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         inputUser.setForeground(new java.awt.Color(153, 153, 153));
+        inputUser.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         inputUser.setText("Ingrese su nombre de usuario");
-        inputUser.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        inputUser.setToolTipText("");
+        inputUser.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, java.awt.Color.darkGray, java.awt.Color.darkGray));
+        inputUser.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         inputUser.setMargin(new java.awt.Insets(0, 10, 0, 0));
         inputUser.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 inputUserFocusGained(evt);
             }
         });
-        background.add(inputUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 250, 230, 30));
+        background.add(inputUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 210, 230, 30));
 
-        userTxt.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
+        userTxt.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         userTxt.setForeground(new java.awt.Color(0, 0, 0));
         userTxt.setText("Usuario");
-        background.add(userTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, -1, -1));
+        background.add(userTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 210, -1, 25));
 
-        passTxt.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
+        passTxt.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         passTxt.setForeground(new java.awt.Color(0, 0, 0));
         passTxt.setText("Contraseña");
-        background.add(passTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, -1, -1));
+        background.add(passTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 250, -1, 25));
+
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/logo_2023-2_300x300.png"))); // NOI18N
+        background.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
+
+        botonVolver.setBackground(new java.awt.Color(255, 255, 255));
+        botonVolver.setFont(new java.awt.Font("Berlin Sans FB", 0, 15)); // NOI18N
+        botonVolver.setForeground(new java.awt.Color(0, 0, 0));
+        botonVolver.setText("Volver");
+        botonVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonVolverMouseClicked(evt);
+            }
+        });
+        botonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVolverActionPerformed(evt);
+            }
+        });
+        background.add(botonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, 120, 30));
+
+        botonRegistro.setBackground(new java.awt.Color(255, 255, 255));
+        botonRegistro.setFont(new java.awt.Font("Berlin Sans FB", 0, 15)); // NOI18N
+        botonRegistro.setForeground(new java.awt.Color(0, 0, 0));
+        botonRegistro.setText("Regístrate");
+        botonRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonRegistroMouseClicked(evt);
+            }
+        });
+        botonRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegistroActionPerformed(evt);
+            }
+        });
+        background.add(botonRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 560, 120, 30));
+
+        textoPerfil1.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        textoPerfil1.setForeground(new java.awt.Color(0, 0, 0));
+        textoPerfil1.setText("Seleccione un perfil");
+        background.add(textoPerfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, -1, 25));
+
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/background.png"))); // NOI18N
+        background.add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 630));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,54 +217,56 @@ public class Login extends JFrame {
             .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        getAccessibleContext().setAccessibleName("Conexión U");
-
-        setSize(new java.awt.Dimension(914, 637));
+        setSize(new java.awt.Dimension(1016, 669));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void passUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passUserActionPerformed
+    private void inputPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passUserActionPerformed
+    }//GEN-LAST:event_inputPassActionPerformed
 
-    private void passUserMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passUserMousePressed
-        
-        if(String.valueOf(passUser.getPassword()).equals("****")){
-            
-            passUser.setText("");
-            passUser.setForeground(Color.black);
-        }
-        
-        if (inputUser.getText().isEmpty()){
+    private void inputPassMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputPassMousePressed
+
+        if (inputUser.getText().isEmpty()) {
             inputUser.setText("Ingrese su nombre de usuario");
+            inputUser.setForeground(Color.gray);
         }
-        
-    }//GEN-LAST:event_passUserMousePressed
+
+    }//GEN-LAST:event_inputPassMousePressed
 
     private void botonIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonIngresarMouseClicked
-        
-         
-        if (inputUser.getText().equals("Ingrese su nombre de usuario") || inputUser.getText().equals("") || String.valueOf(passUser.getPassword()).equals("****")){
+
+        if (inputUser.getText().equals("Ingrese su nombre de usuario") || inputUser.getText().equals("") || String.valueOf(inputPass.getPassword()).equals("****")) {
             JOptionPane.showMessageDialog(null, "Los campos están vacíos");
-        } else{
-            JOptionPane.showMessageDialog(null, "El usuario ingresado es: " + inputUser.getText()+"\n"+
-                    "La contraseña ingresada es: " + String.valueOf(passUser.getPassword()));
+        } else if(perfiles.getSelectedItem().equals("Seleccionar")){
+            JOptionPane.showMessageDialog(null, "No seleccionó ningún perfil");
         }
         
-        switch(perfiles.getSelectedItem().toString()){
-            
+
+        switch (perfiles.getSelectedItem().toString()) {
+
             case "Docente" -> {
-                JOptionPane.showMessageDialog(this, "Seleccionó el perfil de docente");
+
+                String user = (inputUser.getText());
+                char[] pass = inputPass.getPassword();
+                String strPass = new String(pass);
+                int validacion = datosCorrectos(user, strPass);
+                if(validacion == 0){
+                    JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+                } else if(validacion== -1){
+                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+                } else
+                    JOptionPane.showMessageDialog(null, "bienvenido " + user);
             }
-            case "Mentor" ->{
+            case "Mentor" -> {
                 JOptionPane.showMessageDialog(this, "Seleccionó el perfil de mentor");
             }
-            case "Estudiante" ->{
+            case "Estudiante" -> {
                 JOptionPane.showMessageDialog(this, "Seleccionó el perfil de estudiante");
             }
         }
-        
-        
+
+
     }//GEN-LAST:event_botonIngresarMouseClicked
 
     private void perfilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilesActionPerformed
@@ -213,15 +274,35 @@ public class Login extends JFrame {
     }//GEN-LAST:event_perfilesActionPerformed
 
     private void inputUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputUserFocusGained
-        
-        if (inputUser.getText().equals("Ingrese su nombre de usuario")){
-        
-        
+
+        if (inputUser.getText().equals("Ingrese su nombre de usuario")) {
+
             inputUser.setText("");
-            
+            inputUser.setForeground(Color.black);
+
         }
-        
+
     }//GEN-LAST:event_inputUserFocusGained
+
+    private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonIngresarActionPerformed
+
+    private void botonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVolverMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonVolverMouseClicked
+
+    private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonVolverActionPerformed
+
+    private void botonRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistroMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonRegistroMouseClicked
+
+    private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonRegistroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,22 +337,87 @@ public class Login extends JFrame {
             public void run() {
                 new Login().setVisible(true);
             }
-            
-            
         });
-        
+    }
+
+    public int datosCorrectos(String user, String pass) {
+
+        ArrayList<Docente> registrosActuales = new ArrayList<>();
+        int resultado=0;
+
+        try {
+
+            FileInputStream archivoExcel = new FileInputStream("src/datos/registros.xlsx");
+
+            XSSFWorkbook libroExcel = new XSSFWorkbook(archivoExcel);
+            XSSFSheet hoja = libroExcel.getSheetAt(0);
+
+            DataFormatter dataFormatter = new DataFormatter();
+
+            int primeraFila = hoja.getFirstRowNum() + 1;
+            int ultimaFila = hoja.getLastRowNum();
+
+            for (int i = primeraFila; i <= ultimaFila; i++) {
+                Row fila = hoja.getRow(i);
+
+                if (fila != null || fila.equals("")) {
+
+                    for (int j = 0; j < fila.getLastCellNum(); j++) {
+
+                        String nombre = dataFormatter.formatCellValue(fila.getCell(0));
+                        String apellido = dataFormatter.formatCellValue(fila.getCell(1));
+                        int documento = Integer.parseInt(dataFormatter.formatCellValue(fila.getCell(2)));
+                        String usuario = dataFormatter.formatCellValue(fila.getCell(3));
+                        String password = dataFormatter.formatCellValue(fila.getCell(4));
+                        String correo = dataFormatter.formatCellValue(fila.getCell(5));
+                        String oficina = dataFormatter.formatCellValue(fila.getCell(6));
+
+                        Docente docente = new Docente(nombre, apellido, documento, usuario, password, correo, true, oficina);
+                        registrosActuales.add(docente);
+                    }
+                }
+            }
+
+            Map<String, Docente> mapaDocentes = new HashMap<>();
+
+            for (Docente docente : registrosActuales) {
+                mapaDocentes.put(docente.getUsuario(), docente);
+            }
+
+            if (mapaDocentes.containsKey(user)) {
+
+                Docente docenteEncontrado = mapaDocentes.get(user);
+                String passRegistrada = docenteEncontrado.getPassword();
+                if (pass.equals(passRegistrada)) {
+                    resultado = 1;
+                } else {
+                    resultado = -1;
+                }
+
+            } else {
+                resultado = 0;
+            }
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return resultado;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
-    private javax.swing.JPanel background2;
     private javax.swing.JButton botonIngresar;
-    private javax.swing.JLabel imagen1;
+    private javax.swing.JButton botonRegistro;
+    private javax.swing.JButton botonVolver;
+    private javax.swing.JLabel fondo;
+    private javax.swing.JPasswordField inputPass;
     private javax.swing.JTextField inputUser;
+    private javax.swing.JLabel logo;
     private javax.swing.JLabel passTxt;
-    private javax.swing.JPasswordField passUser;
     private javax.swing.JComboBox<String> perfiles;
-    private javax.swing.JLabel textoPerfil;
+    private javax.swing.JLabel textoPerfil1;
+    private javax.swing.JLabel textoRegistro;
     private javax.swing.JLabel textoTitulo;
     private javax.swing.JLabel textoTitulo2;
     private javax.swing.JLabel userTxt;
