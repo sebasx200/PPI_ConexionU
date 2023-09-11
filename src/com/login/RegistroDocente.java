@@ -4,6 +4,25 @@
  */
 package com.login;
 
+import com.clases.Docente;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import org.apache.poi.hssf.util.CellReference;
+import org.apache.poi.sl.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 /**
  *
  * @author Daniel Henao
@@ -52,111 +71,123 @@ public class RegistroDocente extends javax.swing.JFrame {
         departamentos = new javax.swing.JComboBox<>();
         ciudadTxt = new javax.swing.JLabel();
         botonRegistro = new javax.swing.JButton();
+        logo = new javax.swing.JLabel();
+        botonLogin = new javax.swing.JButton();
+        loginTxt = new javax.swing.JLabel();
+        fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Conexión U: Registro de docente");
         setLocationByPlatform(true);
+        setMinimumSize(new java.awt.Dimension(1000, 630));
+        setPreferredSize(new java.awt.Dimension(1000, 630));
+        setResizable(false);
+        setSize(new java.awt.Dimension(1000, 630));
 
         backgroud.setBackground(new java.awt.Color(183, 214, 163));
+        backgroud.setMinimumSize(new java.awt.Dimension(1000, 630));
+        backgroud.setPreferredSize(new java.awt.Dimension(1000, 630));
         backgroud.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tituloTxt.setFont(new java.awt.Font("Rockwell", 1, 24)); // NOI18N
+        tituloTxt.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
         tituloTxt.setForeground(new java.awt.Color(0, 0, 0));
         tituloTxt.setText("Registro Docente");
         backgroud.add(tituloTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 210, 60));
 
         inputOficina.setBackground(new java.awt.Color(255, 255, 255));
-        inputOficina.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        inputOficina.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         inputOficina.setForeground(new java.awt.Color(0, 0, 0));
         inputOficina.setEnabled(false);
-        backgroud.add(inputOficina, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 270, 170, 25));
+        backgroud.add(inputOficina, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 410, 170, 25));
 
         inputApellido.setBackground(new java.awt.Color(255, 255, 255));
-        inputApellido.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        inputApellido.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         inputApellido.setForeground(new java.awt.Color(0, 0, 0));
-        backgroud.add(inputApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 170, 25));
+        backgroud.add(inputApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, 170, 25));
 
         inputDocumento.setBackground(new java.awt.Color(255, 255, 255));
-        inputDocumento.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        inputDocumento.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         inputDocumento.setForeground(new java.awt.Color(0, 0, 0));
-        backgroud.add(inputDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 170, 25));
+        backgroud.add(inputDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 170, 170, 25));
 
         inputCorreo.setBackground(new java.awt.Color(255, 255, 255));
-        inputCorreo.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        inputCorreo.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         inputCorreo.setForeground(new java.awt.Color(0, 0, 0));
         inputCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputCorreoActionPerformed(evt);
             }
         });
-        backgroud.add(inputCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, 170, 25));
+        backgroud.add(inputCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 330, 170, 25));
 
         inputNombre.setBackground(new java.awt.Color(255, 255, 255));
-        inputNombre.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        inputNombre.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         inputNombre.setForeground(new java.awt.Color(0, 0, 0));
-        backgroud.add(inputNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 170, 25));
+        backgroud.add(inputNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 170, 25));
 
         inputUser.setBackground(new java.awt.Color(255, 255, 255));
-        inputUser.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        inputUser.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         inputUser.setForeground(new java.awt.Color(0, 0, 0));
-        backgroud.add(inputUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 170, 25));
+        backgroud.add(inputUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 210, 170, 25));
 
-        oficinaTxt.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        oficinaTxt.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         oficinaTxt.setForeground(new java.awt.Color(0, 0, 0));
-        oficinaTxt.setText("Ubicación oficina");
-        backgroud.add(oficinaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 250, 150, -1));
+        oficinaTxt.setText("Oficina");
+        backgroud.add(oficinaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 410, 100, 25));
 
-        nombreTxt.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        nombreTxt.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         nombreTxt.setForeground(new java.awt.Color(0, 0, 0));
         nombreTxt.setText("Nombre");
-        backgroud.add(nombreTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 150, -1));
+        backgroud.add(nombreTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, 100, 25));
 
-        userTxt.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        userTxt.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         userTxt.setForeground(new java.awt.Color(0, 0, 0));
         userTxt.setText("Usuario");
-        backgroud.add(userTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 150, -1));
+        backgroud.add(userTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, 100, 25));
 
-        passTxt.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        passTxt.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         passTxt.setForeground(new java.awt.Color(0, 0, 0));
         passTxt.setText("Contraseña");
-        backgroud.add(passTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, 150, -1));
+        backgroud.add(passTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 250, 100, 25));
 
-        passcheckTxt.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        passcheckTxt.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         passcheckTxt.setForeground(new java.awt.Color(0, 0, 0));
         passcheckTxt.setText("Confirmar Contraseña");
-        backgroud.add(passcheckTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 440, 180, -1));
+        passcheckTxt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        backgroud.add(passcheckTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 280, 100, 50));
 
-        apellidoTxt.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        apellidoTxt.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         apellidoTxt.setForeground(new java.awt.Color(0, 0, 0));
         apellidoTxt.setText("Apellido");
-        backgroud.add(apellidoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 150, -1));
+        backgroud.add(apellidoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, 100, 25));
 
-        departamentoTxt.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        departamentoTxt.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         departamentoTxt.setForeground(new java.awt.Color(0, 0, 0));
         departamentoTxt.setText("Departamento");
-        backgroud.add(departamentoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 310, 150, -1));
+        backgroud.add(departamentoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 90, 150, -1));
 
-        uniTxt.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        uniTxt.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         uniTxt.setForeground(new java.awt.Color(0, 0, 0));
         uniTxt.setText("Universidad");
-        backgroud.add(uniTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 440, 150, -1));
+        backgroud.add(uniTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 250, 150, -1));
 
-        documentoTxt.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        documentoTxt.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         documentoTxt.setForeground(new java.awt.Color(0, 0, 0));
-        documentoTxt.setText("Documento de identidad");
-        backgroud.add(documentoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 200, -1));
+        documentoTxt.setText("Documento");
+        backgroud.add(documentoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 100, 25));
 
         inputPass.setBackground(new java.awt.Color(255, 255, 255));
-        inputPass.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        inputPass.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         inputPass.setForeground(new java.awt.Color(0, 0, 0));
-        backgroud.add(inputPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, 170, 25));
+        backgroud.add(inputPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, 170, 25));
 
         inputPassCheck.setBackground(new java.awt.Color(255, 255, 255));
-        inputPassCheck.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        inputPassCheck.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         inputPassCheck.setForeground(new java.awt.Color(0, 0, 0));
-        backgroud.add(inputPassCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 470, 170, 25));
+        backgroud.add(inputPassCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, 170, 25));
 
         ciudades.setBackground(new java.awt.Color(255, 255, 255));
-        ciudades.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        ciudades.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         ciudades.setForeground(new java.awt.Color(0, 0, 0));
         ciudades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         ciudades.setEnabled(false);
@@ -165,7 +196,7 @@ public class RegistroDocente extends javax.swing.JFrame {
                 ciudadesActionPerformed(evt);
             }
         });
-        backgroud.add(ciudades, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 410, 170, 25));
+        backgroud.add(ciudades, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 210, 170, 25));
 
         checkOficina.setBackground(new java.awt.Color(255, 255, 255));
         checkOficina.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
@@ -181,15 +212,15 @@ public class RegistroDocente extends javax.swing.JFrame {
                 checkOficinaActionPerformed(evt);
             }
         });
-        backgroud.add(checkOficina, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, 170, 25));
+        backgroud.add(checkOficina, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 370, 170, 25));
 
-        correoTxt.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        correoTxt.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         correoTxt.setForeground(new java.awt.Color(0, 0, 0));
         correoTxt.setText("Correo");
-        backgroud.add(correoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 140, 150, -1));
+        backgroud.add(correoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, 150, -1));
 
         universidades.setBackground(new java.awt.Color(255, 255, 255));
-        universidades.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        universidades.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         universidades.setForeground(new java.awt.Color(0, 0, 0));
         universidades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         universidades.setEnabled(false);
@@ -198,10 +229,10 @@ public class RegistroDocente extends javax.swing.JFrame {
                 universidadesActionPerformed(evt);
             }
         });
-        backgroud.add(universidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 470, 170, 25));
+        backgroud.add(universidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 290, 170, 25));
 
         departamentos.setBackground(new java.awt.Color(255, 255, 255));
-        departamentos.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        departamentos.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         departamentos.setForeground(new java.awt.Color(0, 0, 0));
         departamentos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Antioquia", "Córdoba", "Bogota D.C.", "Caldas" }));
         departamentos.addActionListener(new java.awt.event.ActionListener() {
@@ -209,29 +240,56 @@ public class RegistroDocente extends javax.swing.JFrame {
                 departamentosActionPerformed(evt);
             }
         });
-        backgroud.add(departamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 340, 170, 25));
+        backgroud.add(departamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 130, 170, 25));
 
-        ciudadTxt.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
+        ciudadTxt.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         ciudadTxt.setForeground(new java.awt.Color(0, 0, 0));
         ciudadTxt.setText("Ciudad");
-        backgroud.add(ciudadTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 380, 150, -1));
+        backgroud.add(ciudadTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 170, 150, -1));
 
         botonRegistro.setBackground(new java.awt.Color(255, 255, 255));
-        botonRegistro.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
+        botonRegistro.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         botonRegistro.setForeground(new java.awt.Color(0, 0, 0));
         botonRegistro.setText("Registrase");
         botonRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        backgroud.add(botonRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 530, 120, 30));
+        botonRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonRegistroMouseClicked(evt);
+            }
+        });
+        botonRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegistroActionPerformed(evt);
+            }
+        });
+        backgroud.add(botonRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 560, 120, 30));
+
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/logo_2023-2_300x300.png"))); // NOI18N
+        backgroud.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
+
+        botonLogin.setBackground(new java.awt.Color(255, 255, 255));
+        botonLogin.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        botonLogin.setForeground(new java.awt.Color(0, 0, 0));
+        botonLogin.setText("Inicia sesión");
+        backgroud.add(botonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, 120, 30));
+
+        loginTxt.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        loginTxt.setForeground(new java.awt.Color(0, 0, 0));
+        loginTxt.setText("Si ya tienes una cuenta");
+        backgroud.add(loginTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 560, -1, 25));
+
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/background.png"))); // NOI18N
+        backgroud.add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 630));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(backgroud, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addComponent(backgroud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(backgroud, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(backgroud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -244,55 +302,62 @@ public class RegistroDocente extends javax.swing.JFrame {
 
     private void checkOficinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOficinaActionPerformed
 
-            
+
     }//GEN-LAST:event_checkOficinaActionPerformed
 
     private void checkOficinaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkOficinaMouseClicked
-       
-        if (checkOficina.isSelected()){
-            
+
+        if (checkOficina.isSelected()) {
+
             inputOficina.setEnabled(true);
-            
-        }else{
+
+        } else {
             inputOficina.setText("");
             inputOficina.setEnabled(false);
         }
     }//GEN-LAST:event_checkOficinaMouseClicked
 
     private void departamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departamentosActionPerformed
-        
-        if(departamentos.getSelectedItem().toString() != "Seleccionar"){
-            
+
+        if (departamentos.getSelectedItem().toString() != "Seleccionar") {
+
             ciudades.setEnabled(true);
-            String [] ciudadesAnt = new String[] {"Medellín", "Sabaneta"};
-        
-        if(departamentos.getSelectedItem().toString() == "Antioquia"){
-            
-            //municipios.addItem("");
-            for(int i = 0; i < ciudadesAnt.length; i++){
-                ciudades.addItem(ciudadesAnt[i]);
+            String[] ciudadesAnt = new String[]{"Medellín", "Sabaneta"};
+
+            if (departamentos.getSelectedItem().toString() == "Antioquia") {
+
+                //municipios.addItem("");
+                for (int i = 0; i < ciudadesAnt.length; i++) {
+                    ciudades.addItem(ciudadesAnt[i]);
+                }
+
             }
-            
-        }
-            
-        } else{
+
+        } else {
             ciudades.setEnabled(false);
         }
-        
-       
-        
-        
-        
+
+
     }//GEN-LAST:event_departamentosActionPerformed
 
     private void ciudadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciudadesActionPerformed
-        
-        
+
+
     }//GEN-LAST:event_ciudadesActionPerformed
 
     private void universidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_universidadesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_universidadesActionPerformed
+
+    private void botonRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistroMouseClicked
+        try{
+        agregarDocente();
+        } catch(Exception e){JOptionPane.showMessageDialog(null, "Por favor solo ingresar solo números en el documento");}
+    }//GEN-LAST:event_botonRegistroMouseClicked
+
+    private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonRegistroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -330,9 +395,175 @@ public class RegistroDocente extends javax.swing.JFrame {
         });
     }
 
+    public boolean validarDatos() {
+        
+        boolean datosValidados = true;
+        
+        char [] pass1 = inputPass.getPassword();
+        char [] pass2 = inputPassCheck.getPassword();
+        
+        String strPass1 = new String(pass1);
+        String strPass2 = new String(pass2);
+        
+        if (!strPass1.equals(strPass2)) {
+            
+            datosValidados = false;
+            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden");
+        }
+            
+        Arrays.fill(pass1, ' ');
+        Arrays.fill(pass2, ' ');
+        
+        strPass1 = null;
+        strPass2 = null;
+        
+
+        if (inputNombre.getText().isEmpty()
+                || inputApellido.getText().isEmpty()
+                || inputDocumento.getText().isEmpty()
+                || inputUser.getText().isEmpty()
+                || inputPass.getPassword().length == 0
+                || inputPassCheck.getPassword().length == 0
+                || inputCorreo.getText().isEmpty()
+                || (checkOficina.isSelected() && inputOficina.getText().isEmpty())) {
+
+            datosValidados = false;
+            JOptionPane.showMessageDialog(this, "Favor llenar todos los campos ");
+        }
+        
+
+        return datosValidados;
+
+    }
+    
+    public void agregarDocente(){
+        
+        boolean datosOk = validarDatos();
+        boolean tieneOficina = false;
+        ArrayList<Docente> nuevoRegistro = new ArrayList<>();
+        
+ 
+        if(datosOk == true){
+            
+            String nombre = (inputNombre.getText());
+            String apellido = (inputApellido.getText());
+            int documento = (Integer.parseInt(inputDocumento.getText()));
+            String usuario = (inputUser.getText());
+            String correo = (inputCorreo.getText());  
+            String oficina;
+            
+            char [] pass1 = inputPass.getPassword();
+            String strPass1 = new String(pass1);
+            
+            if(checkOficina.isSelected()){
+                
+                tieneOficina = true;
+                oficina = (inputOficina.getText());
+            } else{oficina = "No tiene";}
+            
+            Docente docente = new Docente(nombre, apellido, documento, usuario, strPass1, correo, tieneOficina, oficina);
+            
+            nuevoRegistro.add(docente);
+            
+            try {
+                
+                FileInputStream archivoExcel = new FileInputStream("src/datos/registros.xlsx");
+            
+            
+                XSSFWorkbook libroExcel = new XSSFWorkbook(archivoExcel);
+                XSSFSheet hoja = libroExcel.getSheetAt(0);
+                
+                int ultimaFila = hoja.getLastRowNum();    
+                
+                for (Docente d : nuevoRegistro) {
+                    Row nuevaFila = hoja.createRow(ultimaFila + 1);
+                    nuevaFila.createCell(0).setCellValue(d.getNombre());
+                    nuevaFila.createCell(1).setCellValue(d.getApellido());
+                    nuevaFila.createCell(2).setCellValue(d.getDocumento());
+                    nuevaFila.createCell(3).setCellValue(d.getUsuario());
+                    nuevaFila.createCell(4).setCellValue(d.getPassword());
+                    nuevaFila.createCell(5).setCellValue(d.getCorreo());
+                    nuevaFila.createCell(6).setCellValue(d.getOficina());
+                    
+                    ultimaFila++;
+                }
+                boolean existeRegistro = existeRegistro(nuevoRegistro);
+                if(existeRegistro == false){
+                    
+                    try (FileOutputStream archivoSalida = new FileOutputStream("src/datos/registros.xlsx")) {
+                    libroExcel.write(archivoSalida);
+                    JOptionPane.showMessageDialog(null, "Datos agregados correctamente");
+                    }
+                } else{JOptionPane.showMessageDialog(null, "El usuario o documento ingresado ya está registrado");}
+            }catch (IOException e){
+            System.out.println(e.getMessage());}
+        }    
+    }
+    
+    public boolean existeRegistro(ArrayList<Docente>nuevoRegistro){
+        
+        ArrayList<Docente>registrosActuales = new ArrayList<>();
+        
+        boolean exisiteRegistro = false;
+        
+        try {
+            FileInputStream archivoExcel = new FileInputStream("src/datos/registros.xlsx");
+            
+            
+                XSSFWorkbook libroExcel = new XSSFWorkbook(archivoExcel);
+                XSSFSheet hoja = libroExcel.getSheetAt(0);
+                
+                DataFormatter dataFormatter = new DataFormatter();
+
+                
+                int primeraFila = hoja.getFirstRowNum()+1;
+                int ultimaFila = hoja.getLastRowNum();
+                
+                for (int i = primeraFila; i <= ultimaFila; i++) {
+                Row fila = hoja.getRow(i);
+                
+                if (fila != null || fila.equals("")) {
+                    
+                    for(int j=0; j < fila.getLastCellNum();j++){
+        
+                        String nombre = dataFormatter.formatCellValue(fila.getCell(0));
+                        String apellido = dataFormatter.formatCellValue(fila.getCell(1));
+                        int documento = Integer.parseInt(dataFormatter.formatCellValue(fila.getCell(2)));
+                        String usuario = dataFormatter.formatCellValue(fila.getCell(3));
+                        String password = dataFormatter.formatCellValue(fila.getCell(4));
+                        String correo = dataFormatter.formatCellValue(fila.getCell(5));
+                        String oficina = dataFormatter.formatCellValue(fila.getCell(6));
+
+                        Docente docente = new Docente(nombre, apellido, documento, usuario, password, correo, true, oficina);
+                        registrosActuales.add(docente);   
+                    }
+                }
+            }
+                
+            for(Docente n : nuevoRegistro){
+                for(Docente a : registrosActuales){
+                    if(n.getDocumento() == a.getDocumento()){
+                        exisiteRegistro = true;      
+                    } else if(n.getUsuario().equals(n.getUsuario())){
+                        exisiteRegistro = true;
+                    }
+                }       
+            }
+            
+        } catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+        
+        return exisiteRegistro;
+    }
+    
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel apellidoTxt;
     private javax.swing.JPanel backgroud;
+    private javax.swing.JButton botonLogin;
     private javax.swing.JButton botonRegistro;
     private javax.swing.JCheckBox checkOficina;
     private javax.swing.JLabel ciudadTxt;
@@ -341,6 +572,7 @@ public class RegistroDocente extends javax.swing.JFrame {
     private javax.swing.JLabel departamentoTxt;
     private javax.swing.JComboBox<String> departamentos;
     private javax.swing.JLabel documentoTxt;
+    private javax.swing.JLabel fondo;
     private javax.swing.JTextField inputApellido;
     private javax.swing.JTextField inputCorreo;
     private javax.swing.JTextField inputDocumento;
@@ -349,6 +581,8 @@ public class RegistroDocente extends javax.swing.JFrame {
     private javax.swing.JPasswordField inputPass;
     private javax.swing.JPasswordField inputPassCheck;
     private javax.swing.JTextField inputUser;
+    private javax.swing.JLabel loginTxt;
+    private javax.swing.JLabel logo;
     private javax.swing.JLabel nombreTxt;
     private javax.swing.JLabel oficinaTxt;
     private javax.swing.JLabel passTxt;
