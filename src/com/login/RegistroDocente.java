@@ -523,20 +523,17 @@ public class RegistroDocente extends javax.swing.JFrame {
                 Row fila = hoja.getRow(i);
                 
                 if (fila != null || fila.equals("")) {
-                    
-                    for(int j=0; j < fila.getLastCellNum();j++){
-        
-                        String nombre = dataFormatter.formatCellValue(fila.getCell(0));
-                        String apellido = dataFormatter.formatCellValue(fila.getCell(1));
-                        int documento = Integer.parseInt(dataFormatter.formatCellValue(fila.getCell(2)));
-                        String usuario = dataFormatter.formatCellValue(fila.getCell(3));
-                        String password = dataFormatter.formatCellValue(fila.getCell(4));
-                        String correo = dataFormatter.formatCellValue(fila.getCell(5));
-                        String oficina = dataFormatter.formatCellValue(fila.getCell(6));
+                      
+                    String nombre = dataFormatter.formatCellValue(fila.getCell(0));
+                    String apellido = dataFormatter.formatCellValue(fila.getCell(1));
+                    int documento = Integer.parseInt(dataFormatter.formatCellValue(fila.getCell(2)));
+                    String usuario = dataFormatter.formatCellValue(fila.getCell(3));
+                    String password = dataFormatter.formatCellValue(fila.getCell(4));
+                    String correo = dataFormatter.formatCellValue(fila.getCell(5));
+                    String oficina = dataFormatter.formatCellValue(fila.getCell(6));
 
-                        Docente docente = new Docente(nombre, apellido, documento, usuario, password, correo, true, oficina);
-                        registrosActuales.add(docente);   
-                    }
+                    Docente docente = new Docente(nombre, apellido, documento, usuario, password, correo, true, oficina);
+                    registrosActuales.add(docente);    
                 }
             }
                 

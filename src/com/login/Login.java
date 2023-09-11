@@ -340,7 +340,7 @@ public class Login extends JFrame {
         });
     }
 
-    public int datosCorrectos(String user, String pass) {
+    public int datosCorrectos(String user, String pass) { // método que se usa para comparar la información que ingresa el usuario con los datos registrados en registros.xlsx
 
         ArrayList<Docente> registrosActuales = new ArrayList<>();
         int resultado=0;
@@ -362,23 +362,20 @@ public class Login extends JFrame {
 
                 if (fila != null || fila.equals("")) {
 
-                    for (int j = 0; j < fila.getLastCellNum(); j++) {
+                    String nombre = dataFormatter.formatCellValue(fila.getCell(0));
+                    String apellido = dataFormatter.formatCellValue(fila.getCell(1));
+                    int documento = Integer.parseInt(dataFormatter.formatCellValue(fila.getCell(2)));
+                    String usuario = dataFormatter.formatCellValue(fila.getCell(3));
+                    String password = dataFormatter.formatCellValue(fila.getCell(4));
+                    String correo = dataFormatter.formatCellValue(fila.getCell(5));
+                    String oficina = dataFormatter.formatCellValue(fila.getCell(6));
 
-                        String nombre = dataFormatter.formatCellValue(fila.getCell(0));
-                        String apellido = dataFormatter.formatCellValue(fila.getCell(1));
-                        int documento = Integer.parseInt(dataFormatter.formatCellValue(fila.getCell(2)));
-                        String usuario = dataFormatter.formatCellValue(fila.getCell(3));
-                        String password = dataFormatter.formatCellValue(fila.getCell(4));
-                        String correo = dataFormatter.formatCellValue(fila.getCell(5));
-                        String oficina = dataFormatter.formatCellValue(fila.getCell(6));
-
-                        Docente docente = new Docente(nombre, apellido, documento, usuario, password, correo, true, oficina);
-                        registrosActuales.add(docente);
-                    }
+                    Docente docente = new Docente(nombre, apellido, documento, usuario, password, correo, true, oficina);
+                    registrosActuales.add(docente);   
                 }
             }
 
-            Map<String, Docente> mapaDocentes = new HashMap<>();
+            Map<String, Docente> mapaDocentes = new HashMap<>(); //se crea un mapa para guardar la primayKey que sería el usuario como tipo string comparándolo con objetos de tipo docente
 
             for (Docente docente : registrosActuales) {
                 mapaDocentes.put(docente.getUsuario(), docente);
