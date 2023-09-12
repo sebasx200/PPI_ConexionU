@@ -488,6 +488,7 @@ public class RegistroDocente extends javax.swing.JFrame {
                     ultimaFila++;
                 }
                 boolean existeRegistro = existeRegistro(nuevoRegistro);
+                System.out.println(existeRegistro);
                 if(existeRegistro == false){
                     
                     try (FileOutputStream archivoSalida = new FileOutputStream("src/datos/registros.xlsx")) {
@@ -541,10 +542,10 @@ public class RegistroDocente extends javax.swing.JFrame {
                 for(Docente a : registrosActuales){
                     if(n.getDocumento() == a.getDocumento()){
                         exisiteRegistro = true;      
-                    } else if(n.getUsuario().equals(n.getUsuario())){
+                    } else if(n.getUsuario().equals(a.getUsuario())){
                         exisiteRegistro = true;
                     }
-                }       
+                }
             }
             
         } catch (IOException e){
