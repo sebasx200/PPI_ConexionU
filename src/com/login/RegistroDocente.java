@@ -13,7 +13,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import org.apache.poi.hssf.util.CellReference;
 import org.apache.poi.sl.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Cell;
@@ -399,25 +402,7 @@ public class RegistroDocente extends javax.swing.JFrame {
         
         boolean datosValidados = true;
         
-        char [] pass1 = inputPass.getPassword();
-        char [] pass2 = inputPassCheck.getPassword();
-        
-        String strPass1 = new String(pass1);
-        String strPass2 = new String(pass2);
-        
-        if (!strPass1.equals(strPass2)) {
-            
-            datosValidados = false;
-            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden");
-        }
-            
-        Arrays.fill(pass1, ' ');
-        Arrays.fill(pass2, ' ');
-        
-        strPass1 = null;
-        strPass2 = null;
-        
-
+        // Validación de los espacios
         if (inputNombre.getText().isEmpty()
                 || inputApellido.getText().isEmpty()
                 || inputDocumento.getText().isEmpty()
@@ -428,9 +413,99 @@ public class RegistroDocente extends javax.swing.JFrame {
                 || (checkOficina.isSelected() && inputOficina.getText().isEmpty())) {
 
             datosValidados = false;
-            JOptionPane.showMessageDialog(this, "Favor llenar todos los campos ");
+            JOptionPane.showMessageDialog(this, "Favor llenar todos los campos.", 
+                    "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
         
+        // Validación de nombre.
+        if(datosValidados == true && inputNombre.getText().length() < 3)
+        {
+            datosValidados = false;
+            JOptionPane.showMessageDialog(null, "Nombre no valido", 
+                    "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        // Validación del apellido.
+        if(datosValidados == true && inputApellido.getText().length() < 4)
+        {
+            datosValidados = false;
+            JOptionPane.showMessageDialog(null, "Apellido no valido", 
+                    "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        // Validación del documento.
+        if (datosValidados == true && inputDocumento.getText().length() < 8 || inputDocumento.getText().length() > 12)
+        {
+            datosValidados = false;
+            JOptionPane.showMessageDialog(null,"El documento no es valido",
+                    "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        // Validación del usuario.
+        String usuario = inputUser.getText();
+        String regax = ".*\\d+.*";
+        Pattern pattern = Pattern.compile(regax);
+        Matcher matcher = pattern.matcher(usuario);
+        if (datosValidados == true && inputUser.getText().length() < 4 && matcher.matches())
+        {
+            datosValidados = false;
+            JOptionPane.showMessageDialog(null, "El usuario no es valido", 
+                    "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        // Validación de la contraseña.
+        if (datosValidados == true && inputPass.getPassword().length < 4)
+        {
+            datosValidados = false;
+            JOptionPane.showMessageDialog(null,"La contraseña no es correcta",
+                    "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        // Validación de que las contraseñas sean iguales.
+        char [] pass1 = inputPass.getPassword();
+        char [] pass2 = inputPassCheck.getPassword();
+        String strPass1 = new String(pass1);
+        String strPass2 = new String(pass2);
+        if (!strPass1.equals(strPass2))
+        {
+            datosValidados = false;
+            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden");
+        }
+        Arrays.fill(pass1, ' ');
+        Arrays.fill(pass2, ' ');
+        strPass1 = null;
+        strPass2 = null;
+        
+        // Validación de correo
+        String correo = inputCorreo.getText();
+        String regexa =  "^[A-Za-z0-9+_.-]+@(.+)$";
+        Pattern.compile(regexa);
+        pattern.matcher(correo);
+        if (datosValidados == true && !matcher.matches())
+        {
+            datosValidados = false;
+            JOptionPane.showMessageDialog(null, "El correo no es valido",
+                    "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        // Llamamos la ventana
+        if (datosValidados == true)
+        {
+            /*setVisible(false);
+            RegistroDocentes registroDocente = new RegistroDocentes();
+            registroDocente.setVisible(true);
+            JPanel panel = new JPanel();
+            panel.add(BotonRegistro);
+            add(panel);*/
+        }
+        
+        inputNombre.setText("");
+        inputApellido.setText("");
+        inputDocumento.setText("");
+        inputUser.setText("");
+        inputCorreo.setText("");
+        inputPass.setText("");
+        inputPassCheck.setText("");
 
         return datosValidados;
 
