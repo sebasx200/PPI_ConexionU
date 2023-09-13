@@ -4,6 +4,8 @@
  */
 package com.login;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author Daniel Henao
@@ -100,10 +102,23 @@ public class Principal extends javax.swing.JFrame {
 
     private void botonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLoginActionPerformed
         // TODO add your handling code here:
+        setVisible(false);
+        Login inicio = new Login();
+        inicio.setVisible(true);
+        JPanel panel = new JPanel();
+        panel.add(botonLogin);
+        add(panel);
     }//GEN-LAST:event_botonLoginActionPerformed
 
     private void botonRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarseActionPerformed
         // TODO add your handling code here:
+        setVisible(false);
+        RegistroDocente docente = new RegistroDocente();
+        docente.setVisible(true);
+        JPanel pane = new JPanel();
+        pane.add(botonRegistrarse);
+        add(pane);
+        
     }//GEN-LAST:event_botonRegistrarseActionPerformed
 
     /**

@@ -77,13 +77,13 @@ public class RegistroDocente extends javax.swing.JFrame {
         logo = new javax.swing.JLabel();
         botonLogin = new javax.swing.JButton();
         loginTxt = new javax.swing.JLabel();
+        BotonVolver = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Conexión U: Registro de docente");
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(1000, 630));
-        setPreferredSize(new java.awt.Dimension(1000, 630));
         setResizable(false);
         setSize(new java.awt.Dimension(1000, 630));
 
@@ -106,11 +106,21 @@ public class RegistroDocente extends javax.swing.JFrame {
         inputApellido.setBackground(new java.awt.Color(255, 255, 255));
         inputApellido.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         inputApellido.setForeground(new java.awt.Color(0, 0, 0));
+        inputApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputApellidoKeyTyped(evt);
+            }
+        });
         backgroud.add(inputApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, 170, 25));
 
         inputDocumento.setBackground(new java.awt.Color(255, 255, 255));
         inputDocumento.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         inputDocumento.setForeground(new java.awt.Color(0, 0, 0));
+        inputDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputDocumentoKeyTyped(evt);
+            }
+        });
         backgroud.add(inputDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 170, 170, 25));
 
         inputCorreo.setBackground(new java.awt.Color(255, 255, 255));
@@ -126,6 +136,11 @@ public class RegistroDocente extends javax.swing.JFrame {
         inputNombre.setBackground(new java.awt.Color(255, 255, 255));
         inputNombre.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         inputNombre.setForeground(new java.awt.Color(0, 0, 0));
+        inputNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputNombreKeyTyped(evt);
+            }
+        });
         backgroud.add(inputNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 170, 25));
 
         inputUser.setBackground(new java.awt.Color(255, 255, 255));
@@ -274,13 +289,28 @@ public class RegistroDocente extends javax.swing.JFrame {
         botonLogin.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         botonLogin.setForeground(new java.awt.Color(0, 0, 0));
         botonLogin.setText("Inicia sesión");
-        backgroud.add(botonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, 120, 30));
+        botonLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonLoginActionPerformed(evt);
+            }
+        });
+        backgroud.add(botonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 560, 120, 30));
 
         loginTxt.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         loginTxt.setForeground(new java.awt.Color(0, 0, 0));
         loginTxt.setText("Si ya tienes una cuenta");
-        backgroud.add(loginTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 560, -1, 25));
+        backgroud.add(loginTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 560, -1, 25));
 
+        BotonVolver.setText("Volver");
+        BotonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonVolverActionPerformed(evt);
+            }
+        });
+        backgroud.add(BotonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 564, 110, 30));
+
+        fondo.setBackground(new java.awt.Color(0, 0, 0));
+        fondo.setForeground(new java.awt.Color(0, 0, 0));
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/background.png"))); // NOI18N
         backgroud.add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 630));
 
@@ -353,14 +383,61 @@ public class RegistroDocente extends javax.swing.JFrame {
     }//GEN-LAST:event_universidadesActionPerformed
 
     private void botonRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistroMouseClicked
-        try{
         agregarDocente();
+        /*try{
+        
         } catch(Exception e){JOptionPane.showMessageDialog(null, "Por favor solo ingresar solo números en el documento");}
+        */
     }//GEN-LAST:event_botonRegistroMouseClicked
 
     private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonRegistroActionPerformed
+
+    private void inputNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputNombreKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c))
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_inputNombreKeyTyped
+
+    private void inputApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputApellidoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c))
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_inputApellidoKeyTyped
+
+    private void inputDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputDocumentoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c))
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_inputDocumentoKeyTyped
+
+    private void BotonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonVolverActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        Principal principal = new Principal();
+        principal.setVisible(true);
+        panel.add(BotonVolver);
+        add(panel);
+    }//GEN-LAST:event_BotonVolverActionPerformed
+
+    private void botonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLoginActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        Login login = new Login();
+        login.setVisible(true);
+        panel.add(botonLogin);
+        add(panel);
+    }//GEN-LAST:event_botonLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -466,7 +543,7 @@ public class RegistroDocente extends javax.swing.JFrame {
         char [] pass2 = inputPassCheck.getPassword();
         String strPass1 = new String(pass1);
         String strPass2 = new String(pass2);
-        if (!strPass1.equals(strPass2))
+        if (datosValidados == true && !strPass1.equals(strPass2))
         {
             datosValidados = false;
             JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden");
@@ -487,28 +564,7 @@ public class RegistroDocente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El correo no es valido",
                     "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
-        
-        // Llamamos la ventana
-        if (datosValidados == true)
-        {
-            /*setVisible(false);
-            RegistroDocentes registroDocente = new RegistroDocentes();
-            registroDocente.setVisible(true);
-            JPanel panel = new JPanel();
-            panel.add(BotonRegistro);
-            add(panel);*/
-        }
-        
-        inputNombre.setText("");
-        inputApellido.setText("");
-        inputDocumento.setText("");
-        inputUser.setText("");
-        inputCorreo.setText("");
-        inputPass.setText("");
-        inputPassCheck.setText("");
-
         return datosValidados;
-
     }
     
     public void agregarDocente(){
@@ -516,8 +572,6 @@ public class RegistroDocente extends javax.swing.JFrame {
         boolean datosOk = validarDatos();
         boolean tieneOficina = false;
         ArrayList<Docente> nuevoRegistro = new ArrayList<>();
-        
- 
         if(datosOk == true){
             
             String nombre = (inputNombre.getText());
@@ -529,9 +583,8 @@ public class RegistroDocente extends javax.swing.JFrame {
             
             char [] pass1 = inputPass.getPassword();
             String strPass1 = new String(pass1);
-            
-            if(checkOficina.isSelected()){
-                
+            if(checkOficina.isSelected())
+            {
                 tieneOficina = true;
                 oficina = (inputOficina.getText());
             } else{oficina = "No tiene";}
@@ -595,10 +648,12 @@ public class RegistroDocente extends javax.swing.JFrame {
                 int primeraFila = hoja.getFirstRowNum()+1;
                 int ultimaFila = hoja.getLastRowNum();
                 
-                for (int i = primeraFila; i <= ultimaFila; i++) {
+                for (int i = primeraFila; i <= ultimaFila; i++) 
+                {
                 Row fila = hoja.getRow(i);
                 
-                if (fila != null || fila.equals("")) {
+                if (fila != null || fila.equals("")) 
+                {
                       
                     String nombre = dataFormatter.formatCellValue(fila.getCell(0));
                     String apellido = dataFormatter.formatCellValue(fila.getCell(1));
@@ -612,7 +667,6 @@ public class RegistroDocente extends javax.swing.JFrame {
                     registrosActuales.add(docente);    
                 }
             }
-                
             for(Docente n : nuevoRegistro){
                 for(Docente a : registrosActuales){
                     if(n.getDocumento() == a.getDocumento()){
@@ -631,9 +685,8 @@ public class RegistroDocente extends javax.swing.JFrame {
     }
     
     
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonVolver;
     private javax.swing.JLabel apellidoTxt;
     private javax.swing.JPanel backgroud;
     private javax.swing.JButton botonLogin;
@@ -665,4 +718,6 @@ public class RegistroDocente extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> universidades;
     private javax.swing.JLabel userTxt;
     // End of variables declaration//GEN-END:variables
+    // Variables private
+    private JPanel panel = new JPanel();
 }
