@@ -71,8 +71,6 @@ public class RegistroUsuario extends javax.swing.JFrame {
         departamentos = new javax.swing.JComboBox<>();
         ciudadTxt = new javax.swing.JLabel();
         botonRegistro = new javax.swing.JButton();
-        botonLogin = new javax.swing.JButton();
-        loginTxt = new javax.swing.JLabel();
         tipoPerfil = new javax.swing.JComboBox<>();
         tipoPerfilTxt = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
@@ -85,7 +83,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(1000, 630));
 
-        backgroud.setBackground(new java.awt.Color(183, 214, 163));
+        backgroud.setBackground(new java.awt.Color(255, 255, 255));
         backgroud.setMinimumSize(new java.awt.Dimension(1000, 630));
         backgroud.setPreferredSize(new java.awt.Dimension(1000, 630));
         backgroud.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -226,15 +224,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
                 botonRegistroActionPerformed(evt);
             }
         });
-        backgroud.add(botonRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 560, 120, 30));
-
-        botonLogin.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        botonLogin.setText("Inicia sesión");
-        backgroud.add(botonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, 120, 30));
-
-        loginTxt.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        loginTxt.setText("Si ya tienes una cuenta");
-        backgroud.add(loginTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 560, -1, 25));
+        backgroud.add(botonRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 520, 120, 30));
 
         tipoPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Docente", "Mentor", "Estudiante" }));
         backgroud.add(tipoPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, 170, 25));
@@ -318,9 +308,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_universidadesActionPerformed
 
     private void botonRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistroMouseClicked
-        try{
-        agregarDocente();
-        } catch(Exception e){JOptionPane.showMessageDialog(null, "Por favor solo ingresar solo números en el documento");}
+
     }//GEN-LAST:event_botonRegistroMouseClicked
 
     private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
@@ -530,7 +518,6 @@ public class RegistroUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel apellidoTxt;
     private javax.swing.JPanel backgroud;
-    private javax.swing.JButton botonLogin;
     private javax.swing.JButton botonRegistro;
     private javax.swing.JCheckBox checkOficina;
     private javax.swing.JLabel ciudadTxt;
@@ -548,7 +535,6 @@ public class RegistroUsuario extends javax.swing.JFrame {
     private javax.swing.JPasswordField inputPass;
     private javax.swing.JPasswordField inputPassCheck;
     private javax.swing.JTextField inputUser;
-    private javax.swing.JLabel loginTxt;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel nombreTxt;
     private javax.swing.JLabel oficinaTxt;
