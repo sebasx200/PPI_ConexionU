@@ -13,6 +13,19 @@ public class Docente {
     private boolean checkOficina;
     private String oficina;
     
+    public Docente(){
+        
+        this.nombre = "";
+        this.apellido = "";
+        this.documento = 0;
+        this.usuario = "";
+        this.password = "";
+        this.correo = "";
+        this.checkOficina = true;
+        this.oficina = "";
+        
+    }
+    
     public Docente(String nombre, String apellido, int documento, String usuario, String password, String correo, boolean checkOficina, String oficina){
         
         this.nombre = nombre;
