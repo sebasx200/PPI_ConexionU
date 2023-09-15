@@ -314,7 +314,7 @@ public class Login extends JFrame {
     private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        RegistroDocente registro = new RegistroDocente();
+        RegistroUsuario registro = new RegistroUsuario();
         registro.setVisible(true);
         panel.add(botonRegistro);
         add(panel);

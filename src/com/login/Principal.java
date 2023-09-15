@@ -113,7 +113,7 @@ public class Principal extends javax.swing.JFrame {
     private void botonRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarseActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        RegistroDocente docente = new RegistroDocente();
+        RegistroUsuario docente = new RegistroUsuario();
         docente.setVisible(true);
         JPanel pane = new JPanel();
         pane.add(botonRegistrarse);
