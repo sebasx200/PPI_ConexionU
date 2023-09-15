@@ -30,6 +30,7 @@ public class Principal extends javax.swing.JFrame {
         botonUs = new javax.swing.JButton();
         botonLogin = new javax.swing.JButton();
         botonRegistrarse = new javax.swing.JButton();
+        fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -75,6 +76,9 @@ public class Principal extends javax.swing.JFrame {
         });
         background.add(botonRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 20, 125, 40));
 
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/background.png"))); // NOI18N
+        background.add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 630));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,7 +90,7 @@ public class Principal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -146,5 +150,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton botonLogin;
     private javax.swing.JButton botonRegistrarse;
     private javax.swing.JButton botonUs;
+    private javax.swing.JLabel fondo;
     // End of variables declaration//GEN-END:variables
 }
