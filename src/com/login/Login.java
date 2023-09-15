@@ -14,6 +14,7 @@ import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -28,6 +29,8 @@ public class Login extends JFrame {
     /**
      * Creates new form login
      */
+    
+    private JPanel panel = new JPanel();
     public Login() {
         initComponents();
     }
@@ -51,11 +54,11 @@ public class Login extends JFrame {
         inputUser = new javax.swing.JTextField();
         userTxt = new javax.swing.JLabel();
         passTxt = new javax.swing.JLabel();
-        logo = new javax.swing.JLabel();
         botonVolver = new javax.swing.JButton();
         botonRegistro = new javax.swing.JButton();
         textoPerfil1 = new javax.swing.JLabel();
-        fondo = new javax.swing.JLabel();
+        contenedorLogo = new javax.swing.JPanel();
+        logo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Conexión U");
@@ -108,7 +111,7 @@ public class Login extends JFrame {
                 botonIngresarActionPerformed(evt);
             }
         });
-        background.add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 120, 35));
+        background.add(botonIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 360, 120, 35));
 
         textoTitulo.setFont(new java.awt.Font("Berlin Sans FB", 0, 36)); // NOI18N
         textoTitulo.setForeground(new java.awt.Color(0, 0, 0));
@@ -133,7 +136,7 @@ public class Login extends JFrame {
         textoRegistro.setFont(new java.awt.Font("Berlin Sans FB", 0, 15)); // NOI18N
         textoRegistro.setForeground(new java.awt.Color(0, 0, 0));
         textoRegistro.setText("¿No tienes cuenta?");
-        background.add(textoRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 560, -1, 25));
+        background.add(textoRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 580, -1, 25));
 
         inputUser.setBackground(new java.awt.Color(255, 255, 255));
         inputUser.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
@@ -161,9 +164,6 @@ public class Login extends JFrame {
         passTxt.setText("Contraseña");
         background.add(passTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 250, -1, 25));
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/logo_2023-2_300x300.png"))); // NOI18N
-        background.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
-
         botonVolver.setBackground(new java.awt.Color(255, 255, 255));
         botonVolver.setFont(new java.awt.Font("Berlin Sans FB", 0, 15)); // NOI18N
         botonVolver.setForeground(new java.awt.Color(0, 0, 0));
@@ -179,7 +179,7 @@ public class Login extends JFrame {
                 botonVolverActionPerformed(evt);
             }
         });
-        background.add(botonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, 120, 30));
+        background.add(botonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 580, 120, 30));
 
         botonRegistro.setBackground(new java.awt.Color(255, 255, 255));
         botonRegistro.setFont(new java.awt.Font("Berlin Sans FB", 0, 15)); // NOI18N
@@ -196,15 +196,21 @@ public class Login extends JFrame {
                 botonRegistroActionPerformed(evt);
             }
         });
-        background.add(botonRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 560, 120, 30));
+        background.add(botonRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 580, 120, 30));
 
         textoPerfil1.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         textoPerfil1.setForeground(new java.awt.Color(0, 0, 0));
         textoPerfil1.setText("Seleccione un perfil");
         background.add(textoPerfil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, -1, 25));
 
-        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/background.png"))); // NOI18N
-        background.add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 630));
+        contenedorLogo.setBackground(new java.awt.Color(255, 255, 255));
+        contenedorLogo.setForeground(new java.awt.Color(255, 255, 255));
+        contenedorLogo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/logo_final.png"))); // NOI18N
+        contenedorLogo.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 310, 330));
+
+        background.add(contenedorLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 350, 560));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -294,6 +300,11 @@ public class Login extends JFrame {
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
         // TODO add your handling code here:
+        setVisible(false);
+        Principal principal = new Principal();
+        principal.setVisible(true);
+        panel.add(botonVolver);
+        add(panel);
     }//GEN-LAST:event_botonVolverActionPerformed
 
     private void botonRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistroMouseClicked
@@ -302,6 +313,13 @@ public class Login extends JFrame {
 
     private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
         // TODO add your handling code here:
+        setVisible(false);
+        RegistroUsuario registro = new RegistroUsuario();
+        registro.setVisible(true);
+        panel.add(botonRegistro);
+        add(panel);
+        
+        
     }//GEN-LAST:event_botonRegistroActionPerformed
 
     /**
@@ -338,9 +356,11 @@ public class Login extends JFrame {
                 new Login().setVisible(true);
             }
         });
+        
+      
     }
 
-    public int datosCorrectos(String user, String pass) {
+    public int datosCorrectos(String user, String pass) { // método que se usa para comparar la información que ingresa el usuario con los datos registrados en registros.xlsx
 
         ArrayList<Docente> registrosActuales = new ArrayList<>();
         int resultado=0;
@@ -362,23 +382,20 @@ public class Login extends JFrame {
 
                 if (fila != null || fila.equals("")) {
 
-                    for (int j = 0; j < fila.getLastCellNum(); j++) {
+                    String nombre = dataFormatter.formatCellValue(fila.getCell(0));
+                    String apellido = dataFormatter.formatCellValue(fila.getCell(1));
+                    int documento = Integer.parseInt(dataFormatter.formatCellValue(fila.getCell(2)));
+                    String usuario = dataFormatter.formatCellValue(fila.getCell(3));
+                    String password = dataFormatter.formatCellValue(fila.getCell(4));
+                    String correo = dataFormatter.formatCellValue(fila.getCell(5));
+                    String oficina = dataFormatter.formatCellValue(fila.getCell(6));
 
-                        String nombre = dataFormatter.formatCellValue(fila.getCell(0));
-                        String apellido = dataFormatter.formatCellValue(fila.getCell(1));
-                        int documento = Integer.parseInt(dataFormatter.formatCellValue(fila.getCell(2)));
-                        String usuario = dataFormatter.formatCellValue(fila.getCell(3));
-                        String password = dataFormatter.formatCellValue(fila.getCell(4));
-                        String correo = dataFormatter.formatCellValue(fila.getCell(5));
-                        String oficina = dataFormatter.formatCellValue(fila.getCell(6));
-
-                        Docente docente = new Docente(nombre, apellido, documento, usuario, password, correo, true, oficina);
-                        registrosActuales.add(docente);
-                    }
+                    Docente docente = new Docente(nombre, apellido, documento, usuario, password, correo, true, oficina);
+                    registrosActuales.add(docente);   
                 }
             }
 
-            Map<String, Docente> mapaDocentes = new HashMap<>();
+            Map<String, Docente> mapaDocentes = new HashMap<>(); //se crea un mapa para guardar la primayKey que sería el usuario como tipo string comparándolo con objetos de tipo docente
 
             for (Docente docente : registrosActuales) {
                 mapaDocentes.put(docente.getUsuario(), docente);
@@ -410,10 +427,10 @@ public class Login extends JFrame {
     private javax.swing.JButton botonIngresar;
     private javax.swing.JButton botonRegistro;
     private javax.swing.JButton botonVolver;
-    private javax.swing.JLabel fondo;
+    private javax.swing.JPanel contenedorLogo;
     private javax.swing.JPasswordField inputPass;
     private javax.swing.JTextField inputUser;
-    private javax.swing.JLabel logo;
+    private static javax.swing.JLabel logo;
     private javax.swing.JLabel passTxt;
     private javax.swing.JComboBox<String> perfiles;
     private javax.swing.JLabel textoPerfil1;
