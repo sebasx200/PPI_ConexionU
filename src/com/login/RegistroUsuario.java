@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import org.apache.poi.hssf.util.CellReference;
 import org.apache.poi.sl.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Cell;
@@ -70,10 +71,11 @@ public class RegistroUsuario extends javax.swing.JFrame {
         universidades = new javax.swing.JComboBox<>();
         departamentos = new javax.swing.JComboBox<>();
         ciudadTxt = new javax.swing.JLabel();
-        botonRegistro = new javax.swing.JButton();
+        botonVolver = new javax.swing.JButton();
         tipoPerfil = new javax.swing.JComboBox<>();
         tipoPerfilTxt = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
+        botonRegistro = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -211,6 +213,31 @@ public class RegistroUsuario extends javax.swing.JFrame {
         ciudadTxt.setText("Ciudad");
         backgroud.add(ciudadTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, 150, 25));
 
+        botonVolver.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        botonVolver.setText("Volver");
+        botonVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonVolverMouseClicked(evt);
+            }
+        });
+        botonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVolverActionPerformed(evt);
+            }
+        });
+        backgroud.add(botonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 520, 120, 30));
+
+        tipoPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Docente", "Mentor", "Estudiante" }));
+        backgroud.add(tipoPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, 170, 25));
+
+        tipoPerfilTxt.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        tipoPerfilTxt.setText("Tipo de perfil");
+        backgroud.add(tipoPerfilTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 150, -1));
+
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/LOGO.png"))); // NOI18N
+        backgroud.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, 300, 300));
+
         botonRegistro.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         botonRegistro.setText("Registrase");
         botonRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -225,16 +252,6 @@ public class RegistroUsuario extends javax.swing.JFrame {
             }
         });
         backgroud.add(botonRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 520, 120, 30));
-
-        tipoPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Docente", "Mentor", "Estudiante" }));
-        backgroud.add(tipoPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, 170, 25));
-
-        tipoPerfilTxt.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        tipoPerfilTxt.setText("Tipo de perfil");
-        backgroud.add(tipoPerfilTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 150, -1));
-
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/LOGO.png"))); // NOI18N
-        backgroud.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, 300, 300));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/background.png"))); // NOI18N
         backgroud.add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 630));
@@ -307,8 +324,20 @@ public class RegistroUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_universidadesActionPerformed
 
-    private void botonRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistroMouseClicked
+    private void botonVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVolverMouseClicked
 
+    }//GEN-LAST:event_botonVolverMouseClicked
+
+    private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
+        setVisible(false);
+        Principal principal = new Principal();
+        principal.setVisible(true);
+        panel.add(botonVolver);
+        add(panel);
+    }//GEN-LAST:event_botonVolverActionPerformed
+
+    private void botonRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistroMouseClicked
+        // TODO add your handling code here:
     }//GEN-LAST:event_botonRegistroMouseClicked
 
     private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
@@ -519,6 +548,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel apellidoTxt;
     private javax.swing.JPanel backgroud;
     private javax.swing.JButton botonRegistro;
+    private javax.swing.JButton botonVolver;
     private javax.swing.JCheckBox checkOficina;
     private javax.swing.JLabel ciudadTxt;
     private javax.swing.JComboBox<String> ciudades;
@@ -547,4 +577,5 @@ public class RegistroUsuario extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> universidades;
     private javax.swing.JLabel userTxt;
     // End of variables declaration//GEN-END:variables
+    private JPanel panel = new JPanel();
 }

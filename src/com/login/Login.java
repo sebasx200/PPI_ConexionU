@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -235,27 +236,36 @@ public class Login extends JFrame {
 
     private void botonIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonIngresarMouseClicked
 
-        if (inputUser.getText().equals("Ingrese su nombre de usuario") || inputUser.getText().equals("") || String.valueOf(inputPass.getPassword()).equals("****")) {
-            JOptionPane.showMessageDialog(null, "Los campos están vacíos");
-        } else if(perfiles.getSelectedItem().equals("Seleccionar")){
+        if (perfiles.getSelectedItem().equals("Seleccionar")) {
             JOptionPane.showMessageDialog(null, "No seleccionó ningún perfil");
         }
-        
 
         switch (perfiles.getSelectedItem().toString()) {
 
             case "Docente" -> {
 
                 String user = (inputUser.getText());
+                if(user.equals("Ingrese su nombre de usuario")){
+                    user = "";
+                }
                 char[] pass = inputPass.getPassword();
                 String strPass = new String(pass);
                 int validacion = datosCorrectos(user, strPass);
-                if(validacion == 0){
-                    JOptionPane.showMessageDialog(null, "Usuario no encontrado");
-                } else if(validacion== -1){
-                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
-                } else
-                    JOptionPane.showMessageDialog(null, "bienvenido " + user);
+
+                if (!user.isEmpty() && !strPass.equals("")) {
+                    
+                    if (validacion == 0) {
+                        JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+                    } else if (validacion == -1) {
+                        JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+                    } else if (validacion == 1) {
+                        JOptionPane.showMessageDialog(null, "bienvenido " + user);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Favor llenar todos los campos");
+                }
+
             }
             case "Mentor" -> {
                 JOptionPane.showMessageDialog(this, "Seleccionó el perfil de mentor");
@@ -292,7 +302,11 @@ public class Login extends JFrame {
     }//GEN-LAST:event_botonVolverMouseClicked
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        Principal principal = new Principal();
+        principal.setVisible(true);
+        panel.add(botonVolver);
+        add(panel);
     }//GEN-LAST:event_botonVolverActionPerformed
 
     private void botonRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistroMouseClicked
@@ -342,7 +356,7 @@ public class Login extends JFrame {
     public int datosCorrectos(String user, String pass) {
 
         ArrayList<Docente> registrosActuales = new ArrayList<>();
-        int resultado=0;
+        int resultado;
 
         try {
 
@@ -376,29 +390,28 @@ public class Login extends JFrame {
                     }
                 }
             }
-
-            Map<String, Docente> mapaDocentes = new HashMap<>();
-
-            for (Docente docente : registrosActuales) {
-                mapaDocentes.put(docente.getUsuario(), docente);
-            }
-
-            if (mapaDocentes.containsKey(user)) {
-
-                Docente docenteEncontrado = mapaDocentes.get(user);
-                String passRegistrada = docenteEncontrado.getPassword();
-                if (pass.equals(passRegistrada)) {
-                    resultado = 1;
-                } else {
-                    resultado = -1;
-                }
-
-            } else {
-                resultado = 0;
-            }
-
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        }
+
+        Map<String, Docente> mapaDocentes = new HashMap<>();
+
+        for (Docente docente : registrosActuales) {
+            mapaDocentes.put(docente.getUsuario(), docente);
+        }
+
+        if (mapaDocentes.containsKey(user)) {
+
+            Docente docenteEncontrado = mapaDocentes.get(user);
+            String passRegistrada = docenteEncontrado.getPassword();
+            if (pass.equals(passRegistrada)) {
+                resultado = 1;
+            } else {
+                resultado = -1;
+            }
+
+        } else {
+            resultado = 0;
         }
 
         return resultado;
@@ -421,4 +434,5 @@ public class Login extends JFrame {
     private javax.swing.JLabel textoTitulo2;
     private javax.swing.JLabel userTxt;
     // End of variables declaration//GEN-END:variables
+    private JPanel panel = new JPanel();
 }
