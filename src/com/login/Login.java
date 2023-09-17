@@ -160,7 +160,7 @@ public class Login extends JFrame {
         passTxt.setText("Contraseña");
         background.add(passTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 250, -1, 25));
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/logo_2023-2_300x300.png"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/imagenes/LOGO.png"))); // NOI18N
         background.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, -1));
 
         botonVolver.setBackground(new java.awt.Color(255, 255, 255));
