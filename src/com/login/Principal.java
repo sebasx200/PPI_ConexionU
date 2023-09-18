@@ -105,6 +105,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonUsActionPerformed
 
     private void botonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLoginActionPerformed
+
+
+        // TODO add your handling code here:
         setVisible(false);
         Login inicio = new Login();
         inicio.setVisible(true);

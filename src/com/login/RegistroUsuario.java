@@ -1,5 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license   
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.login;
@@ -162,6 +162,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
         backgroud.add(inputPassCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 170, 25));
 
         ciudades.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
+       
         ciudades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         ciudades.setEnabled(false);
         ciudades.addActionListener(new java.awt.event.ActionListener() {
@@ -385,7 +386,6 @@ public class RegistroUsuario extends javax.swing.JFrame {
     public boolean validarDatos() {
         
         boolean datosValidados = true;
-        
         char [] pass1 = inputPass.getPassword();
         char [] pass2 = inputPassCheck.getPassword();
         
@@ -428,8 +428,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
         boolean datosOk = validarDatos();
         boolean tieneOficina = false;
         ArrayList<Docente> nuevoRegistro = new ArrayList<>();
-        
- 
+     
         if(datosOk == true){
             
             String nombre = (inputNombre.getText());
@@ -475,6 +474,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
                     ultimaFila++;
                 }
                 boolean existeRegistro = existeRegistro(nuevoRegistro);
+
                 if(existeRegistro == false){
                     
                     try (FileOutputStream archivoSalida = new FileOutputStream("src/datos/registros.xlsx")) {
@@ -570,8 +570,6 @@ public class RegistroUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel oficinaTxt;
     private javax.swing.JLabel passTxt;
     private javax.swing.JLabel passcheckTxt;
-    private javax.swing.JComboBox<String> tipoPerfil;
-    private javax.swing.JLabel tipoPerfilTxt;
     private javax.swing.JLabel tituloTxt;
     private javax.swing.JLabel uniTxt;
     private javax.swing.JComboBox<String> universidades;
