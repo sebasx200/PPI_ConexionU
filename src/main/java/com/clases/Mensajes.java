@@ -2,6 +2,7 @@ package com.clases;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -9,22 +10,30 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class Mensajes {
-    public static void messageDialog(String mensaje){
-        Stage dialogo = new Stage();
-        dialogo.initModality(Modality.APPLICATION_MODAL);
-        dialogo.setTitle("Mensaje");
-        dialogo.setMinWidth(250);
-        Label etiquetaMensaje = new Label(mensaje);
-        Button botonCerrar = new Button("Cerrar");
-        botonCerrar.setOnAction(e -> dialogo.close());
 
-        VBox layout = new VBox(10);
-        layout.getChildren().addAll(etiquetaMensaje, botonCerrar);
-        layout.setPadding(new Insets(10));
+    // método para mostrarle al usuario un mensaje informativo
+    public static void mensajeInformativo(String header, String mensaje){
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("Información");
+        alerta.setContentText(mensaje);
+        alerta.setHeaderText(header);
+        alerta.showAndWait();
+    }
 
-        Scene scene = new Scene(layout, 250, 150);
-        dialogo.setScene(scene);
-        dialogo.showAndWait();
+    public static void mensajeAdvertencia(String header, String mensaje){
+        Alert alerta = new Alert(Alert.AlertType.WARNING);
+        alerta.setTitle("Advertencia");
+        alerta.setContentText(mensaje);
+        alerta.setHeaderText(header);
+        alerta.showAndWait();
+    }
+
+    public static void mensajeError(String header, String mensaje){
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle("Error");
+        alerta.setContentText(mensaje);
+        alerta.setHeaderText(header);
+        alerta.showAndWait();
     }
 
 }

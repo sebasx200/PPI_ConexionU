@@ -54,14 +54,14 @@ public class VentanaLoginController {
         int validacion = inicioSesion(user, pass);
         if(!user.isEmpty() && !pass.isEmpty()){
             if(validacion ==1){
-                Mensajes.messageDialog("Bienvenido " + user);
+                Mensajes.mensajeInformativo("", "Bienvenido " + user);
             } else if (validacion==-1) {
-                Mensajes.messageDialog("Contraseña incorrecta");
+                Mensajes.mensajeAdvertencia("La información no coincide", "Contraseña incorrecta");
             } else if (validacion==0) {
-                Mensajes.messageDialog("Usuario no encontrado");
+                Mensajes.mensajeInformativo("No hay datos relacionados", "Usuario no encontrado");
             }
         } else {
-            Mensajes.messageDialog("Por favor llenar todos los campos");
+            Mensajes.mensajeError("Error al iniciar sesión","Por favor llenar todos los campos");
         }
     }
     public int inicioSesion(String user, String pass) {
@@ -117,7 +117,6 @@ public class VentanaLoginController {
         }
         return 0;
     }
-
     @FXML
     protected void onBotonVolverAction() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-principal.fxml"));
