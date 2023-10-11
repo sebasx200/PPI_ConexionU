@@ -9,10 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -25,12 +22,47 @@ public class VentanaPrincipalController {
     private Button botonRegistrarse;
     @FXML
     private AnchorPane rootPane;
-    private double x =0;
-    private double y = 0;
+    @FXML
+    protected void onBotonLoginMouseEntered(){
+        botonLogin.setStyle("-fx-background-color: #2265E8;" +
+                " -fx-text-fill: white; -fx-background-radius: 40;" +
+                " -fx-border-color: white; -fx-border-radius: 40;");
+    }
 
+
+    @FXML
+    protected void onBotonLoginMouseExited(){
+        botonLogin.setStyle("-fx-background-color: #2265E8;" +
+                " -fx-text-fill: black; -fx-background-radius: 40;" +
+                " -fx-border-color: black; -fx-border-radius: 40;");
+    }
+
+    @FXML
+    protected void onBotonRegistrarMouseEntered(){
+        botonRegistrarse.setStyle("-fx-background-color: #2265E8;" +
+                " -fx-text-fill: white; -fx-background-radius: 40;" +
+                " -fx-border-color: white; -fx-border-radius: 40;");
+    }
+
+
+    @FXML
+    protected void onBotonRegistrarMouseExited(){
+        botonRegistrarse.setStyle("-fx-background-color: #2265E8;" +
+                " -fx-text-fill: black; -fx-background-radius: 40;" +
+                " -fx-border-color: black; -fx-border-radius: 40;");
+    }
     @FXML
     private void onBotonLoginAction() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-login.fxml"));
         rootPane.getChildren().setAll(pane);
     }
+
+    @FXML
+    protected void onBotonRegistrarseAction() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-registro.fxml"));
+        rootPane.getChildren().setAll(pane);
+    }
+
+
+
 }

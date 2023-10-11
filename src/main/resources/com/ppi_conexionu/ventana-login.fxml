@@ -15,27 +15,23 @@
 
 <AnchorPane fx:id="rootPane" prefHeight="605.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clases_controladoras.VentanaLoginController">
    <children>
-      <AnchorPane prefHeight="605.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane prefHeight="606.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="605.0" fitWidth="1000.0">
                <image>
                   <Image url="@../../imagenes/background.png" />
                </image>
             </ImageView>
-            <AnchorPane layoutX="250.0" layoutY="103.0" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 40;">
+            <AnchorPane layoutX="300.0" layoutY="77.0" prefHeight="450.0" prefWidth="400.0" style="-fx-background-color: #e0e0e0; -fx-background-radius: 40; -fx-border-color: black; -fx-border-radius: 40;">
                <children>
-                  <Label layoutX="159.0" layoutY="14.0" text="Iniciar sesión">
+                  <Label layoutX="121.0" layoutY="47.0" text="Iniciar sesión">
                      <font>
                         <Font name="Berlin Sans FB" size="36.0" />
                      </font>
                   </Label>
-                  <Line endX="100.0" layoutX="250.0" layoutY="55.0" startX="-100.0" />
-                  <TextField fx:id="inputUser" layoutX="161.0" layoutY="103.0" prefHeight="35.0" prefWidth="200.0" promptText="Usuario">
-                     <font>
-                        <Font name="Berlin Sans FB Bold" size="18.0" />
-                     </font>
-                  </TextField>
-                  <Button fx:id="botonIngresar" layoutX="118.0" layoutY="280.0" mnemonicParsing="false" onAction="#onBotonIngresarAction" prefHeight="35.0" prefWidth="100.0" style="-fx-background-radius: 40; -fx-background-color: #2196f3;" text="Ingresar">
+                  <Line endX="100.0" layoutX="202.0" layoutY="81.0" startX="-79.0" startY="-7.62939453125E-6" />
+                  <TextField fx:id="inputUser" layoutX="122.0" layoutY="141.0" prefHeight="25.0" prefWidth="200.0" promptText="Usuario" />
+                  <Button fx:id="botonIngresar" layoutX="222.0" layoutY="315.0" mnemonicParsing="false" onAction="#onBotonIngresarAction" prefHeight="50.0" prefWidth="130.0" style="-fx-background-radius: 40; -fx-background-color: #2265E8; -fx-border-color: black; -fx-border-radius: 40;" text="Ingresar">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
@@ -43,47 +39,47 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <ImageView layoutX="118.0" layoutY="105.0">
+                  <ImageView layoutX="80.0" layoutY="138.0">
                      <image>
                         <Image url="@../../imagenes/usuario.png" />
                      </image>
                   </ImageView>
-                  <ImageView layoutX="118.0" layoutY="169.0">
+                  <ImageView layoutX="80.0" layoutY="202.0">
                      <image>
                         <Image url="@../../imagenes/candado.png" />
                      </image>
                   </ImageView>
-                  <Hyperlink fx:id="linkRegistro" layoutX="256.0" layoutY="348.0" text="regístrate aquí">
+                  <Hyperlink fx:id="linkRegistro" layoutX="218.0" layoutY="390.0" onAction="#onLinkRegistroAction" text="regístrate aquí">
                      <font>
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                   </Hyperlink>
-                  <Label layoutX="150.0" layoutY="351.0" text="Si no tienes cuenta ">
+                  <Label layoutX="112.0" layoutY="393.0" text="Si no tienes cuenta ">
                      <font>
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="perfiles" layoutX="235.0" layoutY="230.0" prefWidth="150.0" promptText="Seleccionar">
+                  <ComboBox fx:id="perfiles" layoutX="197.0" layoutY="263.0" prefWidth="150.0" promptText="Seleccionar">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ComboBox>
-                  <Label layoutX="118.0" layoutY="235.0" text="Seleccione un perfil">
+                  <Label layoutX="80.0" layoutY="268.0" text="Seleccione un perfil">
                      <font>
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="inputPass" layoutX="161.0" layoutY="168.0" prefHeight="35.0" prefWidth="200.0" promptText="Contraseña" />
+                  <PasswordField fx:id="inputPass" layoutX="123.0" layoutY="201.0" prefHeight="25.0" prefWidth="200.0" promptText="Contraseña" />
+                  <Button fx:id="botonVolver" layoutX="47.0" layoutY="315.0" mnemonicParsing="false" onAction="#onBotonVolverAction" prefHeight="50.0" prefWidth="130.0" style="-fx-background-radius: 40; -fx-background-color: white; -fx-text-fill: black; -fx-border-color: black; -fx-border-radius: 40;" text="Volver">
+                     <font>
+                        <Font name="Berlin Sans FB" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </AnchorPane>
-            <Button fx:id="botonVolver" layoutX="847.0" layoutY="522.0" mnemonicParsing="false" onAction="#onBotonVolverAction" prefHeight="35.0" prefWidth="100.0" style="-fx-background-radius: 40; -fx-background-color: white; -fx-text-fill: black;" text="Volver">
-               <font>
-                  <Font name="Berlin Sans FB" size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
          </children>
       </AnchorPane>
    </children>

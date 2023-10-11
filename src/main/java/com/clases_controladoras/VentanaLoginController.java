@@ -61,7 +61,7 @@ public class VentanaLoginController {
                 Mensajes.mensajeInformativo("No hay datos relacionados", "Usuario no encontrado");
             }
         } else {
-            Mensajes.mensajeError("Error al iniciar sesión","Por favor llenar todos los campos");
+            Mensajes.mensajeError(null,"Por favor llenar todos los campos");
         }
     }
     public int inicioSesion(String user, String pass) {
@@ -122,4 +122,10 @@ public class VentanaLoginController {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-principal.fxml"));
         rootPane.getChildren().setAll(pane);
     }
+
+    public void onLinkRegistroAction() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-registro.fxml"));
+        rootPane.getChildren().setAll(pane);
+    }
+
 }
