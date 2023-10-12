@@ -47,7 +47,7 @@ public class VentanaLoginController {
     }
 
     @FXML
-    protected void onBotonIngresarAction(){
+    protected void onBotonIngresarAction() throws IOException {
 
         String user = inputUser.getText();
         String pass = inputPass.getText();
@@ -55,6 +55,8 @@ public class VentanaLoginController {
         if(!user.isEmpty() && !pass.isEmpty()){
             if(validacion ==1){
                 Mensajes.mensajeInformativo("", "Bienvenido " + user);
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-menu.fxml"));
+                rootPane.getChildren().setAll(pane);
             } else if (validacion==-1) {
                 Mensajes.mensajeAdvertencia("La información no coincide", "Contraseña incorrecta");
             } else if (validacion==0) {
