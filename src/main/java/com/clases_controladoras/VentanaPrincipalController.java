@@ -22,29 +22,25 @@ public class VentanaPrincipalController {
     private Button botonRegistrarse;
     @FXML
     private AnchorPane rootPane;
+
     @FXML
     protected void onBotonLoginMouseEntered(){
         botonLogin.setStyle("-fx-background-color: #2265E8;" +
                 " -fx-text-fill: white; -fx-background-radius: 40;" +
                 " -fx-border-color: white; -fx-border-radius: 40;");
     }
-
-
     @FXML
     protected void onBotonLoginMouseExited(){
         botonLogin.setStyle("-fx-background-color: #2265E8;" +
                 " -fx-text-fill: black; -fx-background-radius: 40;" +
                 " -fx-border-color: black; -fx-border-radius: 40;");
     }
-
     @FXML
     protected void onBotonRegistrarMouseEntered(){
         botonRegistrarse.setStyle("-fx-background-color: #2265E8;" +
                 " -fx-text-fill: white; -fx-background-radius: 40;" +
                 " -fx-border-color: white; -fx-border-radius: 40;");
     }
-
-
     @FXML
     protected void onBotonRegistrarMouseExited(){
         botonRegistrarse.setStyle("-fx-background-color: #2265E8;" +
@@ -56,13 +52,9 @@ public class VentanaPrincipalController {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-login.fxml"));
         rootPane.getChildren().setAll(pane);
     }
-
     @FXML
     protected void onBotonRegistrarseAction() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-registro.fxml"));
         rootPane.getChildren().setAll(pane);
     }
-
-
-
 }
