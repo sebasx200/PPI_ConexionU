@@ -105,7 +105,7 @@ public class VentanaLoginController {
 
     /** Boton iniciar sesion, se valida todo antes de iniciar sesion. */
     @FXML
-    protected void onBotonIngresarAction(){
+    protected void onBotonIngresarAction() throws IOException{
         String user = inputUser.getText();
         String pass = inputPass.getText();
         boolean dato = validaciones();
