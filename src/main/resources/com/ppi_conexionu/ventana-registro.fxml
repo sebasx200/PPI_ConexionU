@@ -94,14 +94,14 @@
             <TextField fx:id="inputTelefono" layoutX="280.0" layoutY="210.0" prefHeight="25.0" prefWidth="180.0" promptText="Telefono" />
             <PasswordField fx:id="inputContraseña" layoutX="40.0" layoutY="260.0" prefHeight="25.0" prefWidth="180.0" promptText="Contraseña" />
             <PasswordField fx:id="inputConfirmarContraseña" layoutX="280.0" layoutY="260.0" prefHeight="25.0" prefWidth="180.0" promptText="Confirmar Contraseña" />
-            <ComboBox fx:id="departamentos" layoutX="280.0" layoutY="310.0" onAction="#onDepartamentoAction" prefHeight="25.0" prefWidth="180.0" promptText="Seleccionar" />
-            <ComboBox fx:id="municipios" layoutX="40.0" layoutY="360.0" prefHeight="25.0" prefWidth="180.0" promptText="Seleccionar" />
-            <ComboBox fx:id="universidades" layoutX="280.0" layoutY="360.0" prefHeight="25.0" prefWidth="180.0" promptText="Seleccionar" />
             <ComboBox fx:id="perfiles" layoutX="40.0" layoutY="310.0" prefHeight="25.0" prefWidth="180.0" promptText="Seleccionar">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ComboBox>
+            <ComboBox fx:id="departamentos" layoutX="280.0" layoutY="310.0" onAction="#onDepartamentoAction" prefHeight="25.0" prefWidth="180.0" promptText="Seleccionar" />
+            <ComboBox fx:id="ciudades" disable="true" layoutX="40.0" layoutY="360.0" onAction="#onCiudadesAction" prefHeight="25.0" prefWidth="180.0" promptText="Seleccionar" />
+            <ComboBox fx:id="universidades" disable="true" layoutX="280.0" layoutY="360.0" prefHeight="25.0" prefWidth="180.0" promptText="Seleccionar" />
             <Button fx:id="botonVolver" layoutX="77.0" layoutY="414.0" mnemonicParsing="false" onAction="#onBotonVolverAction" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: white; -fx-background-radius: 40; -fx-border-color: black; -fx-border-radius: 40;" text="Volver">
                <font>
                   <Font name="System Bold" size="14.0" />

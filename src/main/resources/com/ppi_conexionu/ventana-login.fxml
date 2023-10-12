@@ -29,16 +29,17 @@
                         <Font name="Berlin Sans FB" size="36.0" />
                      </font>
                   </Label>
-                  <Line endX="100.0" layoutX="202.0" layoutY="81.0" startX="-79.0" startY="-7.62939453125E-6" />
-                  <TextField fx:id="inputUser" layoutX="122.0" layoutY="141.0" prefHeight="25.0" prefWidth="200.0" promptText="Usuario" />
-                  <Button fx:id="botonIngresar" layoutX="222.0" layoutY="315.0" mnemonicParsing="false" onAction="#onBotonIngresarAction" prefHeight="50.0" prefWidth="130.0" style="-fx-background-radius: 40; -fx-background-color: #2265E8; -fx-border-color: black; -fx-border-radius: 40;" text="Ingresar">
+                  <Label layoutX="80.0" layoutY="268.0" text="Seleccione un perfil">
                      <font>
-                        <Font name="Berlin Sans FB" size="18.0" />
+                        <Font name="Berlin Sans FB" size="14.0" />
                      </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
+                  </Label>
+                  <Label layoutX="112.0" layoutY="393.0" text="Si no tienes cuenta ">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Label>
+                  <Line endX="100.0" layoutX="202.0" layoutY="81.0" startX="-79.0" startY="-7.62939453125E-6" />
                   <ImageView layoutX="80.0" layoutY="138.0">
                      <image>
                         <Image url="@../../imagenes/usuario.png" />
@@ -49,27 +50,21 @@
                         <Image url="@../../imagenes/candado.png" />
                      </image>
                   </ImageView>
-                  <Hyperlink fx:id="linkRegistro" layoutX="218.0" layoutY="390.0" onAction="#onLinkRegistroAction" text="regístrate aquí">
-                     <font>
-                        <Font name="Berlin Sans FB" size="14.0" />
-                     </font>
-                  </Hyperlink>
-                  <Label layoutX="112.0" layoutY="393.0" text="Si no tienes cuenta ">
-                     <font>
-                        <Font name="Berlin Sans FB" size="14.0" />
-                     </font>
-                  </Label>
+                  <TextField fx:id="inputUser" layoutX="122.0" layoutY="141.0" prefHeight="25.0" prefWidth="200.0" promptText="Usuario" />
+                  <PasswordField fx:id="inputPass" layoutX="123.0" layoutY="201.0" prefHeight="25.0" prefWidth="200.0" promptText="Contraseña" />
                   <ComboBox fx:id="perfiles" layoutX="197.0" layoutY="263.0" prefWidth="150.0" promptText="Seleccionar">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ComboBox>
-                  <Label layoutX="80.0" layoutY="268.0" text="Seleccione un perfil">
+                  <Button fx:id="botonIngresar" layoutX="222.0" layoutY="315.0" mnemonicParsing="false" onAction="#onBotonIngresarAction" prefHeight="50.0" prefWidth="130.0" style="-fx-background-radius: 40; -fx-background-color: #2265E8; -fx-border-color: black; -fx-border-radius: 40;" text="Ingresar">
                      <font>
-                        <Font name="Berlin Sans FB" size="14.0" />
+                        <Font name="Berlin Sans FB" size="18.0" />
                      </font>
-                  </Label>
-                  <PasswordField fx:id="inputPass" layoutX="123.0" layoutY="201.0" prefHeight="25.0" prefWidth="200.0" promptText="Contraseña" />
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                   <Button fx:id="botonVolver" layoutX="47.0" layoutY="315.0" mnemonicParsing="false" onAction="#onBotonVolverAction" prefHeight="50.0" prefWidth="130.0" style="-fx-background-radius: 40; -fx-background-color: white; -fx-text-fill: black; -fx-border-color: black; -fx-border-radius: 40;" text="Volver">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
@@ -78,6 +73,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <Hyperlink fx:id="linkRegistro" layoutX="218.0" layoutY="390.0" onAction="#onLinkRegistroAction" text="regístrate aquí">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Hyperlink>
                </children>
             </AnchorPane>
          </children>
