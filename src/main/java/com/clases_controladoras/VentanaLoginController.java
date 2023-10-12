@@ -45,7 +45,7 @@ public class VentanaLoginController {
 
     }
 
-
+  
 
     /** Validaciones para que los campos no esten vacios. */
     public boolean validaciones() {
