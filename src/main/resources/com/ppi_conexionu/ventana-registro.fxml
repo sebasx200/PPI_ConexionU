@@ -12,14 +12,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="panelRegistro" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clases_controladoras.VentanaRegistro">
+<AnchorPane fx:id="panelRegistro" prefHeight="605.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clases_controladoras.VentanaRegistro">
    <children>
-      <ImageView fitHeight="630.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="605.0" fitWidth="1000.0">
          <image>
-            <Image url="@../../imagenes/background.png" />
+            <Image url="@../../imagenes/background/background_7.png" />
          </image>
       </ImageView>
-      <AnchorPane accessibleRole="IMAGE_VIEW" layoutX="462.0" layoutY="23.0" prefHeight="520.0" prefWidth="500.0" style="-fx-background-color: #4fc3f7; -fx-background-radius: 40; -fx-border-color: black; -fx-border-radius: 40;">
+      <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="-15.0" layoutY="-11.0">
+         <image>
+            <Image url="@../../imagenes/logos/CONEXION_U__3_-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <AnchorPane accessibleRole="IMAGE_VIEW" layoutX="465.0" layoutY="43.0" prefHeight="520.0" prefWidth="500.0" style="-fx-background-color: #b0bec5; -fx-background-radius: 40; -fx-border-color: black; -fx-border-radius: 40;">
          <children>
             <Label layoutX="190.0" layoutY="33.0" text="Registro">
                <font>
@@ -102,32 +107,33 @@
             <ComboBox fx:id="departamentos" layoutX="280.0" layoutY="310.0" onAction="#onDepartamentoAction" prefHeight="25.0" prefWidth="180.0" promptText="Seleccionar" />
             <ComboBox fx:id="ciudades" disable="true" layoutX="40.0" layoutY="360.0" onAction="#onCiudadesAction" prefHeight="25.0" prefWidth="180.0" promptText="Seleccionar" />
             <ComboBox fx:id="universidades" disable="true" layoutX="280.0" layoutY="360.0" prefHeight="25.0" prefWidth="180.0" promptText="Seleccionar" />
-            <Button fx:id="botonVolver" layoutX="77.0" layoutY="414.0" mnemonicParsing="false" onAction="#onBotonVolverAction" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: white; -fx-background-radius: 40; -fx-border-color: black; -fx-border-radius: 40;" text="Volver">
+            <Button fx:id="botonVolver" layoutX="77.0" layoutY="414.0" mnemonicParsing="false" onAction="#onBotonVolverAction" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: white; -fx-background-radius: 40; -fx-border-color: black; -fx-border-radius: 40; -fx-text-fill: black;" text="Volver">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button fx:id="botonRegistro" layoutX="279.0" layoutY="414.0" mnemonicParsing="false" onAction="#onBotonRegistrarAction" prefHeight="50.0" prefWidth="130.0" style="-fx-background-radius: 40; -fx-background-color: #2196f3; -fx-border-color: black; -fx-border-radius: 40;" text="Registro">
+            <Button fx:id="botonRegistro" layoutX="279.0" layoutY="414.0" mnemonicParsing="false" onAction="#onBotonRegistrarAction" onMouseEntered="#onBotonRegistrarMouseEntered" onMouseExited="#onBotonRegistrarMouseExited" prefHeight="50.0" prefWidth="130.0" style="-fx-background-radius: 40; -fx-background-color: #2265E8; -fx-border-color: black; -fx-border-radius: 40;" text="Registrar">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Label layoutX="162.0" layoutY="476.0" text="Si tienes una cuenta">
+            <Label layoutX="157.0" layoutY="487.0" text="Si tienes una cuenta">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Label>
-            <Hyperlink fx:id="hyperInicio" layoutX="278.0" layoutY="473.0" onAction="#onHyperInicioAction" text="inicia aquí">
+            <Hyperlink fx:id="hyperInicio" layoutX="273.0" layoutY="484.0" onAction="#onHyperInicioAction" text="inicia aquí">
                <font>
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Hyperlink>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="343.0" fitWidth="406.0" layoutX="56.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../imagenes/logo_negro.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

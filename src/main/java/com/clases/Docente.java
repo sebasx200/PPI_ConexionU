@@ -44,7 +44,8 @@ public class Docente {
     }
 
     /** Este es un metodo constructor para solo llamar los atributos de iniciar sesion */
-    public Docente(String usuario, String pass){
+    public Docente(String nombre, String usuario, String pass){
+        this.nombre = nombre;
         this.usuario = usuario;
         this.password = pass;
     }

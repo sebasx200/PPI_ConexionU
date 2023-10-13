@@ -39,13 +39,12 @@ public class VentanaLoginController {
     private Hyperlink linkRegistro;
     @FXML
     private ComboBox perfiles;
+    private String nombreEncontrado;
 
     public void initialize(){
         perfiles.getItems().addAll("Docente", "Mentor", "Estudiante");
 
     }
-
-  
 
     /** Validaciones para que los campos no esten vacios. */
     public boolean validaciones() {
@@ -77,9 +76,10 @@ public class VentanaLoginController {
                 Row fila = hoja.getRow(i);
                 if (fila != null) {
                     for (int j = 0; j < fila.getLastCellNum(); j++) {
+                        String nombre = dataFormatter.formatCellValue(fila.getCell(0));
                         String usuario = dataFormatter.formatCellValue(fila.getCell(3));
                         String password = dataFormatter.formatCellValue(fila.getCell(6));
-                        Docente docente = new Docente(usuario, password);
+                        Docente docente = new Docente(nombre, usuario, password);
                         registrosActuales.add(docente);
                     }
                 }
@@ -95,6 +95,7 @@ public class VentanaLoginController {
             Docente docenteEncontrado = mapaDocentes.get(user);
             String passRegistrada = docenteEncontrado.getPassword();
             if (pass.equals(passRegistrada)) {
+                nombreEncontrado = retornarNombre(docenteEncontrado.getNombre());
                 return 1;
             } else {
                 return -1;
@@ -116,7 +117,7 @@ public class VentanaLoginController {
                     int posicion = 0;
                     int validacion = inicioSesion(user, pass, posicion);
                     if (validacion == 1) {
-                        Mensajes.mensajeInformativo("", "Bienvenido " + user);
+                        Mensajes.mensajeInformativo("", "Bienvenido docente " + nombreEncontrado);
                     } else if (validacion == -1) {
                         Mensajes.mensajeAdvertencia("La información no coincide", "Contraseña incorrecta");
                     } else if (validacion == 0) {
@@ -127,7 +128,7 @@ public class VentanaLoginController {
                     posicion = 2;
                     validacion = inicioSesion(user, pass, posicion);
                     if (validacion == 1) {
-                        Mensajes.mensajeInformativo("", "Bienvenido " + user);
+                        Mensajes.mensajeInformativo("", "Bienvenido mentor " + nombreEncontrado);
                     } else if (validacion == -1) {
                         Mensajes.mensajeAdvertencia("La información no coincide", "Contraseña incorrecta");
                     } else if (validacion == 0) {
@@ -138,7 +139,9 @@ public class VentanaLoginController {
                     posicion = 1;
                     validacion = inicioSesion(user, pass, posicion);
                     if (validacion == 1) {
-                        Mensajes.mensajeInformativo("", "Bienvenido " + user);
+                        Mensajes.mensajeInformativo("", "Bienvenido estudiante " + nombreEncontrado);
+                        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-menu.fxml"));
+                        rootPane.getChildren().setAll(pane);
                     } else if (validacion == -1) {
                         Mensajes.mensajeAdvertencia("La información no coincide", "Contraseña incorrecta");
                     } else if (validacion == 0) {
@@ -159,7 +162,10 @@ public class VentanaLoginController {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-registro.fxml"));
         rootPane.getChildren().setAll(pane);
     }
-    public void prueba(String user){
-        System.out.print("Este es el usuario" + user);
+    public String retornarNombre(String nombreRegistrado){
+        String nombre;
+        nombre = nombreRegistrado;
+        return nombre;
     }
+
 }

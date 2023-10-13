@@ -16,7 +16,7 @@
          <children>
             <ImageView fitHeight="605.0" fitWidth="1000.0">
                <image>
-                  <Image url="@../../imagenes/fondo.jpeg" />
+                  <Image url="@../../imagenes/background/fondo.jpeg" />
                </image>
             </ImageView>
             <Pane layoutX="309.0" layoutY="53.0" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #6A96ED; -fx-border-color: black; -fx-border-radius: 40; -fx-background-radius: 40;">
@@ -39,7 +39,7 @@
                   </Button>
                   <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="50.0" layoutY="88.0">
                      <image>
-                        <Image url="@../../imagenes/logo_negro.png" />
+                        <Image url="@../../imagenes/logos/logo_negro.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="107.0" layoutY="44.0" style="-fx-text-fill: black;" text="Bienvenido">

@@ -28,7 +28,7 @@ public class VentanaRegistro {
     private AnchorPane panelRegistro;
 
     @FXML
-    private Button botonRegistrar;
+    private Button botonRegistro;
 
     @FXML
     private Button botonVolver;
@@ -257,15 +257,12 @@ public class VentanaRegistro {
                 if (perfiles.getValue().toString().equals("Docente")) {
                     int posicion = 0;
                     agregarDatos(posicion);
-                    System.out.println("Docente " + posicion);
                 } else if (perfiles.getValue().toString().equals("Estudiante")) {
                     int posicion = 1;
                     agregarDatos(posicion);
-                    System.out.println("Estudiante " + posicion);
                 } else {
                     int posicion = 2;
                     agregarDatos(posicion);
-                    System.out.println("Mentor " + posicion);
                 }
             }
     }
@@ -293,10 +290,10 @@ public class VentanaRegistro {
         String correo = inputCorreo.getText();
         String telefono = inputTelefono.getText();
         String contraseña = inputContraseña.getText();
-        String perfil = perfiles.getItems().toString();
-        String departamento = departamentos.getItems().toString();
-        String ciudad = ciudades.getItems().toString();
-        String universidad = universidades.getItems().toString();
+        String perfil = perfiles.getValue().toString();
+        String departamento = departamentos.getValue().toString();
+        String ciudad = ciudades.getValue().toString();
+        String universidad = universidades.getValue().toString();
 
         Docente docente = new Docente(nombre, apellido, documento,usuario, correo, telefono,
                 contraseña, perfil, departamento, ciudad, universidad);
@@ -331,7 +328,7 @@ public class VentanaRegistro {
             if (existeRegistro == false) {
                 try (FileOutputStream archivoSalida = new FileOutputStream("src/main/resources/datos/registros.xlsx")) {
                     libroExcel.write(archivoSalida);
-                    Mensajes.mensajeInformativo(null, "Datos agregamodos correctamente");
+                    Mensajes.mensajeInformativo(null, "Usuario registrado correctamente");
                 }
             } else {
                 Mensajes.mensajeInformativo(null, "El usuario o documento ya estan registrados");
@@ -391,5 +388,18 @@ public class VentanaRegistro {
             System.out.println(e.getMessage());
         }
         return existeRegistro;
+    }
+
+    @FXML
+    protected void onBotonRegistrarMouseEntered(){
+        botonRegistro.setStyle("-fx-background-color: #1976d2;" +
+                " -fx-text-fill: white; -fx-background-radius: 40;" +
+                " -fx-border-color: white; -fx-border-radius: 40;");
+    }
+    @FXML
+    protected void onBotonRegistrarMouseExited(){
+        botonRegistro.setStyle("-fx-background-color: #2265E8;" +
+                " -fx-text-fill: black; -fx-background-radius: 40;" +
+                " -fx-border-color: black; -fx-border-radius: 40;");
     }
 }

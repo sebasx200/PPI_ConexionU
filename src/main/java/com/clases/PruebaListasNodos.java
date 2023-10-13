@@ -5,7 +5,7 @@ package com.clases;
  * @author sebas
  */
 public class PruebaListasNodos {
-    
+    /*
     public static void main(String[] args) {
         ListaDocentes l1;
         l1 = new ListaDocentes();
@@ -16,5 +16,5 @@ public class PruebaListasNodos {
         l1.insertarInicio(nd);
 
     }
-    
+    */
 }
