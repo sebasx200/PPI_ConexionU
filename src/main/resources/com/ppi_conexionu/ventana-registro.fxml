@@ -21,7 +21,7 @@
       </ImageView>
       <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="-15.0" layoutY="-11.0">
          <image>
-            <Image url="@../../imagenes/logos/CONEXION_U__3_-removebg-preview.png" />
+            <Image url="@../../imagenes/logos/logo_blanco.png" />
          </image>
       </ImageView>
       <AnchorPane accessibleRole="IMAGE_VIEW" layoutX="465.0" layoutY="43.0" prefHeight="520.0" prefWidth="500.0" style="-fx-background-color: #b0bec5; -fx-background-radius: 40; -fx-border-color: black; -fx-border-radius: 40;">

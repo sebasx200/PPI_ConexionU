@@ -6,18 +6,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.apache.poi.ss.formula.functions.T;
 
 import java.io.IOException;
 
 public class VentanaPrincipalEsqueletoController {
 
     @FXML
-    private Label botonX;
+    private Label botonX, botonMinimizar;
     @FXML
     private AnchorPane content;
     @FXML
@@ -34,6 +36,8 @@ public class VentanaPrincipalEsqueletoController {
     protected void onBotonXMouseEntered(){
         botonX.setStyle("-fx-background-color: red;");
         botonX.setTextFill(Color.WHITE);
+        Tooltip tooltip = new Tooltip("Cerrar");
+        botonX.setTooltip(tooltip);
     }
     @FXML
     protected void onBotonXMouseExited(){
@@ -41,8 +45,25 @@ public class VentanaPrincipalEsqueletoController {
         botonX.setTextFill(Color.BLACK);
     }
     @FXML
+    protected void onBotonMinimizarMouseEntered(){
+        botonMinimizar.setStyle("-fx-background-color: #9e9e9e;");
+        botonMinimizar.setTextFill(Color.WHITE);
+        Tooltip tooltip = new Tooltip("Minimizar");
+        botonMinimizar.setTooltip(tooltip);
+    }
+    @FXML
+    protected void onBotonMinimizarMouseExited(){
+        botonMinimizar.setStyle("-fx-background-color: white;");
+        botonMinimizar.setTextFill(Color.BLACK);
+    }
+    @FXML
     protected void onBotonXClick(){
         Platform.exit();
+    }
+    @FXML
+    protected void onBotonMinimizarClick(){
+        Stage stage = (Stage) botonMinimizar.getScene().getWindow();
+        stage.setIconified(true);
     }
 
     @FXML

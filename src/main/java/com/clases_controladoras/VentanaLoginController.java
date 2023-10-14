@@ -163,9 +163,6 @@ public class VentanaLoginController {
         rootPane.getChildren().setAll(pane);
     }
     public String retornarNombre(String nombreRegistrado){
-        String nombre;
-        nombre = nombreRegistrado;
-        return nombre;
+        return nombreRegistrado;
     }
-
 }

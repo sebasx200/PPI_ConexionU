@@ -1,8 +1,10 @@
 package com.clases_controladoras;
 
+import com.clases.Mensajes;
 import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
@@ -10,21 +12,29 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class VentanaMenuController {
 
     @FXML
-    private Label botonMenu, paginaInicio, agendarAsesoria, misAsesorias, notificaciones, verListaEstudiantes, configuraciones, acercaDe, opcionSeleccionada;
+    private Label botonMenu, paginaInicio, botonLogOut, agendarAsesoria, misAsesorias, notificaciones, verListaEstudiantes, configuraciones, acercaDe, opcionSeleccionada;
     @FXML
     private HBox hBox;
     @FXML
     private VBox menu;
     @FXML
-    private AnchorPane content;
+    private AnchorPane rootPane, content;
     @FXML
     private VBox vBox;
     @FXML
     private ImageView fondo;
+    private Stage stage;
+    public void setPrimaryStage(Stage stage) {
+        this.stage = stage;
+    }
 
     public void initialize(){
     // este es el método que se inicia por defecto cuando se inicia la ventana, se llama a los métodos que capturan las opciones del menú
@@ -86,6 +96,18 @@ public class VentanaMenuController {
     } // se restablece el color por defecto de la opción menú cuando el usuario saca el cursor de él
 
     @FXML
+    private void onMouseEnteredLogOut(){
+        botonLogOut.setStyle("-fx-background-color: red;");
+        botonLogOut.setTextFill(Color.WHITE);
+    } // se le establece al botón de cerrar sesión un color cuando el usuario pasa el cursor sobre él
+
+    @FXML
+    private void onMouseExitedLogOut(){
+        botonLogOut.setStyle("-fx-background-color: #90caf9;");
+        botonLogOut.setTextFill(Color.BLACK);
+    } // se restablece el color por defecto de cerrar sesión cuando el usuario saca el cursor de él
+
+    @FXML
     protected void onbotonMenuClick(){
     // este método busca que cuando el usuario le da clic al botón menú, se cambia de tamaño según la ocasión cuando el usuario le dé clic
 
@@ -103,6 +125,16 @@ public class VentanaMenuController {
         else{
             fondo.setFitWidth(750);
             menu.setPrefWidth(250);
+        }
+    }
+
+    @FXML
+    // evento del botón cerrar sesión para que si el usuario confirma, se cambie la pantalla a ventana de login
+    protected void onBotonLogoutClick() throws IOException {
+        boolean mensaje = Mensajes.mensajeConfirmacion("Cerrar Sesión", null, "¿Está seguro que quiere cerrar sesión?");
+        if(mensaje) {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-login.fxml"));
+            rootPane.getChildren().setAll(pane);
         }
     }
 
