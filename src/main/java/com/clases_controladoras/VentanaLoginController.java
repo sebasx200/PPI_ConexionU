@@ -118,6 +118,8 @@ public class VentanaLoginController {
                     int validacion = inicioSesion(user, pass, posicion);
                     if (validacion == 1) {
                         Mensajes.mensajeInformativo("", "Bienvenido docente " + nombreEncontrado);
+                        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-menu.fxml"));
+                        rootPane.getChildren().setAll(pane);
                     } else if (validacion == -1) {
                         Mensajes.mensajeAdvertencia("La información no coincide", "Contraseña incorrecta");
                     } else if (validacion == 0) {

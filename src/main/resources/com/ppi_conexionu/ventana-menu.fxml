@@ -129,19 +129,24 @@
                <center>
                   <AnchorPane fx:id="content" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #bdbdbd;" BorderPane.alignment="CENTER">
                      <children>
-                        <ImageView fx:id="fondo" fitHeight="539.0" fitWidth="750.0">
-                           <image>
-                              <Image url="@../../imagenes/background/background_8.png" />
-                           </image>
-                        </ImageView>
-                        <VBox fx:id="vBox" alignment="CENTER" layoutX="-6.0" layoutY="-1.0" prefHeight="539.0" prefWidth="750.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="-6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="-1.0">
+                        <AnchorPane fx:id="fondo_principal" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <ImageView fitHeight="300.0" fitWidth="300.0">
+                              <ImageView fx:id="fondo" fitHeight="539.0" fitWidth="750.0">
                                  <image>
-                                    <Image url="@../../imagenes/logos/logo_negro.png" />
+                                    <Image url="@../../imagenes/background/background_8.png" />
                                  </image>
                               </ImageView>
-                           </children></VBox>
+                              <VBox alignment="CENTER" prefHeight="539.0" prefWidth="750.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="-6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="-1.0">
+                                 <children>
+                                    <ImageView fitHeight="300.0" fitWidth="300.0">
+                                       <image>
+                                          <Image url="@../../imagenes/logos/logo_negro.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
                      </children></AnchorPane>
                </center>
                <top>

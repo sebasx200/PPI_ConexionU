@@ -26,7 +26,7 @@ public class VentanaMenuController {
     @FXML
     private VBox menu;
     @FXML
-    private AnchorPane rootPane, content;
+    private AnchorPane rootPane, content, fondo_principal;
     @FXML
     private VBox vBox;
     @FXML
@@ -35,10 +35,8 @@ public class VentanaMenuController {
     public void setPrimaryStage(Stage stage) {
         this.stage = stage;
     }
-
     public void initialize(){
     // este es el método que se inicia por defecto cuando se inicia la ventana, se llama a los métodos que capturan las opciones del menú
-        vBox.setSpacing(10);
         setMouseOverEffect(paginaInicio);
         setMouseOverEffect(agendarAsesoria);
         setMouseOverEffect(misAsesorias);
@@ -115,6 +113,7 @@ public class VentanaMenuController {
     protected void onbotonMenuClick(){
     // este método busca que cuando el usuario le da clic al botón menú, se cambia de tamaño según la ocasión cuando el usuario le dé clic
 
+
         if(menu.getPrefWidth() == 250) {
             fondo.setFitWidth(915);
             menu.setPrefWidth(85);
@@ -148,6 +147,7 @@ public class VentanaMenuController {
 
             case "Página inicio":
                 opcionSeleccionada.setText(opcion);
+                content.getChildren().setAll(fondo_principal);
                 break;
             case "Agendar asesoria":
                 opcionSeleccionada.setText(opcion);
@@ -164,7 +164,7 @@ public class VentanaMenuController {
             case "Configuraciones":
                 opcionSeleccionada.setText(opcion);
                 break;
-                
+
             case "Acerca de":
                 opcionSeleccionada.setText(opcion);
                 AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/funcionalidades_menu/ventana-acercade.fxml"));
