@@ -80,7 +80,11 @@ public class VentanaMenuController {
         label.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                opcionElegida(label.getText()); // con la opcion capturada se llama al switch pasándole la opción seleccionada por el usuario
+                try {
+                    opcionElegida(label.getText()); // con la opcion capturada se llama al switch pasándole la opción seleccionada por el usuario
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
@@ -131,14 +135,14 @@ public class VentanaMenuController {
     @FXML
     // evento del botón cerrar sesión para que si el usuario confirma, se cambie la pantalla a ventana de login
     protected void onBotonLogoutClick() throws IOException {
-        boolean mensaje = Mensajes.mensajeConfirmacion("Cerrar Sesión", null, "¿Está seguro que quiere cerrar sesión?");
+        boolean mensaje = Mensajes.mensajeConfirmacion("Cerrar Sesión", null, "¿Está seguro que desea cerrar sesión?");
         if(mensaje) {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-login.fxml"));
             rootPane.getChildren().setAll(pane);
         }
     }
 
-    private void opcionElegida(String opcion){
+    private void opcionElegida(String opcion) throws IOException {
     // se le especifica al switch que ejecute el código del caso según la opción que seleccionó el usuario del menú
         switch (opcion){
 
@@ -160,8 +164,11 @@ public class VentanaMenuController {
             case "Configuraciones":
                 opcionSeleccionada.setText(opcion);
                 break;
+                
             case "Acerca de":
                 opcionSeleccionada.setText(opcion);
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/funcionalidades_menu/ventana-acercade.fxml"));
+                content.getChildren().setAll(pane);
                 break;
         }
     }
