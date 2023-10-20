@@ -1,17 +1,19 @@
 package com.clases_controladoras;
 
+import com.clases.Docente;
 import com.clases.Mensajes;
-import javafx.beans.binding.Bindings;
+import com.clases_controladoras.funcionalidades_menu.VentanaAcercadeController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -26,17 +28,16 @@ public class VentanaMenuController {
     @FXML
     private VBox menu;
     @FXML
-    private AnchorPane rootPane, content, fondo_principal;
+    private AnchorPane rootPane;
+    @FXML
+    private StackPane stackPane, content;
     @FXML
     private VBox vBox;
     @FXML
     private ImageView fondo;
-    private Stage stage;
-    public void setPrimaryStage(Stage stage) {
-        this.stage = stage;
-    }
-    public void initialize(){
-    // este es el método que se inicia por defecto cuando se inicia la ventana, se llama a los métodos que capturan las opciones del menú
+
+    public void initialize() {
+        // este es el método que se inicia por defecto cuando se inicia la ventana, se llama a los métodos que capturan las opciones del menú
         setMouseOverEffect(paginaInicio);
         setMouseOverEffect(agendarAsesoria);
         setMouseOverEffect(misAsesorias);
@@ -52,6 +53,7 @@ public class VentanaMenuController {
         setOpcionMouseClick(configuraciones);
         setOpcionMouseClick(acercaDe);
     }
+
     private void setMouseOverEffect(Label label) {
         // este método hace que cuando el usuario pone el cursor dentro o fuera de las opciones del menú, estas opciones cambian de color
         label.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -73,7 +75,7 @@ public class VentanaMenuController {
         });
     }
 
-    private void setOpcionMouseClick(Label label){
+    private void setOpcionMouseClick(Label label) {
         // con este método simplemente se busca capturar cuál fue la opción que el usuario eligió
         label.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -88,33 +90,31 @@ public class VentanaMenuController {
     }
 
     @FXML
-    private void onMouseEnteredMenu(){
+    private void onMouseEnteredMenu() {
         botonMenu.setStyle("-fx-background-color: #2196f3;");
     } // se le establece al botón del menú un color cuando el usuario pasa el cursor sobre él
 
     @FXML
-    private void onMouseExited(){
+    private void onMouseExited() {
         botonMenu.setStyle("-fx-background-color: #90caf9;");
     } // se restablece el color por defecto de la opción menú cuando el usuario saca el cursor de él
 
     @FXML
-    private void onMouseEnteredLogOut(){
+    private void onMouseEnteredLogOut() {
         botonLogOut.setStyle("-fx-background-color: red;");
         botonLogOut.setTextFill(Color.WHITE);
     } // se le establece al botón de cerrar sesión un color cuando el usuario pasa el cursor sobre él
 
     @FXML
-    private void onMouseExitedLogOut(){
+    private void onMouseExitedLogOut() {
         botonLogOut.setStyle("-fx-background-color: #90caf9;");
         botonLogOut.setTextFill(Color.BLACK);
     } // se restablece el color por defecto de cerrar sesión cuando el usuario saca el cursor de él
 
     @FXML
-    protected void onbotonMenuClick(){
-    // este método busca que cuando el usuario le da clic al botón menú, se cambia de tamaño según la ocasión cuando el usuario le dé clic
-
-
-        if(menu.getPrefWidth() == 250) {
+    protected void onbotonMenuClick() {
+        // este método busca que cuando el usuario le da clic al botón menú, se cambia de tamaño según la ocasión cuando el usuario le dé clic
+        if (menu.getPrefWidth() == 250) {
             fondo.setFitWidth(915);
             menu.setPrefWidth(85);
             paginaInicio.setEllipsisString(null);
@@ -124,8 +124,7 @@ public class VentanaMenuController {
             verListaEstudiantes.setEllipsisString(null);
             configuraciones.setEllipsisString(null);
             acercaDe.setEllipsisString(null);
-        }
-        else{
+        } else {
             fondo.setFitWidth(750);
             menu.setPrefWidth(250);
         }
@@ -135,19 +134,24 @@ public class VentanaMenuController {
     // evento del botón cerrar sesión para que si el usuario confirma, se cambie la pantalla a ventana de login
     protected void onBotonLogoutClick() throws IOException {
         boolean mensaje = Mensajes.mensajeConfirmacion("Cerrar Sesión", null, "¿Está seguro que desea cerrar sesión?");
-        if(mensaje) {
+        if (mensaje) {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-login.fxml"));
             rootPane.getChildren().setAll(pane);
         }
     }
 
     private void opcionElegida(String opcion) throws IOException {
-    // se le especifica al switch que ejecute el código del caso según la opción que seleccionó el usuario del menú
-        switch (opcion){
+        // se le especifica al switch que ejecute el código del caso según la opción que seleccionó el usuario del menú
 
+        String ruta;
+        String rutaImagen;
+
+        switch (opcion) {
             case "Página inicio":
                 opcionSeleccionada.setText(opcion);
-                content.getChildren().setAll(fondo_principal);
+                rutaImagen = "/imagenes/background/background_8.png";
+                cambiarImagen(rutaImagen);
+                content.getChildren().setAll(fondo, stackPane);
                 break;
             case "Agendar asesoria":
                 opcionSeleccionada.setText(opcion);
@@ -167,9 +171,21 @@ public class VentanaMenuController {
 
             case "Acerca de":
                 opcionSeleccionada.setText(opcion);
-                AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/funcionalidades_menu/ventana-acercade.fxml"));
-                content.getChildren().setAll(pane);
+                ruta = "/com/ppi_conexionu/funcionalidades_menu/ventana-acercade.fxml";
+                rutaImagen = "/imagenes/background/background_3.png";
+                cambiarImagen(rutaImagen);
+                cargarFXML(ruta, fondo);
                 break;
         }
+    }
+    @FXML
+    private void cargarFXML(String ruta, ImageView fondo) throws IOException {
+        StackPane pane = FXMLLoader.load(getClass().getResource(ruta));
+        content.getChildren().setAll(fondo, pane);
+    }
+    @FXML
+    public void cambiarImagen(String rutaImagen){
+        Image image = new Image(getClass().getResource(rutaImagen).toExternalForm());
+        fondo.setImage(image);
     }
 }
