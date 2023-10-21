@@ -1,11 +1,9 @@
 package com.clases_controladoras;
 
-import com.clases.Docente;
+import com.clases.Usuario;
 import com.clases.Mensajes;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
@@ -15,9 +13,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -52,7 +47,7 @@ public class VentanaLoginController {
         if (inputUser.getText().isEmpty() ||
                 inputPass.getText().isEmpty()) {
             datos = false;
-            Mensajes.mensajeError(null, "Los campos estan vacio");
+            Mensajes.mensajeError(null, "Los campos están vacíos");
         } else if(perfiles.getValue() == null && datos){
             datos=false;
             Mensajes.mensajeError( null, "No seleccionó ningún perfil");
@@ -61,7 +56,7 @@ public class VentanaLoginController {
     }
 
     public int inicioSesion(String user, String pass, int posicion) {
-        ArrayList<Docente> registrosActuales = new ArrayList<>();
+        ArrayList<Usuario> registrosActuales = new ArrayList<>();
         try {
             FileInputStream archivoExcel = new FileInputStream("src/main/resources/datos/registros.xlsx");
             XSSFWorkbook libroExcel = new XSSFWorkbook(archivoExcel);
@@ -77,25 +72,25 @@ public class VentanaLoginController {
                 if (fila != null) {
                     for (int j = 0; j < fila.getLastCellNum(); j++) {
                         String nombre = dataFormatter.formatCellValue(fila.getCell(0));
-                        String usuario = dataFormatter.formatCellValue(fila.getCell(3));
+                        String usuarioIngresado = dataFormatter.formatCellValue(fila.getCell(3));
                         String password = dataFormatter.formatCellValue(fila.getCell(6));
-                        Docente docente = new Docente(nombre, usuario, password);
-                        registrosActuales.add(docente);
+                        Usuario usuario = new Usuario(nombre, usuarioIngresado, password);
+                        registrosActuales.add(usuario);
                     }
                 }
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        Map<String, Docente> mapaDocentes = new HashMap<>();
-        for (Docente docente : registrosActuales) {
-            mapaDocentes.put(docente.getUsuario(), docente);
+        Map<String, Usuario> mapaUsuarios = new HashMap<>();
+        for (Usuario usuario : registrosActuales) {
+            mapaUsuarios.put(usuario.getUsuario(), usuario);
         }
-        if (mapaDocentes.containsKey(user)) {
-            Docente docenteEncontrado = mapaDocentes.get(user);
-            String passRegistrada = docenteEncontrado.getPassword();
+        if (mapaUsuarios.containsKey(user)) {
+            Usuario usuarioEncontrado = mapaUsuarios.get(user);
+            String passRegistrada = usuarioEncontrado.getPassword();
             if (pass.equals(passRegistrada)) {
-                nombreEncontrado = retornarNombre(docenteEncontrado.getNombre());
+                nombreEncontrado = retornarNombre(usuarioEncontrado.getNombre());
                 return 1;
             } else {
                 return -1;

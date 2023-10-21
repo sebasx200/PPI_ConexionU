@@ -1,6 +1,6 @@
 package com.clases;
 
-public class Docente {
+public class Usuario {
     private String nombre;
     private String apellido;
     private String documento;
@@ -12,10 +12,10 @@ public class Docente {
     private String departamento;
     private String ciudad;
     private String universidad;
-    private Docente liga;
+    private Usuario liga;
 
     /** Este metodo constructor es para inicializar los atributos */
-    public Docente(){
+    public Usuario(){
         nombre = "";
         apellido = "";
         documento = "";
@@ -29,29 +29,29 @@ public class Docente {
         universidad = "";
     }
 
-    public Docente(Docente docente){
-        this.nombre = docente.nombre;
-        this.apellido = docente.apellido;
-        this.documento = docente.documento;
-        this.usuario = docente.usuario;
-        this.correo = docente.correo;
-        this.telefono = docente.telefono;
-        this.password = docente.password;
-        this.perfil = docente.perfil;
-        this.departamento = docente.departamento;
-        this.ciudad = docente.ciudad;
-        this.universidad = docente.universidad;
+    public Usuario(Usuario usuario){
+        this.nombre = usuario.nombre;
+        this.apellido = usuario.apellido;
+        this.documento = usuario.documento;
+        this.usuario = usuario.usuario;
+        this.correo = usuario.correo;
+        this.telefono = usuario.telefono;
+        this.password = usuario.password;
+        this.perfil = usuario.perfil;
+        this.departamento = usuario.departamento;
+        this.ciudad = usuario.ciudad;
+        this.universidad = usuario.universidad;
     }
 
     /** Este es un metodo constructor para solo llamar los atributos de iniciar sesion */
-    public Docente(String nombre, String usuario, String pass){
+    public Usuario(String nombre, String usuario, String pass){
         this.nombre = nombre;
         this.usuario = usuario;
         this.password = pass;
     }
 
     /** Este es un metdo constructor para llamar todos los atributos */
-    public Docente(String nombre, String apellido, String documento, String usuario, String correo, String telefono,
+    public Usuario(String nombre, String apellido, String documento, String usuario, String correo, String telefono,
                    String password, String perfil, String departamento, String ciudad, String universidad) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -138,11 +138,11 @@ public class Docente {
 
     public void setUniversidad(String universidad) {this.universidad = universidad;}
 
-    public Docente getLiga() {
+    public Usuario getLiga() {
         return liga;
     }
 
-    public void setLiga(Docente liga) {
+    public void setLiga(Usuario liga) {
         this.liga = liga;
     }
     

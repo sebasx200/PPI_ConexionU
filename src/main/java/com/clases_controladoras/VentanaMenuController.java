@@ -1,13 +1,9 @@
 package com.clases_controladoras;
 
-import com.clases.Docente;
 import com.clases.Mensajes;
-import com.clases_controladoras.funcionalidades_menu.VentanaAcercadeController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -15,7 +11,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -24,15 +19,11 @@ public class VentanaMenuController {
     @FXML
     private Label botonMenu, paginaInicio, botonLogOut, agendarAsesoria, misAsesorias, notificaciones, verListaEstudiantes, configuraciones, acercaDe, opcionSeleccionada;
     @FXML
-    private HBox hBox;
-    @FXML
     private VBox menu;
     @FXML
     private AnchorPane rootPane;
     @FXML
     private StackPane stackPane, content;
-    @FXML
-    private VBox vBox;
     @FXML
     private ImageView fondo;
 
@@ -164,11 +155,14 @@ public class VentanaMenuController {
                 break;
             case "Ver lista estudiantes":
                 opcionSeleccionada.setText(opcion);
+                ruta = "/com/ppi_conexionu/funcionalidades_menu/ventana-tableview.fxml";
+                rutaImagen = "/imagenes/background/background_7.png";
+                cargarFXML(ruta, fondo);
+                cambiarImagen(rutaImagen);
                 break;
             case "Configuraciones":
                 opcionSeleccionada.setText(opcion);
                 break;
-
             case "Acerca de":
                 opcionSeleccionada.setText(opcion);
                 ruta = "/com/ppi_conexionu/funcionalidades_menu/ventana-acercade.fxml";
@@ -178,11 +172,15 @@ public class VentanaMenuController {
                 break;
         }
     }
+
+    // se encarga de cambiar el archivo FXML que está cargado en content según se seleccione una opción en el menú
     @FXML
     private void cargarFXML(String ruta, ImageView fondo) throws IOException {
         StackPane pane = FXMLLoader.load(getClass().getResource(ruta));
         content.getChildren().setAll(fondo, pane);
     }
+
+    // Este método es útil pora que se cambie el fondo de pantalla según se cambie la opción del menú
     @FXML
     public void cambiarImagen(String rutaImagen){
         Image image = new Image(getClass().getResource(rutaImagen).toExternalForm());
