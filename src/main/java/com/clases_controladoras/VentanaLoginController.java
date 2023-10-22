@@ -35,6 +35,7 @@ public class VentanaLoginController {
     @FXML
     private ComboBox perfiles;
     private String nombreEncontrado;
+    private Usuario usuario;
 
     public void initialize(){
         perfiles.getItems().addAll("Docente", "Mentor", "Estudiante");
@@ -74,9 +75,10 @@ public class VentanaLoginController {
                         String nombre = dataFormatter.formatCellValue(fila.getCell(0));
                         String usuarioIngresado = dataFormatter.formatCellValue(fila.getCell(3));
                         String password = dataFormatter.formatCellValue(fila.getCell(6));
-                        Usuario usuario = new Usuario(nombre, usuarioIngresado, password);
-                        registrosActuales.add(usuario);
+                        usuario = new Usuario(nombre, usuarioIngresado, password);
+
                     }
+                    registrosActuales.add(usuario);
                 }
             }
         } catch (IOException e) {

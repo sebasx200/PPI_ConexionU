@@ -7,6 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -33,6 +34,9 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
                         </Label>
                         <Label fx:id="agendarAsesoria" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #90caf9; -fx-border-color: black;" text="Agendar asesoria">
                            <graphic>
@@ -48,6 +52,9 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
                         </Label>
                         <Label fx:id="misAsesorias" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #90caf9; -fx-border-color: black;" text="Mis asesorias">
                            <graphic>
@@ -63,6 +70,9 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
                         </Label>
                         <Label fx:id="notificaciones" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #90caf9; -fx-border-color: black;" text="Notificaciones">
                            <graphic>
@@ -78,6 +88,9 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
                         </Label>
                         <Label fx:id="verListaEstudiantes" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #90caf9; -fx-border-color: black;" text="Ver lista estudiantes">
                            <graphic>
@@ -93,6 +106,9 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
                         </Label>
                         <Label fx:id="configuraciones" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #90caf9; -fx-border-color: black;" text="Configuraciones">
                            <graphic>
@@ -108,6 +124,9 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
                         </Label>
                         <Label fx:id="acercaDe" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #90caf9; -fx-border-color: black;" text="Acerca de">
                            <graphic>
@@ -123,41 +142,17 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </VBox>
                </left>
                <top>
                   <BorderPane prefHeight="64.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
-                     <center>
-                        <Label fx:id="opcionSeleccionada" alignment="CENTER" contentDisplay="CENTER" prefHeight="64.0" prefWidth="200.0" text="Página inicio" BorderPane.alignment="CENTER">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <font>
-                              <Font name="Berlin Sans FB" size="14.0" />
-                           </font>
-                        </Label>
-                     </center>
-                     <left>
-                        <Label fx:id="botonMenu" onMouseClicked="#onbotonMenuClick" onMouseEntered="#onMouseEnteredMenu" onMouseExited="#onMouseExited" prefHeight="64.0" prefWidth="250.0" text="Menú" BorderPane.alignment="CENTER">
-                           <graphic>
-                              <ImageView>
-                                 <image>
-                                    <Image url="@../../imagenes/iconos/menu.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <font>
-                              <Font name="Berlin Sans FB" size="14.0" />
-                           </font>
-                        </Label>
-                     </left>
                      <right>
-                        <Label fx:id="botonLogOut" contentDisplay="RIGHT" onMouseClicked="#onBotonLogoutClick" onMouseEntered="#onMouseEnteredLogOut" onMouseExited="#onMouseExitedLogOut" prefHeight="64.0" style="-fx-background-color: #90caf9;" text="Cerrar sesión" BorderPane.alignment="CENTER">
+                        <Label fx:id="botonLogOut" contentDisplay="RIGHT" onMouseClicked="#onBotonLogoutClick" onMouseEntered="#onMouseEnteredLogOut" onMouseExited="#onMouseExitedLogOut" prefHeight="64.0" prefWidth="120.0" style="-fx-background-color: #90caf9;" text="Cerrar sesión" BorderPane.alignment="CENTER">
                            <font>
                               <Font name="Berlin Sans FB" size="14.0" />
                            </font>
@@ -169,13 +164,47 @@
                               </ImageView>
                            </graphic>
                            <padding>
-                              <Insets right="10.0" />
+                              <Insets left="5.0" right="5.0" />
                            </padding>
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Label>
                      </right>
+                     <left>
+                        <HBox prefHeight="64.0" prefWidth="880.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label fx:id="botonMenu" onMouseClicked="#onbotonMenuClick" onMouseEntered="#onMouseEnteredMenu" onMouseExited="#onMouseExited" prefHeight="64.0" prefWidth="250.0" text="Menú">
+                                 <graphic>
+                                    <ImageView>
+                                       <image>
+                                          <Image url="@../../imagenes/iconos/menu.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nombreUser" prefHeight="64.0" prefWidth="200.0" text="nombre">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="opcionSeleccionada" alignment="CENTER" contentDisplay="CENTER" prefHeight="64.0" prefWidth="200.0" text="Página inicio">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </left>
                   </BorderPane>
                </top>
                <center>
