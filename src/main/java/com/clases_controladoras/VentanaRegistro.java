@@ -369,11 +369,11 @@ public class VentanaRegistro {
                         String apellido = dataFormatter.formatCellValue(fila.getCell(1));
                         String documento = dataFormatter.formatCellValue(fila.getCell(2));
                         String user = dataFormatter.formatCellValue(fila.getCell(3));
-                        String correo = dataFormatter.formatCellValue(fila.createCell(4));
+                        String correo = dataFormatter.formatCellValue(fila.getCell(4));
                         String telefono = dataFormatter.formatCellValue(fila.getCell(5));
                         String password = dataFormatter.formatCellValue(fila.getCell(6));
                         String perfil = dataFormatter.formatCellValue(fila.getCell(7));
-                        String departamento = dataFormatter.formatCellValue(fila.createCell(8));
+                        String departamento = dataFormatter.formatCellValue(fila.getCell(8));
                         String ciudad = dataFormatter.formatCellValue(fila.getCell(9));
                         String univesidad = dataFormatter.formatCellValue(fila.getCell(10));
 
