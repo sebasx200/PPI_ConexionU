@@ -1,5 +1,6 @@
 package com.clases_controladoras;
 
+import com.clases.DataSingleton;
 import com.clases.Usuario;
 import com.clases.Mensajes;
 import javafx.fxml.FXML;
@@ -37,6 +38,7 @@ public class VentanaLoginController {
     private String nombreEncontrado;
     private Usuario usuario;
 
+    DataSingleton data = DataSingleton.getInstance();
     public void initialize(){
         perfiles.getItems().addAll("Docente", "Mentor", "Estudiante");
 
@@ -75,7 +77,8 @@ public class VentanaLoginController {
                         String nombre = dataFormatter.formatCellValue(fila.getCell(0));
                         String usuarioIngresado = dataFormatter.formatCellValue(fila.getCell(3));
                         String password = dataFormatter.formatCellValue(fila.getCell(6));
-                        usuario = new Usuario(nombre, usuarioIngresado, password);
+                        String perfil = dataFormatter.formatCellValue(fila.getCell(7));
+                        usuario = new Usuario(nombre, usuarioIngresado, password, perfil);
 
                     }
                     registrosActuales.add(usuario);
@@ -93,6 +96,7 @@ public class VentanaLoginController {
             String passRegistrada = usuarioEncontrado.getPassword();
             if (pass.equals(passRegistrada)) {
                 nombreEncontrado = retornarNombre(usuarioEncontrado.getNombre());
+                data.setUsuario(usuarioEncontrado);
                 return 1;
             } else {
                 return -1;
@@ -104,6 +108,9 @@ public class VentanaLoginController {
     /** Boton iniciar sesion, se valida todo antes de iniciar sesion. */
     @FXML
     protected void onBotonIngresarAction() throws IOException{
+
+        VentanaMenuController menuController = new VentanaMenuController();
+
         String user = inputUser.getText();
         String pass = inputPass.getText();
         boolean dato = validaciones();
@@ -156,12 +163,23 @@ public class VentanaLoginController {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-principal.fxml"));
         rootPane.getChildren().setAll(pane);
     }
-
     public void onLinkRegistroAction() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-registro.fxml"));
         rootPane.getChildren().setAll(pane);
     }
     public String retornarNombre(String nombreRegistrado){
         return nombreRegistrado;
+    }
+    @FXML
+    protected void onBotonLoginMouseEntered(){
+        botonIngresar.setStyle("-fx-background-color: #2265E8;" +
+                " -fx-text-fill: white; -fx-background-radius: 40;" +
+                " -fx-border-color: white; -fx-border-radius: 40;");
+    }
+    @FXML
+    protected void onBotonLoginMouseExited(){
+        botonIngresar.setStyle("-fx-background-color: #2265E8;" +
+                " -fx-text-fill: black; -fx-background-radius: 40;" +
+                " -fx-border-color: black; -fx-border-radius: 40;");
     }
 }

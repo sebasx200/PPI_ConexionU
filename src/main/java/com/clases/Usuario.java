@@ -44,10 +44,11 @@ public class Usuario {
     }
 
     /** Este es un metodo constructor para solo llamar los atributos de iniciar sesion */
-    public Usuario(String nombre, String usuario, String pass){
+    public Usuario(String nombre, String usuario, String pass, String perfil){
         this.nombre = nombre;
         this.usuario = usuario;
         this.password = pass;
+        this.perfil = perfil;
     }
 
     /** Este es un metdo constructor para llamar todos los atributos */
@@ -65,18 +66,6 @@ public class Usuario {
         this.ciudad = ciudad;
         this.universidad = universidad;
     }
-
-    /** Este médoto constructor se usa para crear un tipo de usario que se mostrará en el tableview del menú principal*/
-
-    public Usuario(String nombre, String apellido, String documento, String correo, String telefono) {
-
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.documento = documento;
-        this.correo = correo;
-        this.telefono = telefono;
-    }
-
     /** Estos son los metodos setter y getter de cada atributo */
     
     public String getNombre(){
