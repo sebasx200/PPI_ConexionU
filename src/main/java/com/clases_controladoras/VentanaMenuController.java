@@ -40,6 +40,7 @@ public class VentanaMenuController {
         // este es el método que se inicia por defecto cuando se inicia la ventana, se llama a los métodos que capturan las opciones del menú
         usuario = data.getUsuario();
         perfilLogueado(usuario.getPerfil());
+        nombreUser.setText(usuario.getNombre());
         setMouseOverEffect(paginaInicio,  "#90caf9","#2196f3");
         setMouseOverEffect(agendarAsesoria, "#90caf9","#2196f3");
         setMouseOverEffect(misAsesorias, "#90caf9","#2196f3");
@@ -162,7 +163,7 @@ public class VentanaMenuController {
             case "Notificaciones":
                 opcionSeleccionada.setText(opcion);
                 break;
-            case "Ver lista Docentes":
+            case "Ver lista Estudiantes":
                 opcionSeleccionada.setText(opcion);
                 ruta = "/com/ppi_conexionu/funcionalidades_menu/ventana-tableview.fxml";
                 rutaImagen = "/imagenes/background/background_5.png";

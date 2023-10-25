@@ -11,6 +11,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
+import java.io.IOException;
+
 public class MenuEstudianteController extends VentanaMenuController{
 
     @FXML
@@ -32,6 +34,9 @@ public class MenuEstudianteController extends VentanaMenuController{
 
     public void initialize(){
 
+        usuario = data.getUsuario();
+        perfilLogueado(usuario.getPerfil());
+        nombreUser.setText(usuario.getNombre());
         cambiarColorEtiqueta(paginaInicio);
         cambiarColorEtiqueta(agendarAsesoria);
         cambiarColorEtiqueta(misAsesorias);
@@ -39,14 +44,38 @@ public class MenuEstudianteController extends VentanaMenuController{
         cambiarColorEtiqueta(verLista);
         cambiarColorEtiqueta(configuraciones);
         cambiarColorEtiqueta(acercaDe);
+        /*
+        opcionesMenu(paginaInicio);
+        opcionesMenu(agendarAsesoria);
+        opcionesMenu(misAsesorias);
+        opcionesMenu(notificaciones);
+        opcionesMenu(verLista);
+        opcionesMenu(configuraciones);
+        opcionesMenu(acercaDe);
+        */
 
     }
     @Override
     protected void onMouseExitedLogOut() {
-        botonLogOut.setStyle("-fx-background-color:  #4CAF50;");
+        botonLogOut.setStyle("-fx-background-color: #4CAF50;");
         botonLogOut.setTextFill(Color.BLACK);
     }
     public void cambiarColorEtiqueta(Label label) {
         setMouseOverEffect(label, "#4CAF50", "#2e7d32");
     }
+
+    @Override
+    protected void onMouseExited(){
+        botonMenu.setStyle("-fx-background-color: #4CAF50;");
+    }
+
+    @Override
+    protected void onMouseEnteredMenu(){
+        botonMenu.setStyle("-fx-background-color: #2e7d32;");
+    }
+/*
+    public void opcionesMenu(Label label) {
+        setOpcionMouseClick(label);
+    }
+*/
 }
