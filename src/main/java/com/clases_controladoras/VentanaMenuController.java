@@ -6,6 +6,7 @@ import com.clases.Usuario;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -38,21 +39,14 @@ public class VentanaMenuController {
     public void initialize() {
         // este es el método que se inicia por defecto cuando se inicia la ventana, se llama a los métodos que capturan las opciones del menú
         usuario = data.getUsuario();
-        nombreUser.setText(usuario.getNombre());
         perfilLogueado(usuario.getPerfil());
-        if(usuario.getPerfil().equals("Estudiante")){
-            URL resourceURL = getClass().getResource("/imagenes/background/background_ 13.png");
-            Image image = new Image(resourceURL.toExternalForm());
-            fondo.setImage(image);
-            cambiarColores();
-        }
-        setMouseOverEffect(paginaInicio);
-        setMouseOverEffect(agendarAsesoria);
-        setMouseOverEffect(misAsesorias);
-        setMouseOverEffect(notificaciones);
-        setMouseOverEffect(verLista);
-        setMouseOverEffect(configuraciones);
-        setMouseOverEffect(acercaDe);
+        setMouseOverEffect(paginaInicio,  "#90caf9","#2196f3");
+        setMouseOverEffect(agendarAsesoria, "#90caf9","#2196f3");
+        setMouseOverEffect(misAsesorias, "#90caf9","#2196f3");
+        setMouseOverEffect(notificaciones, "#90caf9","#2196f3");
+        setMouseOverEffect(verLista, "#90caf9","#2196f3");
+        setMouseOverEffect(configuraciones, "#90caf9","#2196f3");
+        setMouseOverEffect(acercaDe, "#90caf9","#2196f3");
         setOpcionMouseClick(paginaInicio);
         setOpcionMouseClick(agendarAsesoria);
         setOpcionMouseClick(misAsesorias);
@@ -62,13 +56,11 @@ public class VentanaMenuController {
         setOpcionMouseClick(acercaDe);
     }
 
-    private void setMouseOverEffect(Label label) {
-        // este método hace que cuando el usuario pone el cursor dentro o fuera de las opciones del menú, estas opciones cambian de color
+    protected void setMouseOverEffect(Label label, String backgroundColor, String hoverBackgroundColor) {
         label.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                // se establece el fondo de color que se quiere cuando se pasa el mouse encima del label
-                label.setStyle("-fx-background-color: #2196f3;");
+                label.setStyle("-fx-background-color: " + hoverBackgroundColor + ";");
                 Tooltip tooltip = new Tooltip(label.getText());
                 Tooltip.install(label, tooltip);
             }
@@ -76,14 +68,14 @@ public class VentanaMenuController {
         label.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                // Restaura el fondo original cuando se sale el mouse encima del label
-                label.setStyle("-fx-background-color: #90caf9;" +
+                label.setStyle("-fx-background-color: " + backgroundColor + ";" +
                         "-fx-border-color: black");
             }
         });
     }
 
-    private void setOpcionMouseClick(Label label) {
+
+    protected void setOpcionMouseClick(Label label) {
         // con este método simplemente se busca capturar cuál fue la opción que el usuario eligió
         label.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -98,23 +90,23 @@ public class VentanaMenuController {
     }
 
     @FXML
-    private void onMouseEnteredMenu() {
+    protected void onMouseEnteredMenu() {
         botonMenu.setStyle("-fx-background-color: #2196f3;");
     } // se le establece al botón del menú un color cuando el usuario pasa el cursor sobre él
 
     @FXML
-    private void onMouseExited() {
+    protected void onMouseExited() {
         botonMenu.setStyle("-fx-background-color: #90caf9;");
     } // se restablece el color por defecto de la opción menú cuando el usuario saca el cursor de él
 
     @FXML
-    private void onMouseEnteredLogOut() {
+    protected void onMouseEnteredLogOut() {
         botonLogOut.setStyle("-fx-background-color: red;");
         botonLogOut.setTextFill(Color.WHITE);
     } // se le establece al botón de cerrar sesión un color cuando el usuario pasa el cursor sobre él
 
     @FXML
-    private void onMouseExitedLogOut() {
+    protected void onMouseExitedLogOut() {
         botonLogOut.setStyle("-fx-background-color: #90caf9;");
         botonLogOut.setTextFill(Color.BLACK);
     } // se restablece el color por defecto de cerrar sesión cuando el usuario saca el cursor de él
@@ -148,7 +140,7 @@ public class VentanaMenuController {
         }
     }
 
-    private void opcionElegida(String opcion) throws IOException {
+    protected void opcionElegida(String opcion) throws IOException {
         // se le especifica al switch que ejecute el código del caso según la opción que seleccionó el usuario del menú
 
         String ruta;
@@ -192,19 +184,19 @@ public class VentanaMenuController {
 
     // se encarga de cambiar el archivo FXML que está cargado en content según se seleccione una opción en el menú
     @FXML
-    private void cargarFXML(String ruta, ImageView fondo) throws IOException {
+    protected void cargarFXML(String ruta, ImageView fondo) throws IOException {
         StackPane pane = FXMLLoader.load(getClass().getResource(ruta));
         content.getChildren().setAll(fondo, pane);
     }
 
     // Este método es útil pora que se cambie el fondo de pantalla según se cambie la opción del menú
     @FXML
-    public void cambiarImagen(String rutaImagen){
+    protected void cambiarImagen(String rutaImagen){
         Image image = new Image(getClass().getResource(rutaImagen).toExternalForm());
         fondo.setImage(image);
     }
 
-    public void perfilLogueado(String perfil){
+    protected void perfilLogueado(String perfil){
         switch (perfil){
             case "Docente":
                 verLista.setText("Ver lista Estudiantes");

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" prefHeight="605.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clases_controladoras.MenuEstudianteController">
+   <children>
+      <AnchorPane prefHeight="605.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <BorderPane fx:id="borderPane" prefHeight="605.0" prefWidth="1000.0" style="-fx-background-color: #4CAF50;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <left>
+                  <VBox fx:id="menu" prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #4CAF50;" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="paginaInicio" prefHeight="80.0" prefWidth="250.0" style="-fx-border-color: black;" text="Página inicio">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../imagenes/iconos/casa.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="agendarAsesoria" prefHeight="80.0" prefWidth="250.0" style="-fx-border-color: black;" text="Agendar asesoria">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../imagenes/iconos/agenda.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="misAsesorias" prefHeight="80.0" prefWidth="250.0" style="-fx-border-color: black;" text="Mis asesorias">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../imagenes/iconos/asesoria.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="notificaciones" prefHeight="80.0" prefWidth="250.0" style="-fx-border-color: black;" text="Notificaciones">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../imagenes/iconos/campana.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="verLista" prefHeight="80.0" prefWidth="250.0" style="-fx-border-color: black;" text="Ver lista docentes">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../imagenes/iconos/profesor.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="configuraciones" prefHeight="80.0" prefWidth="250.0" style="-fx-border-color: black;" text="Configuraciones">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../imagenes/iconos/configuraciones.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="acercaDe" prefHeight="80.0" prefWidth="250.0" style="-fx-border-color: black;" text="Acerca de">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../imagenes/iconos/acerca-de.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </left>
+               <top>
+                  <BorderPane prefHeight="64.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+                     <left>
+                        <HBox prefHeight="64.0" prefWidth="780.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label fx:id="botonMenu" onMouseClicked="#onbotonMenuClick" onMouseEntered="#onMouseEnteredMenu" onMouseExited="#onMouseExited" prefHeight="64.0" prefWidth="250.0" text="Menú">
+                                 <graphic>
+                                    <ImageView>
+                                       <image>
+                                          <Image url="@../../imagenes/iconos/menu.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="opcionSeleccionada" contentDisplay="CENTER" prefHeight="64.0" prefWidth="200.0" text="Página inicio">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="14.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </left>
+                     <right>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="220.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label fx:id="nombreUser" alignment="CENTER" prefHeight="64.0" prefWidth="100.0" text="nombre">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="botonLogOut" contentDisplay="RIGHT" onMouseClicked="#onBotonLogoutClick" onMouseEntered="#onMouseEnteredLogOut" onMouseExited="#onMouseExitedLogOut" prefHeight="64.0" prefWidth="120.0" text="Cerrar sesión">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView>
+                                       <image>
+                                          <Image url="@../../imagenes/iconos/cerrar-sesion.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="5.0" right="5.0" />
+                                 </padding>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </right>
+                  </BorderPane>
+               </top>
+               <center>
+                  <StackPane fx:id="content" prefHeight="540.0" prefWidth="750.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <StackPane fx:id="stackPane" prefHeight="541.0" prefWidth="750.0">
+                           <children>
+                              <ImageView fx:id="fondo" fitHeight="540.0" fitWidth="750.0">
+                                 <image>
+                                    <Image url="@../../imagenes/background/background_ 13.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="300.0" fitWidth="300.0">
+                                 <image>
+                                    <Image url="@../../imagenes/logos/logo_negro.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </StackPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
