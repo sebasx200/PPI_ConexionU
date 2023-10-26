@@ -221,7 +221,7 @@
                            <children>
                               <ImageView fx:id="fondo" fitHeight="540.0" fitWidth="750.0">
                                  <image>
-                                    <Image url="@../../imagenes/background/background_ 13.png" />
+                                    <Image url="@../../imagenes/background/background_%2013.png" />
                                  </image>
                               </ImageView>
                               <ImageView fitHeight="300.0" fitWidth="300.0">

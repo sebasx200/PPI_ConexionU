@@ -39,7 +39,6 @@ public class VentanaMenuController {
     public void initialize() {
         // este es el método que se inicia por defecto cuando se inicia la ventana, se llama a los métodos que capturan las opciones del menú
         usuario = data.getUsuario();
-        perfilLogueado(usuario.getPerfil());
         nombreUser.setText(usuario.getNombre());
         setMouseOverEffect(paginaInicio,  "#90caf9","#2196f3");
         setMouseOverEffect(agendarAsesoria, "#90caf9","#2196f3");
@@ -89,7 +88,81 @@ public class VentanaMenuController {
             }
         });
     }
+    @FXML
+    protected void onbotonMenuClick() {
+        // este método busca que cuando el usuario le da clic al botón menú, se cambia de tamaño según la ocasión cuando el usuario le dé clic
+        if (menu.getPrefWidth() == 250) {
+            fondo.setFitWidth(915);
+            menu.setPrefWidth(85);
+            paginaInicio.setEllipsisString(null);
+            agendarAsesoria.setEllipsisString(null);
+            misAsesorias.setEllipsisString(null);
+            notificaciones.setEllipsisString(null); // estas líneas hacen que cuando el menú esté recogido no aparezcan puntos suspensivos en los íconos
+            verLista.setEllipsisString(null);
+            configuraciones.setEllipsisString(null);
+            acercaDe.setEllipsisString(null);
+        } else {
+            fondo.setFitWidth(750);
+            menu.setPrefWidth(250);
+        }
+    }
+    protected void opcionElegida(String opcion) throws IOException {
+        // se le especifica al switch que ejecute el código del caso según la opción que seleccionó el usuario del menú
 
+        String ruta;
+        String rutaImagen;
+        Image image;
+        StackPane pane;
+
+        switch (opcion) {
+            case "Página inicio":
+                opcionSeleccionada.setText(opcion);
+                rutaImagen = "/imagenes/background/background_8.png";
+                image = new Image(getClass().getResource(rutaImagen).toExternalForm());
+                fondo.setImage(image);
+                content.getChildren().setAll(fondo, stackPane);
+                break;
+            case "Agendar asesoria":
+                opcionSeleccionada.setText(opcion);
+                break;
+            case "Mis asesorias":
+                opcionSeleccionada.setText(opcion);
+                break;
+            case "Notificaciones":
+                opcionSeleccionada.setText(opcion);
+                break;
+            case "Ver lista estudiantes":
+                opcionSeleccionada.setText(opcion);
+                ruta = "/com/ppi_conexionu/funcionalidades_menu/ventana-tableview.fxml";
+                rutaImagen = "/imagenes/background/background_5.png";
+                image = new Image(getClass().getResource((rutaImagen)).toExternalForm());
+                fondo.setImage(image);
+                pane = FXMLLoader.load(getClass().getResource(ruta));
+                content.getChildren().setAll(fondo, pane);
+                break;
+            case "Configuraciones":
+                opcionSeleccionada.setText(opcion);
+                break;
+            case "Acerca de":
+                opcionSeleccionada.setText(opcion);
+                ruta = "/com/ppi_conexionu/funcionalidades_menu/ventana-acercade.fxml";
+                rutaImagen = "/imagenes/background/background_3.png";
+                image = new Image(getClass().getResource((rutaImagen)).toExternalForm());
+                fondo.setImage(image);
+                pane = FXMLLoader.load(getClass().getResource(ruta));
+                content.getChildren().setAll(fondo, pane);
+                break;
+        }
+    }
+    @FXML
+    // evento del botón cerrar sesión para que si el usuario confirma, se cambie la pantalla a ventana de login
+    protected void onBotonLogoutClick() throws IOException {
+        boolean mensaje = Mensajes.mensajeConfirmacion("Cerrar Sesión", null, "¿Está seguro que desea cerrar sesión?");
+        if (mensaje) {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-login.fxml"));
+            rootPane.getChildren().setAll(pane);
+        }
+    }
     @FXML
     protected void onMouseEnteredMenu() {
         botonMenu.setStyle("-fx-background-color: #2196f3;");
@@ -111,107 +184,4 @@ public class VentanaMenuController {
         botonLogOut.setStyle("-fx-background-color: #90caf9;");
         botonLogOut.setTextFill(Color.BLACK);
     } // se restablece el color por defecto de cerrar sesión cuando el usuario saca el cursor de él
-
-    @FXML
-    protected void onbotonMenuClick() {
-        // este método busca que cuando el usuario le da clic al botón menú, se cambia de tamaño según la ocasión cuando el usuario le dé clic
-        if (menu.getPrefWidth() == 250) {
-            fondo.setFitWidth(915);
-            menu.setPrefWidth(85);
-            paginaInicio.setEllipsisString(null);
-            agendarAsesoria.setEllipsisString(null);
-            misAsesorias.setEllipsisString(null);
-            notificaciones.setEllipsisString(null); // estas líneas hacen que cuando el menú esté recogido no aparezcan puntos suspensivos en los íconos
-            verLista.setEllipsisString(null);
-            configuraciones.setEllipsisString(null);
-            acercaDe.setEllipsisString(null);
-        } else {
-            fondo.setFitWidth(750);
-            menu.setPrefWidth(250);
-        }
-    }
-
-    @FXML
-    // evento del botón cerrar sesión para que si el usuario confirma, se cambie la pantalla a ventana de login
-    protected void onBotonLogoutClick() throws IOException {
-        boolean mensaje = Mensajes.mensajeConfirmacion("Cerrar Sesión", null, "¿Está seguro que desea cerrar sesión?");
-        if (mensaje) {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-login.fxml"));
-            rootPane.getChildren().setAll(pane);
-        }
-    }
-
-    protected void opcionElegida(String opcion) throws IOException {
-        // se le especifica al switch que ejecute el código del caso según la opción que seleccionó el usuario del menú
-
-        String ruta;
-        String rutaImagen;
-
-        switch (opcion) {
-            case "Página inicio":
-                opcionSeleccionada.setText(opcion);
-                rutaImagen = "/imagenes/background/background_8.png";
-                cambiarImagen(rutaImagen);
-                content.getChildren().setAll(fondo, stackPane);
-                break;
-            case "Agendar asesoria":
-                opcionSeleccionada.setText(opcion);
-                break;
-            case "Mis asesorias":
-                opcionSeleccionada.setText(opcion);
-                break;
-            case "Notificaciones":
-                opcionSeleccionada.setText(opcion);
-                break;
-            case "Ver lista Estudiantes":
-                opcionSeleccionada.setText(opcion);
-                ruta = "/com/ppi_conexionu/funcionalidades_menu/ventana-tableview.fxml";
-                rutaImagen = "/imagenes/background/background_5.png";
-                cargarFXML(ruta, fondo);
-                cambiarImagen(rutaImagen);
-                break;
-            case "Configuraciones":
-                opcionSeleccionada.setText(opcion);
-                break;
-            case "Acerca de":
-                opcionSeleccionada.setText(opcion);
-                ruta = "/com/ppi_conexionu/funcionalidades_menu/ventana-acercade.fxml";
-                rutaImagen = "/imagenes/background/background_3.png";
-                cambiarImagen(rutaImagen);
-                cargarFXML(ruta, fondo);
-                break;
-        }
-    }
-
-    // se encarga de cambiar el archivo FXML que está cargado en content según se seleccione una opción en el menú
-    @FXML
-    protected void cargarFXML(String ruta, ImageView fondo) throws IOException {
-        StackPane pane = FXMLLoader.load(getClass().getResource(ruta));
-        content.getChildren().setAll(fondo, pane);
-    }
-
-    // Este método es útil pora que se cambie el fondo de pantalla según se cambie la opción del menú
-    @FXML
-    protected void cambiarImagen(String rutaImagen){
-        Image image = new Image(getClass().getResource(rutaImagen).toExternalForm());
-        fondo.setImage(image);
-    }
-
-    protected void perfilLogueado(String perfil){
-        switch (perfil){
-            case "Docente":
-                verLista.setText("Ver lista Estudiantes");
-                break;
-            case "Mentor":
-                verLista.setText("Ver lista Estudiantes");
-                break;
-            case "Estudiante":
-                verLista.setText("Ver lista Docentes");
-                break;
-        }
-    }
-    public void cambiarColores(){
-            borderPane.setStyle("-fx-background-color: #4CAF50;");
-            menu.setStyle("-fx-background-color: #4CAF50;");
-    }
 }
