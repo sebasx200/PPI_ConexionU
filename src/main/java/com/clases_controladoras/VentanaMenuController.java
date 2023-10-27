@@ -36,8 +36,10 @@ public class VentanaMenuController {
     private Label nombreUser;
     private Usuario usuario;
     DataSingleton data = DataSingleton.getInstance();
+
+    /** Este es el método que se inicia por defecto cuando se inicia la ventana, se llama a los métodos que capturan
+     *  las opciones del menú*/
     public void initialize() {
-        // este es el método que se inicia por defecto cuando se inicia la ventana, se llama a los métodos que capturan las opciones del menú
         usuario = data.getUsuario();
         nombreUser.setText(usuario.getNombre());
         setMouseOverEffect(paginaInicio,  "#90caf9","#2196f3");
@@ -56,6 +58,8 @@ public class VentanaMenuController {
         setOpcionMouseClick(acercaDe);
     }
 
+    /** Se configura un listener en el cual se configura el evento del mouse cuando se pone el cursor en el menú
+     * y cuando sale del mismo para cambiar los colores*/
     protected void setMouseOverEffect(Label label, String backgroundColor, String hoverBackgroundColor) {
         label.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
@@ -74,23 +78,26 @@ public class VentanaMenuController {
         });
     }
 
-
+    /** Se establece un evento cuando se presiona alguna opción del menú para que se capture la opción que el usuario
+     * eligió*/
     protected void setOpcionMouseClick(Label label) {
-        // con este método simplemente se busca capturar cuál fue la opción que el usuario eligió
         label.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 try {
-                    opcionElegida(label.getText()); // con la opcion capturada se llama al switch pasándole la opción seleccionada por el usuario
+                    opcionElegida(label.getText()); // se llama al switch pasándole la opción seleccionada
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             }
         });
     }
+
+    /** Este método busca que cuando el usuario le da clic al botón menú, se cambia de tamaño según la ocasión cuando
+     *  el usuario le dé clic*/
     @FXML
     protected void onbotonMenuClick() {
-        // este método busca que cuando el usuario le da clic al botón menú, se cambia de tamaño según la ocasión cuando el usuario le dé clic
+        //
         if (menu.getPrefWidth() == 250) {
             fondo.setFitWidth(915);
             menu.setPrefWidth(85);
@@ -106,8 +113,9 @@ public class VentanaMenuController {
             menu.setPrefWidth(250);
         }
     }
+    /** Método central del menú, en el cual se llaman a las ventanas de las funcionalidades dependiendo de la opción
+     * que le usuario haya elegido*/
     protected void opcionElegida(String opcion) throws IOException {
-        // se le especifica al switch que ejecute el código del caso según la opción que seleccionó el usuario del menú
 
         String ruta;
         String rutaImagen;
@@ -154,8 +162,9 @@ public class VentanaMenuController {
                 break;
         }
     }
+
+    /** Evento del botón cerrar sesión para que, si el usuario confirma, se cambie la pantalla a ventana de login*/
     @FXML
-    // evento del botón cerrar sesión para que si el usuario confirma, se cambie la pantalla a ventana de login
     protected void onBotonLogoutClick() throws IOException {
         boolean mensaje = Mensajes.mensajeConfirmacion("Cerrar Sesión", null, "¿Está seguro que desea cerrar sesión?");
         if (mensaje) {
@@ -163,25 +172,26 @@ public class VentanaMenuController {
             rootPane.getChildren().setAll(pane);
         }
     }
-    @FXML
-    protected void onMouseEnteredMenu() {
-        botonMenu.setStyle("-fx-background-color: #2196f3;");
-    } // se le establece al botón del menú un color cuando el usuario pasa el cursor sobre él
 
+    /** Se le establece al botón del menú un color cuando el usuario pasa el cursor sobre él*/
     @FXML
-    protected void onMouseExited() {
-        botonMenu.setStyle("-fx-background-color: #90caf9;");
-    } // se restablece el color por defecto de la opción menú cuando el usuario saca el cursor de él
+    protected void onMouseEnteredMenu() {botonMenu.setStyle("-fx-background-color: #2196f3;");}
 
+    /** Se restablece el color por defecto de la opción menú cuando el usuario saca el cursor de él*/
+    @FXML
+    protected void onMouseExited() {botonMenu.setStyle("-fx-background-color: #90caf9;");}
+
+    /** Se le establece al botón de cerrar sesión un color cuando el usuario pasa el cursor sobre él*/
     @FXML
     protected void onMouseEnteredLogOut() {
         botonLogOut.setStyle("-fx-background-color: red;");
         botonLogOut.setTextFill(Color.WHITE);
-    } // se le establece al botón de cerrar sesión un color cuando el usuario pasa el cursor sobre él
+    }
 
+    /** Se restablece el color por defecto de cerrar sesión cuando el usuario saca el cursor de él*/
     @FXML
     protected void onMouseExitedLogOut() {
         botonLogOut.setStyle("-fx-background-color: #90caf9;");
         botonLogOut.setTextFill(Color.BLACK);
-    } // se restablece el color por defecto de cerrar sesión cuando el usuario saca el cursor de él
+    }
 }

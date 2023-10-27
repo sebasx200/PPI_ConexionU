@@ -18,16 +18,14 @@ import javafx.scene.paint.Color;
 
 import java.io.IOException;
 
+/** Se crea una clase controladora para que en caso de que se inicie sesión como estudiante o mentor, se llame a una
+ * vista diferente y se hace esta clase con herencia del menú principal porque la mayoría de las configuraciones serán
+ * las mismas*/
+
 public class MenuEstudianteController extends VentanaMenuController{
 
     @FXML
     private Label botonMenu, paginaInicio, botonLogOut, agendarAsesoria, misAsesorias, notificaciones, verLista, configuraciones, acercaDe, opcionSeleccionada;
-    @FXML
-    private VBox menu;
-    @FXML
-    private BorderPane borderPane;
-    @FXML
-    private AnchorPane rootPane;
     @FXML
     private StackPane stackPane, content;
     @FXML
@@ -37,6 +35,8 @@ public class MenuEstudianteController extends VentanaMenuController{
     private Usuario usuario;
     DataSingleton data = DataSingleton.getInstance();
 
+    /** Este es el método que se inicia por defecto cuando se inicia la ventana, se llama a los métodos que capturan
+     *  las opciones del menú*/
     public void initialize(){
         usuario = data.getUsuario();
         nombreUser.setText(usuario.getNombre());
@@ -56,6 +56,8 @@ public class MenuEstudianteController extends VentanaMenuController{
         setOpcionMouseClick(acercaDe);
     }
 
+    /** Se configura un listener en el cual se configura el evento del mouse cuando se pone el cursor en el menú
+     * y cuando sale del mismo para cambiar los colores*/
     protected void setMouseOverEffect(Label label, String backgroundColor, String hoverBackgroundColor) {
         label.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
@@ -73,6 +75,9 @@ public class MenuEstudianteController extends VentanaMenuController{
             }
         });
     }
+
+    /** Método central del menú, en el cual se llaman a las ventanas de las funcionalidades dependiendo de la opción
+     * que le usuario haya elegido*/
     @Override
     protected void opcionElegida(String opcion) throws IOException {
         String ruta;
@@ -104,7 +109,7 @@ public class MenuEstudianteController extends VentanaMenuController{
                 image = new Image(getClass().getResource((rutaImagen)).toExternalForm());
                 fondo.setImage(image);
                 pane = FXMLLoader.load(getClass().getResource(ruta));
-                stackPane.getChildren().setAll(fondo, pane);
+                content.getChildren().setAll(fondo, pane);
                 break;
             case "Configuraciones":
                 opcionSeleccionada.setText(opcion);
@@ -116,22 +121,30 @@ public class MenuEstudianteController extends VentanaMenuController{
                 image = new Image(getClass().getResource((rutaImagen)).toExternalForm());
                 fondo.setImage(image);
                 pane = FXMLLoader.load(getClass().getResource(ruta));
-                stackPane.getChildren().setAll(fondo, pane);
+                content.getChildren().setAll(fondo, pane);
                 break;
         }
     }
 
+    /** Se le establece al botón del menú un color cuando el usuario pasa el cursor sobre él*/
     @Override
     protected void onMouseEnteredMenu() {
         botonMenu.setStyle("-fx-background-color: #2e7d32;");
     }
+
+    /** Se restablece el color por defecto de la opción menú cuando el usuario saca el cursor de él*/
     @Override
     protected void onMouseExited() {
         botonMenu.setStyle("-fx-background-color: #4CAF50;");
     }
+
+    /** Se restablece el color por defecto de cerrar sesión cuando el usuario saca el cursor de él*/
     @Override
     protected void onMouseExitedLogOut() {
         botonLogOut.setStyle("-fx-background-color: #4CAF50;");
         botonLogOut.setTextFill(Color.BLACK);
+    }
+    public Usuario getUsuario(){
+        return usuario;
     }
 }

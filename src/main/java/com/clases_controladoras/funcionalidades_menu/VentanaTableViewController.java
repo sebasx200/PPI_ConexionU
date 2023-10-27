@@ -56,13 +56,9 @@ public class VentanaTableViewController {
     * usuario, en este caso se inicializa la tabla y se llena de manera automática con los registros de excel
     * dependiendo del perfil que haya iniciado sesión*/
     public void initialize(){
-        usuarioLogin = data.getUsuario();
-        if(usuarioLogin.getPerfil().equals("Estudiante")){
-            titulo.setTextFill(Color.WHITE);
-        }
-
+        int posicion = usuarioIngresado(); // se obtiene el número de la hoja donde se debe buscar
         listaUsuarios = FXCollections.observableArrayList();
-        obtenerRegistros();
+        obtenerRegistros(posicion);  // se llama al método que llena los registros para mostrarlos en la tabla
         colNombre.setCellValueFactory(cellData -> cellData.getValue().nombreProperty());
         colApellido.setCellValueFactory(cellData -> cellData.getValue().apellidoProperty());
         colDocumento.setCellValueFactory(cellData -> cellData.getValue().documentoProperty());
@@ -72,12 +68,11 @@ public class VentanaTableViewController {
     }
 
     /** Este método sirve para cargar los datos del archivo de excel*/
-    public void obtenerRegistros(){
-
+    private void obtenerRegistros(int posicion){
         try {
             FileInputStream archivoExcel = new FileInputStream("src/main/resources/datos/registros.xlsx");
             XSSFWorkbook libroExcel = new XSSFWorkbook(archivoExcel);
-            XSSFSheet hoja = libroExcel.getSheetAt(1); // cambiar posicion
+            XSSFSheet hoja = libroExcel.getSheetAt(posicion); // cambiar posicion
             DataFormatter dataFormatter = new DataFormatter();
 
             int primeraFila = hoja.getFirstRowNum() + 1;
@@ -101,6 +96,21 @@ public class VentanaTableViewController {
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    /** Este método devuelve la hoja en la que se deben buscar los registros dependiendo del usuario que haya iniciado
+     * sesión y además establece algunos estilos*/
+    public int usuarioIngresado(){
+        usuarioLogin = data.getUsuario();
+        if(usuarioLogin.getPerfil().equals("Docente")){
+            titulo.setText("Ver lista estudiantes");
+            titulo.setTextFill(Color.BLACK);
+            return 1;
+        } else{
+            titulo.setText("Ver lista docentes");
+            titulo.setTextFill(Color.WHITE);
+            return 0;
         }
     }
 }
