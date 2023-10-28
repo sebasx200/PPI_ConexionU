@@ -19,7 +19,7 @@
                   <Image url="@../../imagenes/background/fondo.jpeg" />
                </image>
             </ImageView>
-            <Pane layoutX="309.0" layoutY="53.0" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #6A96ED; -fx-border-color: black; -fx-border-radius: 40; -fx-background-radius: 40;">
+            <Pane layoutX="309.0" layoutY="53.0" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #e0e0e0; -fx-border-color: black; -fx-border-radius: 40; -fx-background-radius: 40;">
                <children>
                   <Button fx:id="botonLogin" layoutX="58.0" layoutY="405.0" mnemonicParsing="false" onAction="#onBotonLoginAction" onMouseEntered="#onBotonLoginMouseEntered" onMouseExited="#onBotonLoginMouseExited" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #2265E8; -fx-text-fill: black; -fx-background-radius: 40; -fx-border-color: black; -fx-border-radius: 40;" text="Iniciar Sesión">
                      <cursor>

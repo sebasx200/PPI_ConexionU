@@ -7,7 +7,7 @@ package com.clases;
 
 public class ListaDocentes {
 
-    private Docente cab;
+    private Usuario cab;
 
     public ListaDocentes() {
         cab = null;
@@ -15,20 +15,20 @@ public class ListaDocentes {
 
     //método para obtener la cabeza
 
-    public Docente getCab() {
+    public Usuario getCab() {
         return cab;
     }
 
-    public void insertarInicio(Docente docenteNuevo) {
-        Docente x = new Docente(docenteNuevo);
+    public void insertarInicio(Usuario usuarioNuevo) {
+        Usuario x = new Usuario(usuarioNuevo);
         x.setLiga(cab);
         cab = x;
 
     }
 
-    public void insertarFinal(Docente docenteNuevo) {
+    public void insertarFinal(Usuario usuarioNuevo) {
 
-        Docente p = cab, x = new Docente(docenteNuevo);
+        Usuario p = cab, x = new Usuario(usuarioNuevo);
         if (cab == null) {
             cab = x;
         } else {
@@ -42,7 +42,7 @@ public class ListaDocentes {
     /*
     // Metodo para eliminar el ultimo nodo de la lista
     public void eliminarUltimo(){
-        Docente p = cab, ant=null;
+        Usuario p = cab, ant=null;
         if(cab==null){
             JOptionPane.showMessageDialog(null, "Lista vacia");
         }else{
@@ -61,7 +61,7 @@ public class ListaDocentes {
     // método para eliminar un dato dado
     public void eliminarDato(int documento){
 
-        Docente p = cab, ant=null;
+        Usuario p = cab, ant=null;
         boolean sw = false;
         if(cab==null){
             JOptionPane.showMessageDialog(null, "Lista vacia");
@@ -91,7 +91,7 @@ public class ListaDocentes {
     // método para mostrar
     public void mostrar(){
         String salida = "";
-        Docente p = cab;
+        Usuario p = cab;
         if(cab==null){
             JOptionPane.showMessageDialog(null, "Lista vacía");
         } else

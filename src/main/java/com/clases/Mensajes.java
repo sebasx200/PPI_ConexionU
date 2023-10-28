@@ -1,6 +1,7 @@
 package com.clases;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -45,10 +46,10 @@ public class Mensajes {
         alerta.setHeaderText(header);
 
         ButtonType botonConfirmar = new ButtonType("Confirmar");
-        ButtonType botonCancelar = new ButtonType("Cancelar");
+        ButtonType botonCancelar = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
         alerta.getButtonTypes().setAll(botonConfirmar, botonCancelar);
         Optional<ButtonType> resultado = alerta.showAndWait();
-        return resultado.filter(response -> response == botonConfirmar).isPresent();
+        return resultado.isPresent() && resultado.get() == botonConfirmar;
     }
 
     public static void establecerIcono(Alert alert){
