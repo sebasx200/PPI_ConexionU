@@ -1,8 +1,7 @@
 package com.clases_controladoras;
 
-import com.clases.Docente;
+import com.clases.Usuario;
 import com.clases.Mensajes;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -95,15 +94,15 @@ public class VentanaRegistro {
                 && datosValidos == true) {
             datosValidos = false;
             Mensajes.mensajeInformativo(null,"El nombre " +
-                    "debe ser mayor o igual a 3 letras, y no bedes ingresar caracter especial");
+                    "debe ser mayor o igual a 3 letras, y no debes ingresar caracteres especiales");
         }
 
         /** Se valida que ingrese un apellido con mas de 3 letras */
         if ((inputApellido.getText().length() < 3 || !inputApellido.getText().matches("^[a-zA-Z0-9]*$"))
                 && datosValidos == true) {
             datosValidos = false;
-            Mensajes.mensajeInformativo(null,"El apellido debe " +
-                    "ser mayor o igual a 3 letras, y no debe ingresar caracter especiales");
+            Mensajes.mensajeInformativo(null,"El nombre " +
+                    "debe ser mayor o igual a 3 letras, y no debes ingresar caracteres especiales");
         }
 
         /**
@@ -115,7 +114,7 @@ public class VentanaRegistro {
                 || !inputDocumento.getText().matches("\\d*")) && datosValidos == true ) {
             datosValidos = false;
             Mensajes.mensajeInformativo(null, "El documento debe " +
-                    "ser minimo de 8 digitos y maximo de 10 digitos, y debe ingresar solo números");
+                    "ser mínimo de 8 dígitos y máximo de 10 dígitos, y debe ingresar solo números");
         }
 
 
@@ -123,21 +122,21 @@ public class VentanaRegistro {
         if ((!validarUsuario(inputUsuario.getText()) ||
                 inputUsuario.getText().length() < 4) && datosValidos == true) {
             datosValidos = false;
-            Mensajes.mensajeInformativo(null,"Usuario no valido, " +
+            Mensajes.mensajeInformativo(null,"Usuario no válido, " +
                     "debe contener letras y números,");
         }
 
         /** Validamos el correo */
         if (!validarCorreo(inputCorreo.getText()) && datosValidos == true) {
             datosValidos = false;
-            Mensajes.mensajeInformativo(null,"Correo no valido");
+            Mensajes.mensajeInformativo(null,"Correo no válido");
         }
 
         /** Validamos el número de telefono */
         if ((inputTelefono.getText().length() != 10 || !inputTelefono.getText().matches("\\d*"))
                 && datosValidos == true ) {
             datosValidos = false;
-            Mensajes.mensajeInformativo(null, "El numero de telefono debe ser de 10 digitos," +
+            Mensajes.mensajeInformativo(null, "El número de teléfono debe ser de 10 dígitos," +
                     " y solo ingrese números");
         }
 
@@ -145,7 +144,7 @@ public class VentanaRegistro {
         if (inputContraseña.getText().length() < 4 && datosValidos == true) {
             datosValidos = false;
             Mensajes.mensajeInformativo(null, "Las contraseñas " +
-                    "deben tener mas de 4 digitos");
+                    "deben tener mas de 4 dígitos");
         }
 
         // Se validan las contraseñas que sean iguales
@@ -215,9 +214,9 @@ public class VentanaRegistro {
      * seleccionado anteriormente del comboBox departamento
      */
     public void onCiudadesAction() {
-        String[] medellinUni = new String[]{"El poli", "Udea"};
+        String[] medellinUni = new String[]{"P.C.J.I.C", "UdeA"};
         String[] apartadoUni = new String[]{"Sede poli", "Sena"};
-        String[] manizalesUni = new String[]{"Manizales", "Sena"};
+        String[] manizalesUni = new String[]{"Universidad de caldas", "Sena"};
         String[] supiaUni = new String[]{"Publica", "Sena"};
         String itemSeleccionado = ciudades.getValue().toString();
         switch (itemSeleccionado) {
@@ -281,24 +280,28 @@ public class VentanaRegistro {
 
     /** Método para ingresar los datos */
     public void agregarDatos(int posicion) {
-        ArrayList<Docente> nuevoRegistro = new ArrayList<>();
+        ArrayList<Usuario> nuevoRegistro = new ArrayList<>();
 
         String nombre = inputNombre.getText();
         String apellido = inputApellido.getText();
         String documento = inputDocumento.getText();
-        String usuario = inputUsuario.getText();
+        String user = inputUsuario.getText();
         String correo = inputCorreo.getText();
         String telefono = inputTelefono.getText();
-        String contraseña = inputContraseña.getText();
+        String password = inputContraseña.getText();
         String perfil = perfiles.getValue().toString();
         String departamento = departamentos.getValue().toString();
         String ciudad = ciudades.getValue().toString();
         String universidad = universidades.getValue().toString();
 
-        Docente docente = new Docente(nombre, apellido, documento,usuario, correo, telefono,
-                contraseña, perfil, departamento, ciudad, universidad);
+        // se capturan los datos ingresados por el usuario en los campos de texto y opciones del menú
 
-        nuevoRegistro.add(docente);
+        Usuario usuario = new Usuario(nombre, apellido, documento,user, correo, telefono,
+                password, perfil, departamento, ciudad, universidad);
+
+        /** se asignan los datos como un nuevo usuario y se guarda en una lista de tipo usuario*/
+
+        nuevoRegistro.add(usuario);
 
         try{
             FileInputStream archivoExcel = new FileInputStream("src/main/resources/datos/registros.xlsx");
@@ -307,22 +310,25 @@ public class VentanaRegistro {
 
             int ultimaFila = hoja.getLastRowNum();
 
-            for (Docente docen : nuevoRegistro) {
+            /** se itera sobre el archivo de excel para añadir los datos del nuevo usuario*/
+
+            for (Usuario usuarioNuevo : nuevoRegistro) {
                 Row nuevaFila = hoja.createRow(ultimaFila + 1);
-                nuevaFila.createCell(0).setCellValue(docen.getNombre());
-                nuevaFila.createCell(1).setCellValue(docen.getApellido());
-                nuevaFila.createCell(2).setCellValue(docen.getDocumento());
-                nuevaFila.createCell(3).setCellValue(docen.getUsuario());
-                nuevaFila.createCell(4).setCellValue(docen.getCorreo());
-                nuevaFila.createCell(5).setCellValue(docen.getTelefono());
-                nuevaFila.createCell(6).setCellValue(docen.getPassword());
-                nuevaFila.createCell(7).setCellValue(docen.getPerfil());
-                nuevaFila.createCell(8).setCellValue(docen.getDepartamento());
-                nuevaFila.createCell(9).setCellValue(docen.getCiudad());
-                nuevaFila.createCell(10).setCellValue(docen.getUniversidad());
+                nuevaFila.createCell(0).setCellValue(usuarioNuevo.getNombre());
+                nuevaFila.createCell(1).setCellValue(usuarioNuevo.getApellido());
+                nuevaFila.createCell(2).setCellValue(usuarioNuevo.getDocumento());
+                nuevaFila.createCell(3).setCellValue(usuarioNuevo.getUsuario());
+                nuevaFila.createCell(4).setCellValue(usuarioNuevo.getCorreo());
+                nuevaFila.createCell(5).setCellValue(usuarioNuevo.getTelefono());
+                nuevaFila.createCell(6).setCellValue(usuarioNuevo.getPassword());
+                nuevaFila.createCell(7).setCellValue(usuarioNuevo.getPerfil());
+                nuevaFila.createCell(8).setCellValue(usuarioNuevo.getDepartamento());
+                nuevaFila.createCell(9).setCellValue(usuarioNuevo.getCiudad());
+                nuevaFila.createCell(10).setCellValue(usuarioNuevo.getUniversidad());
                 ultimaFila ++ ;
             }
 
+            // se llama al método para ver la respuesta, si es falsa se procede a agregar el nuevo usuario
             boolean existeRegistro = existeNuevoRegistro(nuevoRegistro, posicion);
 
             if (existeRegistro == false) {
@@ -331,15 +337,18 @@ public class VentanaRegistro {
                     Mensajes.mensajeInformativo(null, "Usuario registrado correctamente");
                 }
             } else {
-                Mensajes.mensajeInformativo(null, "El usuario o documento ya estan registrados");
+                Mensajes.mensajeInformativo(null, "El usuario o documento ya están registrados");
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public  boolean existeNuevoRegistro(ArrayList<Docente> nuevoRegistro, int posicion) {
-        ArrayList<Docente> registroActual = new ArrayList<>();
+    /** Este médoto es usado para comparar el usuario nuevo ingresado con los registros que hay para ver que no hayan
+    datos repedidos tales como el documento o el usuario
+     */
+    public  boolean existeNuevoRegistro(ArrayList<Usuario> nuevoRegistro, int posicion) {
+        ArrayList<Usuario> registroActual = new ArrayList<>();
         boolean existeRegistro = false;
 
         try {
@@ -359,24 +368,24 @@ public class VentanaRegistro {
                         String nombre = dataFormatter.formatCellValue(fila.getCell(0));
                         String apellido = dataFormatter.formatCellValue(fila.getCell(1));
                         String documento = dataFormatter.formatCellValue(fila.getCell(2));
-                        String usuario = dataFormatter.formatCellValue(fila.getCell(3));
-                        String correo = dataFormatter.formatCellValue(fila.createCell(4));
+                        String user = dataFormatter.formatCellValue(fila.getCell(3));
+                        String correo = dataFormatter.formatCellValue(fila.getCell(4));
                         String telefono = dataFormatter.formatCellValue(fila.getCell(5));
                         String password = dataFormatter.formatCellValue(fila.getCell(6));
                         String perfil = dataFormatter.formatCellValue(fila.getCell(7));
-                        String departamento = dataFormatter.formatCellValue(fila.createCell(8));
+                        String departamento = dataFormatter.formatCellValue(fila.getCell(8));
                         String ciudad = dataFormatter.formatCellValue(fila.getCell(9));
                         String univesidad = dataFormatter.formatCellValue(fila.getCell(10));
 
-                        Docente docente = new Docente(nombre, apellido, documento, usuario, correo, telefono,
+                        Usuario usuario = new Usuario(nombre, apellido, documento, user, correo, telefono,
                                 password, perfil, departamento, ciudad, univesidad);
 
-                        registroActual.add(docente);
+                        registroActual.add(usuario);
                     }
                 }
             }
-            for (Docente n : nuevoRegistro) {
-                for (Docente a : registroActual) {
+            for (Usuario n : nuevoRegistro) {
+                for (Usuario a : registroActual) {
                     if (n.getDocumento() == a.getDocumento()) {
                         existeRegistro = true;
                     } else if (n.getUsuario().equals(a.getUsuario())) {

@@ -57,7 +57,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ComboBox>
-                  <Button fx:id="botonIngresar" layoutX="222.0" layoutY="315.0" mnemonicParsing="false" onAction="#onBotonIngresarAction" prefHeight="50.0" prefWidth="130.0" style="-fx-background-radius: 40; -fx-background-color: #2265E8; -fx-border-color: black; -fx-border-radius: 40;" text="Ingresar">
+                  <Button fx:id="botonIngresar" layoutX="222.0" layoutY="315.0" mnemonicParsing="false" onAction="#onBotonIngresarAction" onMouseEntered="#onBotonLoginMouseEntered" onMouseExited="#onBotonLoginMouseExited" prefHeight="50.0" prefWidth="130.0" style="-fx-background-radius: 40; -fx-background-color: #2265E8; -fx-border-color: black; -fx-border-radius: 40;" text="Ingresar">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>

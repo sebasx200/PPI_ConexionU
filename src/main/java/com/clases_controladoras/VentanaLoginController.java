@@ -1,11 +1,10 @@
 package com.clases_controladoras;
 
-import com.clases.Docente;
+import com.clases.DataSingleton;
+import com.clases.Usuario;
 import com.clases.Mensajes;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
@@ -15,9 +14,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -40,7 +36,9 @@ public class VentanaLoginController {
     @FXML
     private ComboBox perfiles;
     private String nombreEncontrado;
+    private Usuario usuario;
 
+    DataSingleton data = DataSingleton.getInstance();
     public void initialize(){
         perfiles.getItems().addAll("Docente", "Mentor", "Estudiante");
 
@@ -52,7 +50,7 @@ public class VentanaLoginController {
         if (inputUser.getText().isEmpty() ||
                 inputPass.getText().isEmpty()) {
             datos = false;
-            Mensajes.mensajeError(null, "Los campos estan vacio");
+            Mensajes.mensajeError(null, "Los campos están vacíos");
         } else if(perfiles.getValue() == null && datos){
             datos=false;
             Mensajes.mensajeError( null, "No seleccionó ningún perfil");
@@ -61,7 +59,7 @@ public class VentanaLoginController {
     }
 
     public int inicioSesion(String user, String pass, int posicion) {
-        ArrayList<Docente> registrosActuales = new ArrayList<>();
+        ArrayList<Usuario> registrosActuales = new ArrayList<>();
         try {
             FileInputStream archivoExcel = new FileInputStream("src/main/resources/datos/registros.xlsx");
             XSSFWorkbook libroExcel = new XSSFWorkbook(archivoExcel);
@@ -77,25 +75,28 @@ public class VentanaLoginController {
                 if (fila != null) {
                     for (int j = 0; j < fila.getLastCellNum(); j++) {
                         String nombre = dataFormatter.formatCellValue(fila.getCell(0));
-                        String usuario = dataFormatter.formatCellValue(fila.getCell(3));
+                        String usuarioIngresado = dataFormatter.formatCellValue(fila.getCell(3));
                         String password = dataFormatter.formatCellValue(fila.getCell(6));
-                        Docente docente = new Docente(nombre, usuario, password);
-                        registrosActuales.add(docente);
+                        String perfil = dataFormatter.formatCellValue(fila.getCell(7));
+                        usuario = new Usuario(nombre, usuarioIngresado, password, perfil);
+
                     }
+                    registrosActuales.add(usuario);
                 }
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        Map<String, Docente> mapaDocentes = new HashMap<>();
-        for (Docente docente : registrosActuales) {
-            mapaDocentes.put(docente.getUsuario(), docente);
+        Map<String, Usuario> mapaUsuarios = new HashMap<>();
+        for (Usuario usuario : registrosActuales) {
+            mapaUsuarios.put(usuario.getUsuario(), usuario);
         }
-        if (mapaDocentes.containsKey(user)) {
-            Docente docenteEncontrado = mapaDocentes.get(user);
-            String passRegistrada = docenteEncontrado.getPassword();
+        if (mapaUsuarios.containsKey(user)) {
+            Usuario usuarioEncontrado = mapaUsuarios.get(user);
+            String passRegistrada = usuarioEncontrado.getPassword();
             if (pass.equals(passRegistrada)) {
-                nombreEncontrado = retornarNombre(docenteEncontrado.getNombre());
+                nombreEncontrado = retornarNombre(usuarioEncontrado.getNombre());
+                data.setUsuario(usuarioEncontrado);
                 return 1;
             } else {
                 return -1;
@@ -107,6 +108,9 @@ public class VentanaLoginController {
     /** Boton iniciar sesion, se valida todo antes de iniciar sesion. */
     @FXML
     protected void onBotonIngresarAction() throws IOException{
+
+        VentanaMenuController menuController = new VentanaMenuController();
+
         String user = inputUser.getText();
         String pass = inputPass.getText();
         boolean dato = validaciones();
@@ -118,6 +122,8 @@ public class VentanaLoginController {
                     int validacion = inicioSesion(user, pass, posicion);
                     if (validacion == 1) {
                         Mensajes.mensajeInformativo("", "Bienvenido docente " + nombreEncontrado);
+                        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-menu.fxml"));
+                        rootPane.getChildren().setAll(pane);
                     } else if (validacion == -1) {
                         Mensajes.mensajeAdvertencia("La información no coincide", "Contraseña incorrecta");
                     } else if (validacion == 0) {
@@ -140,7 +146,7 @@ public class VentanaLoginController {
                     validacion = inicioSesion(user, pass, posicion);
                     if (validacion == 1) {
                         Mensajes.mensajeInformativo("", "Bienvenido estudiante " + nombreEncontrado);
-                        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-menu.fxml"));
+                        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-menu-estudiante.fxml"));
                         rootPane.getChildren().setAll(pane);
                     } else if (validacion == -1) {
                         Mensajes.mensajeAdvertencia("La información no coincide", "Contraseña incorrecta");
@@ -157,12 +163,23 @@ public class VentanaLoginController {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-principal.fxml"));
         rootPane.getChildren().setAll(pane);
     }
-
     public void onLinkRegistroAction() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-registro.fxml"));
         rootPane.getChildren().setAll(pane);
     }
     public String retornarNombre(String nombreRegistrado){
         return nombreRegistrado;
+    }
+    @FXML
+    protected void onBotonLoginMouseEntered(){
+        botonIngresar.setStyle("-fx-background-color: #2265E8;" +
+                " -fx-text-fill: white; -fx-background-radius: 40;" +
+                " -fx-border-color: white; -fx-border-radius: 40;");
+    }
+    @FXML
+    protected void onBotonLoginMouseExited(){
+        botonIngresar.setStyle("-fx-background-color: #2265E8;" +
+                " -fx-text-fill: black; -fx-background-radius: 40;" +
+                " -fx-border-color: black; -fx-border-radius: 40;");
     }
 }

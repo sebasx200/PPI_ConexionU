@@ -10,8 +10,8 @@ public class PruebaListasNodos {
         ListaDocentes l1;
         l1 = new ListaDocentes();
         String usuario = "sebasx200", pass = "1234";
-        Docente docente = new Docente(usuario, pass);
-        Docente nd = new Docente(docente);
+        Usuario docente = new Usuario(usuario, pass);
+        Usuario nd = new Usuario(docente);
         
         l1.insertarInicio(nd);
 
