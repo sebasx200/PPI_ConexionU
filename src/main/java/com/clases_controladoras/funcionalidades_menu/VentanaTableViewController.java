@@ -1,15 +1,18 @@
 package com.clases_controladoras.funcionalidades_menu;
 
+import com.clases.DataSingleton;
 import com.clases.Usuario;
 import com.clases.UsuarioTabla;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.paint.Color;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Table;
@@ -43,15 +46,19 @@ public class VentanaTableViewController {
     private TableColumn<UsuarioTabla, String> colCorreo;
     @FXML
     private TableColumn<UsuarioTabla, String> colTelefono;
+    @FXML
+    private Label titulo;
     private UsuarioTabla usuario;
+    private Usuario usuarioLogin;
+    DataSingleton data = DataSingleton.getInstance();
 
     /** Se declara el método que inicializa los objetos que se quieren mostrar apenas la ventana sea visible para el
     * usuario, en este caso se inicializa la tabla y se llena de manera automática con los registros de excel
     * dependiendo del perfil que haya iniciado sesión*/
     public void initialize(){
-
+        int posicion = usuarioIngresado(); // se obtiene el número de la hoja donde se debe buscar
         listaUsuarios = FXCollections.observableArrayList();
-        obtenerRegistros();
+        obtenerRegistros(posicion);  // se llama al método que llena los registros para mostrarlos en la tabla
         colNombre.setCellValueFactory(cellData -> cellData.getValue().nombreProperty());
         colApellido.setCellValueFactory(cellData -> cellData.getValue().apellidoProperty());
         colDocumento.setCellValueFactory(cellData -> cellData.getValue().documentoProperty());
@@ -61,12 +68,11 @@ public class VentanaTableViewController {
     }
 
     /** Este método sirve para cargar los datos del archivo de excel*/
-    public void obtenerRegistros(){
-
+    private void obtenerRegistros(int posicion){
         try {
             FileInputStream archivoExcel = new FileInputStream("src/main/resources/datos/registros.xlsx");
             XSSFWorkbook libroExcel = new XSSFWorkbook(archivoExcel);
-            XSSFSheet hoja = libroExcel.getSheetAt(1); // cambiar posicion
+            XSSFSheet hoja = libroExcel.getSheetAt(posicion); // cambiar posicion
             DataFormatter dataFormatter = new DataFormatter();
 
             int primeraFila = hoja.getFirstRowNum() + 1;
@@ -90,6 +96,21 @@ public class VentanaTableViewController {
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    /** Este método devuelve la hoja en la que se deben buscar los registros dependiendo del usuario que haya iniciado
+     * sesión y además establece algunos estilos*/
+    public int usuarioIngresado(){
+        usuarioLogin = data.getUsuario();
+        if(usuarioLogin.getPerfil().equals("Docente")){
+            titulo.setText("Ver lista estudiantes");
+            titulo.setTextFill(Color.BLACK);
+            return 1;
+        } else{
+            titulo.setText("Ver lista docentes");
+            titulo.setTextFill(Color.WHITE);
+            return 0;
         }
     }
 }

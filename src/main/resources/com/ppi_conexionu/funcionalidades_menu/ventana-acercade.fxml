@@ -1,114 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="539.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clases_controladoras.funcionalidades_menu.VentanaAcercadeController">
+<StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clases_controladoras.funcionalidades_menu.VentanaAcercadeController">
    <children>
-      <GridPane>
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints maxHeight="129.6666717529297" minHeight="10.0" prefHeight="44.66666539510092" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="298.0000057220459" minHeight="10.0" prefHeight="187.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="325.66668701171875" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="325.66668701171875" minHeight="10.0" prefHeight="179.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="325.66668701171875" minHeight="10.0" prefHeight="103.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+      <BorderPane prefHeight="540.0" prefWidth="750.0">
+         <bottom>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="750.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="170.0" fitWidth="170.0">
-                     <image>
-                        <Image url="@../../../imagenes/fotos/foto_angel.jpg" />
-                     </image>
-                  </ImageView>
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <ImageView fitHeight="170.0" fitWidth="170.0">
-                     <image>
-                        <Image url="@../../../imagenes/fotos/foto_sebas.jpg" />
-                     </image>
-                  </ImageView>
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <children>
-                  <ImageView fitHeight="170.0" fitWidth="170.0">
-                     <image>
-                        <Image url="@../../../imagenes/fotos/foto_coste.jpg" />
-                     </image>
-                  </ImageView>
-               </children>
-            </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
-               <children>
-                  <Label alignment="BOTTOM_CENTER" prefHeight="31.0" prefWidth="411.0" text="Desarrolladores del programa" textFill="WHITE">
-                     <font>
-                        <Font name="Berlin Sans FB" size="20.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
-               <children>
-                  <Label text="Juan Pablo Ángel" textFill="WHITE">
-                     <font>
-                        <Font name="Berlin Sans FB" size="15.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <children>
-                  <Label text="Sebastián Palacio" textFill="WHITE">
-                     <font>
-                        <Font name="Berlin Sans FB" size="15.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-            <VBox alignment="TOP_CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
-               <children>
-                  <Label text="Daniel Henao" textFill="WHITE">
-                     <font>
-                        <Font name="Berlin Sans FB" size="15.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="3">
-               <children>
-                  <Label fx:id="texto" text="Texto" textFill="WHITE">
-                     <font>
-                        <Font name="Berlin Sans FB" size="15.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <children>
-                  <ImageView fitHeight="112.0" fitWidth="200.0">
+                  <ImageView fitHeight="80.0" fitWidth="150.0">
                      <image>
                         <Image url="@../../../imagenes/logos/logo-institucion-v.png" />
                      </image>
+                     <HBox.margin>
+                        <Insets bottom="5.0" />
+                     </HBox.margin>
                   </ImageView>
                </children>
-            </VBox>
-         </children>
-      </GridPane>
+            </HBox>
+         </bottom>
+         <top>
+            <GridPane prefHeight="300.0" prefWidth="750.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints />
+                  <RowConstraints maxHeight="118.33332824707031" minHeight="10.0" prefHeight="38.00000190734863" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="118.33332824707031" minHeight="9.999998092651367" prefHeight="9.999998092651367" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="222.3333339691162" minHeight="10.0" prefHeight="214.33333206176758" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="750.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <Label style="-fx-text-fill: white;" text="Desarrolladores del programa">
+                           <font>
+                              <Font name="Berlin Sans FB" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+                     <children>
+                        <ImageView fitHeight="180.0" fitWidth="180.0">
+                           <image>
+                              <Image url="@../../../imagenes/fotos/foto_angel.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <ImageView fitHeight="180.0" fitWidth="180.0">
+                           <image>
+                              <Image url="@../../../imagenes/fotos/foto_sebas.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <children>
+                        <ImageView fitHeight="180.0" fitWidth="180.0">
+                           <image>
+                              <Image url="@../../../imagenes/fotos/foto_coste.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                     <children>
+                        <Label style="-fx-text-fill: white;" text="Juan Pablo Ángel">
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <Label style="-fx-text-fill: white;" text="Sebastián Palacio">
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <children>
+                        <Label style="-fx-text-fill: white;" text="Daniel Henao">
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </GridPane>
+         </top>
+         <center>
+            <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="texto" alignment="CENTER" contentDisplay="CENTER" style="-fx-text-fill: white;" StackPane.alignment="CENTER">
+                     <font>
+                        <Font name="Berlin Sans FB" size="15.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </StackPane>
+         </center>
+      </BorderPane>
    </children>
 </StackPane>
