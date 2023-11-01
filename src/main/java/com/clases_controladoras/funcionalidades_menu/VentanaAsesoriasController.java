@@ -5,10 +5,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -27,7 +30,7 @@ public class VentanaAsesoriasController {
     private Usuario usuario;
     DataSingleton data = DataSingleton.getInstance();
 
-    public void initialize(){
+    public void initialize() throws IOException {
         usuario = data.getUsuario();
         llenarHoras();
     }
@@ -93,12 +96,40 @@ public class VentanaAsesoriasController {
         agregarAsesoria();
     }
 
+    /** Este método es usado para recuperar todos los valores del usuario que inició sesión en la aplicación*/
+    private Usuario recuperarValoresUsuario() throws IOException {
+        String clave = usuario.getUsuario();
+        Usuario resultado = new Usuario();
+
+        FileInputStream archivoExcel = new FileInputStream("src/main/resources/datos/registros.xlsx");
+        XSSFWorkbook libroExcel = new XSSFWorkbook(archivoExcel);
+        XSSFSheet hoja = libroExcel.getSheetAt(1);
+
+        DataFormatter dataFormatter = new DataFormatter();
+
+        int primeraFila = hoja.getFirstRowNum() + 1;
+        int ultimaFila = hoja.getLastRowNum();
+
+        for (int i = primeraFila; i <= ultimaFila; i++) {
+            Row fila = hoja.getRow(i);
+            Cell usuarioCell = fila.getCell(3);
+            if (usuarioCell.getStringCellValue().equals(clave)) {
+                resultado.setNombre(dataFormatter.formatCellValue(fila.getCell(0)));
+                resultado.setApellido(dataFormatter.formatCellValue(fila.getCell(1)));
+                resultado.setDocumento(dataFormatter.formatCellValue(fila.getCell(2)));
+                resultado.setCorreo(dataFormatter.formatCellValue(fila.getCell(4)));
+                resultado.setTelefono(dataFormatter.formatCellValue(fila.getCell(5)));
+                return resultado;
+            }
+        }
+        return null;
+    }
     private void agregarAsesoria() throws IOException {
         ArrayList<Asesoria> asesorias = new ArrayList<>();
+        Usuario userInicioSesion = recuperarValoresUsuario();
         Asesoria nuevaAsesoria;
-
         if(validarDatos()){
-            String estudiante = usuario.getNombre() + " ";
+            String estudiante = userInicioSesion.getNombre() + " " + userInicioSesion.getApellido();
             String asesor = comboAsesor.getValue();
             String motivo = comboMotivo.getValue();
             String fecha = getFecha();
@@ -112,8 +143,6 @@ public class VentanaAsesoriasController {
 
             int ultimaFila = hoja.getLastRowNum();
 
-            /** se itera sobre el archivo de excel para añadir los datos del nuevo usuario*/
-
             for (Asesoria asesoria : asesorias) {
                 Row nuevaFila = hoja.createRow(ultimaFila + 1);
                 nuevaFila.createCell(0).setCellValue(asesoria.getEstudiante());
@@ -121,7 +150,7 @@ public class VentanaAsesoriasController {
                 nuevaFila.createCell(2).setCellValue(asesoria.getMotivo());
                 nuevaFila.createCell(3).setCellValue(asesoria.getFecha());
                 nuevaFila.createCell(4).setCellValue(asesoria.getHora());
-                ultimaFila ++ ;
+                ultimaFila++;
             }
 
             try (FileOutputStream archivoSalida = new FileOutputStream("src/main/resources/datos/registros.xlsx")) {
