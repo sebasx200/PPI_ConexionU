@@ -3,7 +3,6 @@ package com.clases;
 public class Nodo {
     private Nodo liga;
     private Asesoria asesoria;
-
     public Nodo() {
     }
     public Nodo(Nodo liga, Asesoria asesoria) {
