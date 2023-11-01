@@ -130,11 +130,12 @@ public class VentanaAsesoriasController {
         Asesoria nuevaAsesoria;
         if(validarDatos()){
             String estudiante = userInicioSesion.getNombre() + " " + userInicioSesion.getApellido();
+            String user = usuario.getUsuario();
             String asesor = comboAsesor.getValue();
             String motivo = comboMotivo.getValue();
             String fecha = getFecha();
             String hora = comboHora.getValue();
-            nuevaAsesoria = new Asesoria(estudiante, asesor, motivo, fecha, hora);
+            nuevaAsesoria = new Asesoria(estudiante, user,asesor, motivo, fecha, hora);
             asesorias.add(nuevaAsesoria);
 
             FileInputStream archivoExcel = new FileInputStream("src/main/resources/datos/registros.xlsx");
@@ -146,11 +147,12 @@ public class VentanaAsesoriasController {
             for (Asesoria asesoria : asesorias) {
                 Row nuevaFila = hoja.createRow(ultimaFila + 1);
                 nuevaFila.createCell(0).setCellValue(asesoria.getEstudiante());
-                nuevaFila.createCell(1).setCellValue(asesoria.getAsesor());
-                nuevaFila.createCell(2).setCellValue(asesoria.getMotivo());
-                nuevaFila.createCell(3).setCellValue(asesoria.getFecha());
-                nuevaFila.createCell(4).setCellValue(asesoria.getHora());
-                ultimaFila++;
+                nuevaFila.createCell((1)).setCellValue((asesoria.getUsuario()));
+                nuevaFila.createCell(2).setCellValue(asesoria.getAsesor());
+                nuevaFila.createCell(3).setCellValue(asesoria.getMotivo());
+                nuevaFila.createCell(4).setCellValue(asesoria.getFecha());
+                nuevaFila.createCell(5).setCellValue(asesoria.getHora());
+                ultimaFila ++ ;
             }
 
             try (FileOutputStream archivoSalida = new FileOutputStream("src/main/resources/datos/registros.xlsx")) {

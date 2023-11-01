@@ -8,13 +8,15 @@ import java.util.Date;
 public class Asesoria {
 
     private String estudiante;
+    private String usuario;
     private String asesor;
     private String motivo;
     private String fecha;
     private String hora;
 
-    public Asesoria(String estudiante, String asesor, String motivo, String fecha, String hora) {
+    public Asesoria(String estudiante, String usuario, String asesor, String motivo, String fecha, String hora) {
         this.estudiante = estudiante;
+        this.usuario = usuario;
         this.asesor = asesor;
         this.motivo = motivo;
         this.fecha = fecha;
@@ -26,6 +28,14 @@ public class Asesoria {
 
     public void setEstudiante(String estudiante) {
         this.estudiante = estudiante;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getAsesor() {
