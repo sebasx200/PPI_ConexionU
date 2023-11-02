@@ -1,10 +1,5 @@
 package com.clases;
 
-import javafx.scene.control.DatePicker;
-
-import java.time.LocalDate;
-import java.util.Date;
-
 public class Asesoria {
 
     private String estudiante;
