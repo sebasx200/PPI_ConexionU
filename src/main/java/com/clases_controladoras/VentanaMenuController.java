@@ -40,6 +40,7 @@ public class VentanaMenuController {
     /** Este es el método que se inicia por defecto cuando se inicia la ventana, se llama a los métodos que capturan
      *  las opciones del menú*/
     public void initialize() {
+        System.out.println(data.getUsuario());
         usuario = data.getUsuario();
         nombreUser.setText(usuario.getNombre());
         setMouseOverEffect(paginaInicio,  "#90caf9","#2196f3");
