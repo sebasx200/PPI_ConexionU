@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clases_controladoras.funcionalidades_menu.VentanaAsesoriasController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
@@ -36,7 +35,7 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="botonCancelar" mnemonicParsing="false" text="Cancelar" />
-                  <Button fx:id="botonConfirmar" mnemonicParsing="false" text="Solicitar asesoría" />
+                  <Button fx:id="botonSolicitar" mnemonicParsing="false" onAction="#onBotonSeleccionarAction" text="Solicitar asesoría" />
                </children>
             </HBox>
          </bottom>
@@ -95,8 +94,8 @@
                   </HBox>
                   <ComboBox fx:id="comboHora" prefWidth="180.0" promptText="Seleccionar hora" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <DatePicker fx:id="elegirFecha" promptText="Seleccionar fecha" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <ComboBox fx:id="comboAsesor" prefWidth="180.0" promptText="Seleccionar asesor" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <ComboBox fx:id="comboMotivo" prefWidth="180.0" promptText="Seleccionar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ComboBox fx:id="comboAsesor" onMouseClicked="#onComboAsesorClick" prefWidth="180.0" promptText="Seleccionar asesor" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="comboMotivo" onMouseClicked="#onComboMotivoClick" prefWidth="180.0" promptText="Seleccionar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </center>
