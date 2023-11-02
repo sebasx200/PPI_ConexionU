@@ -65,15 +65,15 @@ public class VentanaAsesoriasController {
         }
     }
     @FXML
-    private void onComboAsesorClick(){
+    private void onComboAsesorClick() throws IOException {
         String[] docentes = new String[]{"Maryem Ruíz", "Juan Carlos Gil", "Carlos Builes"};
         String[] mentores = new String[]{"Sebas Palacio", "Juan Pablo Ángel", "Daniel Henao"};
         if(checkDocente.isSelected()){
             comboAsesor.getItems().clear();
-            comboAsesor.getItems().setAll(docentes);
+            comboAsesor.getItems().setAll(recuperarDocentes());
         } else if(checkMentor.isSelected()){
             comboAsesor.getItems().clear();
-            comboAsesor.getItems().setAll(mentores);
+            comboAsesor.getItems().setAll(recuperarMentores());
         } else {
             comboAsesor.getItems().clear();
         }
@@ -85,8 +85,8 @@ public class VentanaAsesoriasController {
     }
     @FXML
     private void onComboMotivoClick(){
-        String[] motivos = new String[]{"Consulta general", "Consulta tema de clase", "Consulta sobre módulos",
-        "Asesoría académica", "Asesoría PPI", "Asesoría de la universidad"};
+        String[] motivos = new String[]{"Consulta general", "Consulta tema de clase",
+        "Asesoría PPI", "Consulta sobre quiz"};
         comboMotivo.getItems().clear();
         comboMotivo.getItems().setAll(motivos);
     }
@@ -165,6 +165,62 @@ public class VentanaAsesoriasController {
             }
         }
 
+    }
+    private String[] recuperarDocentes() throws IOException {
+        Usuario user = new Usuario();
+
+        FileInputStream archivoExcel = new FileInputStream("src/main/resources/datos/registros.xlsx");
+        XSSFWorkbook libroExcel = new XSSFWorkbook(archivoExcel);
+        XSSFSheet hoja = libroExcel.getSheetAt(0);
+
+        DataFormatter dataFormatter = new DataFormatter();
+
+        int primeraFila = hoja.getFirstRowNum() + 1;
+        int ultimaFila = hoja.getLastRowNum();
+        String [] registroDocentes = new String[ultimaFila];
+
+        for (int i = primeraFila; i <= ultimaFila; i++) {
+            Row fila = hoja.getRow(i);
+            if (fila != null) {
+                for (int j = 0; j < fila.getLastCellNum(); j++) {
+                    String nombre = dataFormatter.formatCellValue(fila.getCell(0));
+                    String apellido = dataFormatter.formatCellValue(fila.getCell(1));
+                    user.setNombre(nombre);
+                    user.setApellido(apellido);
+
+                }
+                registroDocentes[i-1] = user.getNombre() + " " + user.getApellido();
+            }
+        }
+        return registroDocentes;
+    }
+    private String[] recuperarMentores() throws IOException {
+        Usuario user = new Usuario();
+
+        FileInputStream archivoExcel = new FileInputStream("src/main/resources/datos/registros.xlsx");
+        XSSFWorkbook libroExcel = new XSSFWorkbook(archivoExcel);
+        XSSFSheet hoja = libroExcel.getSheetAt(1);
+
+        DataFormatter dataFormatter = new DataFormatter();
+
+        int primeraFila = hoja.getFirstRowNum() + 1;
+        int ultimaFila = hoja.getLastRowNum();
+        String [] registroMentores = new String[ultimaFila];
+
+        for (int i = primeraFila; i <= ultimaFila; i++) {
+            Row fila = hoja.getRow(i);
+            if (fila != null) {
+                for (int j = 0; j < fila.getLastCellNum(); j++) {
+                    String nombre = dataFormatter.formatCellValue(fila.getCell(0));
+                    String apellido = dataFormatter.formatCellValue(fila.getCell(1));
+                    user.setNombre(nombre);
+                    user.setApellido(apellido);
+
+                }
+                registroMentores[i-1] = user.getNombre() + " " + user.getApellido();
+            }
+        }
+        return registroMentores;
     }
     private boolean validarDatos(){
         if(!checkDocente.isSelected() && !checkMentor.isSelected()){
