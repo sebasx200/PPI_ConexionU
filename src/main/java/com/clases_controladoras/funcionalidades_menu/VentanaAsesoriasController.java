@@ -4,14 +4,13 @@ import com.clases.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -32,6 +31,7 @@ public class VentanaAsesoriasController {
 
     public void initialize() throws IOException {
         usuario = data.getUsuario();
+        onElegirFechaAction();
         llenarHoras();
     }
 
@@ -53,6 +53,21 @@ public class VentanaAsesoriasController {
     }
 
     @FXML
+    private void onElegirFechaAction() {
+        // Configura la fábrica de celdas personalizada
+        elegirFecha.setDayCellFactory(picker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
+
+                // Deshabilita las fechas anteriores a la fecha actual
+                setDisable(date.isBefore(today));
+            }
+        });
+    }
+
+    @FXML
     private void onCheckDocenteAction(){
         if(checkMentor.isSelected()){
             checkDocente.setSelected(false);
@@ -66,8 +81,6 @@ public class VentanaAsesoriasController {
     }
     @FXML
     private void onComboAsesorClick() throws IOException {
-        String[] docentes = new String[]{"Maryem Ruíz", "Juan Carlos Gil", "Carlos Builes"};
-        String[] mentores = new String[]{"Sebas Palacio", "Juan Pablo Ángel", "Daniel Henao"};
         if(checkDocente.isSelected()){
             comboAsesor.getItems().clear();
             comboAsesor.getItems().setAll(recuperarDocentes());
