@@ -1,9 +1,6 @@
 package com.clases_controladoras.funcionalidades_menu;
 
-import com.clases.Asesoria;
-import com.clases.DataSingleton;
-import com.clases.Usuario;
-import com.clases.UsuarioTabla;
+import com.clases.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,19 +18,19 @@ import java.util.Map;
 
 public class VentanaMisAsesoriasController {
     @FXML
-    private TableView<Asesoria> tabla;
-    private ObservableList<Asesoria> listaUsuarios;
+    private TableView<AsesoriaTabla> tabla;
+    private ObservableList<AsesoriaTabla> listaUsuarios;
     @FXML
-    private TableColumn<Asesoria, String> colNombre;
+    private TableColumn<AsesoriaTabla, String> colNombre;
     @FXML
-    private TableColumn<Asesoria, String> colAsesor;
+    private TableColumn<AsesoriaTabla, String> colAsesor;
     @FXML
-    private TableColumn<Asesoria, String> colMotivoAsesoria;
+    private TableColumn<AsesoriaTabla, String> colMotivoAsesoria;
     @FXML
-    private TableColumn<Asesoria, String> colFecha;
+    private TableColumn<AsesoriaTabla, String> colFecha;
     @FXML
-    private TableColumn<Asesoria, String> colHora;
-    private Asesoria usuario;
+    private TableColumn<AsesoriaTabla, String> colHora;
+    private AsesoriaTabla usuario;
     private Usuario usuarioLogin;
     private Usuario user;
     DataSingleton data = DataSingleton.getInstance();
@@ -72,7 +69,7 @@ public class VentanaMisAsesoriasController {
                         String motivo = dataFormatter.formatCellValue(fila.getCell(3));
                         String fecha = dataFormatter.formatCellValue(fila.getCell(4));
                         String hora = dataFormatter.formatCellValue(fila.getCell(5));
-                        usuario = new Asesoria(nombre, usuari, asesor, motivo, fecha, hora);
+                        usuario = new AsesoriaTabla(nombre, usuari, asesor, motivo, fecha, hora);
 
                     }
                     if (usuari.equals(data.getUsuario().getUsuario())) {
@@ -83,8 +80,8 @@ public class VentanaMisAsesoriasController {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        Map<String, Asesoria> asesoriaMap = new HashMap<>();
-        for (Asesoria asesoria : listaUsuarios) {
+        Map<String, AsesoriaTabla> asesoriaMap = new HashMap<>();
+        for (AsesoriaTabla asesoria : listaUsuarios) {
             asesoriaMap.put(asesoria.getUsuario(), asesoria);
         }
     }

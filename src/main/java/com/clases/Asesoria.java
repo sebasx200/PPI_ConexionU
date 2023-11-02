@@ -1,85 +1,68 @@
 package com.clases;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.control.DatePicker;
-
-import java.time.LocalDate;
-import java.util.Date;
-
 public class Asesoria {
 
-    private SimpleStringProperty estudiante;
-    private SimpleStringProperty usuario;
-    private SimpleStringProperty asesor;
-    private SimpleStringProperty motivo;
-    private SimpleStringProperty fecha;
-    private SimpleStringProperty hora;
+    private String estudiante;
+    private String usuario;
+    private String asesor;
+    private String motivo;
+    private String fecha;
+    private String hora;
 
     public Asesoria(String estudiante, String usuario, String asesor, String motivo, String fecha, String hora) {
-        this.estudiante = new SimpleStringProperty(estudiante);
-        this.usuario = new SimpleStringProperty(usuario);
-        this.asesor = new SimpleStringProperty(asesor);
-        this.motivo = new SimpleStringProperty(motivo);
-        this.fecha = new SimpleStringProperty(fecha);
-        this.hora = new SimpleStringProperty(hora);
+        this.estudiante = estudiante;
+        this.usuario = usuario;
+        this.asesor = asesor;
+        this.motivo = motivo;
+        this.fecha = fecha;
+        this.hora = hora;
     }
-
-
-
     public String getEstudiante() {
-        return estudiante.get();
-    }
-    public void setEstudiante(String estudiante) {
-        this.estudiante = new SimpleStringProperty(estudiante);
-    }
-    public String getUsuario() {
-        return usuario.get();
-    }
-    public void setUsuario(String usuario) {
-        this.usuario = new SimpleStringProperty(usuario);
-    }
-    public String getAsesor() {
-        return asesor.get();
-    }
-    public void setAsesor(String asesor) {
-        this.asesor = new SimpleStringProperty(asesor);
-    }
-    public String getMotivo() {
-        return motivo.get();
-    }
-    public void setMotivo(String motivo) {
-        this.motivo = new SimpleStringProperty(motivo);
-    }
-    public String getFecha() {
-        return fecha.get();
-    }
-    public void setFecha(String fecha) {
-        this.fecha = new SimpleStringProperty(fecha);
-    }
-    public String getHora() {
-        return hora.get();
-    }
-    public void setHora(String hora) {
-        this.hora = new SimpleStringProperty(hora);
-    }
-
-    public SimpleStringProperty estudianteProperty() {
         return estudiante;
     }
-    public SimpleStringProperty usuarioProperty() {
+
+    public void setEstudiante(String estudiante) {
+        this.estudiante = estudiante;
+    }
+
+    public String getUsuario() {
         return usuario;
     }
-    public SimpleStringProperty asesorProperty() {
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getAsesor() {
         return asesor;
     }
-    public SimpleStringProperty motivoProperty() {
+
+    public void setAsesor(String asesor) {
+        this.asesor = asesor;
+    }
+
+    public String getMotivo() {
         return motivo;
     }
-    public SimpleStringProperty fechaProperty() {
+
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
+    }
+
+    public String getFecha() {
         return fecha;
     }
-    public SimpleStringProperty horaProperty() {
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getHora() {
         return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
     }
 
     @Override
