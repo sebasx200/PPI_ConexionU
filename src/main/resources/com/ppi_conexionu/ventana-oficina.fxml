@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" prefHeight="605.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clases_controladoras.VentanaOficinaController">
+   <children>
+      <AnchorPane prefHeight="605.0" prefWidth="1000.0">
+         <children>
+            <ImageView fitHeight="605.0" fitWidth="1000.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../imagenes/background/background_7.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="500.0" layoutY="53.0" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #e0e0e0; -fx-border-color: black; -fx-background-radius: 40; -fx-border-radius: 40;">
+               <children>
+                  <Label layoutX="109.0" layoutY="50.0" text="Registro Oficina">
+                     <font>
+                        <Font name="Berlin Sans FB" size="28.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="50.0" layoutY="120.0" text="¿Es profesor de planta?">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="siPlanta" layoutX="225.0" layoutY="120.0" mnemonicParsing="false" onAction="#onSiPlantaAction" text="Si">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="noPlanta" layoutX="303.0" layoutY="120.0" mnemonicParsing="false" onAction="#onNoPlantaAction" text="No">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </CheckBox>
+                  <Label layoutX="50.0" layoutY="170.0" text="¿Cuenta usted con oficina?">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="siOficina" layoutX="225.0" layoutY="170.0" mnemonicParsing="false" onAction="#onSiOficinaAction" text="Si">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="noOficina" layoutX="303.0" layoutY="170.0" mnemonicParsing="false" onAction="#onNoOficinaAction" text="No">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </CheckBox>
+                  <Label layoutX="50.0" layoutY="220.0" text="¿Desea registrar la oficina?">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="siRegistro" layoutX="225.0" layoutY="220.0" mnemonicParsing="false" onAction="#onSiRegistroAction" text="Si">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="noRegistro" layoutX="303.0" layoutY="220.0" mnemonicParsing="false" onAction="#onNoRegistroAction" text="No">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </CheckBox>
+                  <Label layoutX="50.0" layoutY="270.0" text="Bloque de la oficina">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="50.0" layoutY="320.0" text="Numero de la oficina">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="inputBloque" layoutX="225.0" layoutY="270.0" prefHeight="25.0" prefWidth="125.0" promptText="Numero del bloque" />
+                  <TextField fx:id="inputOficina" layoutX="225.0" layoutY="320.0" prefHeight="25.0" prefWidth="125.0" promptText="Numero de la oficina" />
+                  <Button fx:id="botonContinuar" layoutX="135.0" layoutY="400.0" mnemonicParsing="false" onAction="#onBotonContinuarAction" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #2265E8; -fx-background-radius: 40; -fx-border-color: black; -fx-border-radius: 40; -fx-text-fill: black;" text="Continuar">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <ImageView fitHeight="350.0" fitWidth="350.0" layoutX="75.0" layoutY="128.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../imagenes/logos/logo_negro.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
