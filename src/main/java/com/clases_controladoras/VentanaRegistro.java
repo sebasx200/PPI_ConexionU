@@ -1,5 +1,6 @@
 package com.clases_controladoras;
 
+import com.clases.DataSingleton;
 import com.clases.Usuario;
 import com.clases.Mensajes;
 import javafx.fxml.FXML;
@@ -18,6 +19,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,51 +28,37 @@ public class VentanaRegistro {
 
     @FXML
     private AnchorPane panelRegistro;
-
     @FXML
     private Button botonRegistro;
-
     @FXML
     private Button botonVolver;
-
     @FXML
     private Hyperlink hyperInicio;
-
     @FXML
     private ComboBox departamentos;
-
     @FXML
     private ComboBox ciudades;
-
     @FXML
     private ComboBox universidades;
-
     @FXML
     private ComboBox perfiles;
-
     @FXML
     private TextField inputNombre;
-
     @FXML
     private TextField inputApellido;
-
     @FXML
     private TextField inputDocumento;
-
     @FXML
     private TextField inputUsuario;
-
     @FXML
     private TextField inputCorreo;
-
     @FXML
     private TextField inputTelefono;
-
     @FXML
     private TextField inputContraseña;
-
     @FXML
     private TextField inputConfirmarContraseña;
+    DataSingleton data = DataSingleton.getInstance();
 
     // ## Estos son los metodos de validaciones
 
@@ -251,17 +240,25 @@ public class VentanaRegistro {
      * Se ponen a navegar todos los botones a su respectiva ventana.
     */
     public void onBotonRegistrarAction() throws IOException {
+        String user = inputUsuario.getText();
+        String pass = inputContraseña.getText();
         boolean dato = validarDatos();
             if (dato == true) {
                 if (perfiles.getValue().toString().equals("Docente")) {
                     int posicion = 0;
-                    agregarDatos(posicion);
+                    agregarDatos(posicion, user, pass);
+                    AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-oficina.fxml"));
+                    panelRegistro.getChildren().setAll(pane);
                 } else if (perfiles.getValue().toString().equals("Estudiante")) {
                     int posicion = 1;
-                    agregarDatos(posicion);
+                    agregarDatos(posicion, user, pass);
+                    AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-login.fxml"));
+                    panelRegistro.getChildren().setAll(pane);
                 } else {
                     int posicion = 2;
-                    agregarDatos(posicion);
+                    agregarDatos(posicion, user, pass);
+                    AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/ppi_conexionu/ventana-login.fxml"));
+                    panelRegistro.getChildren().setAll(pane);
                 }
             }
     }
@@ -279,7 +276,7 @@ public class VentanaRegistro {
     }
 
     /** Método para ingresar los datos */
-    public void agregarDatos(int posicion) {
+    public void agregarDatos(int posicion, String claveUsuario, String clavePassword) {
         ArrayList<Usuario> nuevoRegistro = new ArrayList<>();
 
         String nombre = inputNombre.getText();
@@ -335,6 +332,8 @@ public class VentanaRegistro {
                 try (FileOutputStream archivoSalida = new FileOutputStream("src/main/resources/datos/registros.xlsx")) {
                     libroExcel.write(archivoSalida);
                     Mensajes.mensajeInformativo(null, "Usuario registrado correctamente");
+                    Usuario usuarioClave = new Usuario(claveUsuario, clavePassword);
+                    data.setUsuario(usuarioClave);
                 }
             } else {
                 Mensajes.mensajeInformativo(null, "El usuario o documento ya están registrados");
