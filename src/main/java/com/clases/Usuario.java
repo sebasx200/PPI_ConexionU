@@ -12,6 +12,7 @@ public class Usuario {
     private String departamento;
     private String ciudad;
     private String universidad;
+    private String oficina;
     private Usuario liga;
 
     /** Este metodo constructor es para inicializar los atributos */
@@ -27,6 +28,7 @@ public class Usuario {
         departamento = "";
         ciudad = "";
         universidad = "";
+        oficina = "";
     }
 
     public Usuario(Usuario usuario){
@@ -41,6 +43,7 @@ public class Usuario {
         this.departamento = usuario.departamento;
         this.ciudad = usuario.ciudad;
         this.universidad = usuario.universidad;
+        this.oficina = usuario.oficina;
     }
 
     /** Este es un metodo constructor para solo llamar los atributos de iniciar sesion */
@@ -49,6 +52,15 @@ public class Usuario {
         this.usuario = usuario;
         this.password = pass;
         this.perfil = perfil;
+    }
+
+    public Usuario(String oficina) {
+        this.oficina = oficina;
+    }
+
+    public Usuario(String usuario, String password) {
+        this.usuario = usuario;
+        this.password = password;
     }
 
     /** Este es un metdo constructor para llamar todos los atributos */
@@ -138,6 +150,14 @@ public class Usuario {
 
     public void setUniversidad(String universidad) {this.universidad = universidad;}
 
+    public String getOficina() {
+        return oficina;
+    }
+
+    public void setOficina(String oficina) {
+        this.oficina = oficina;
+    }
+
     public Usuario getLiga() {
         return liga;
     }
@@ -148,6 +168,6 @@ public class Usuario {
     
     @Override
     public String toString() {
-        return nombre + apellido + documento + usuario + telefono + correo + password;
+        return nombre + apellido + documento + usuario + telefono + correo + password + oficina;
     }
 }

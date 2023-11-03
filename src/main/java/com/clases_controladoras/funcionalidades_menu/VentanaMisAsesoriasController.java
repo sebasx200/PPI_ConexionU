@@ -32,7 +32,6 @@ public class VentanaMisAsesoriasController {
     private TableColumn<AsesoriaTabla, String> colHora;
     private AsesoriaTabla usuario;
     private Usuario usuarioLogin;
-    private Usuario user;
     DataSingleton data = DataSingleton.getInstance();
 
     public void initialize(){
