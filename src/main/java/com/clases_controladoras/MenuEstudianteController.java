@@ -125,6 +125,12 @@ public class MenuEstudianteController extends VentanaMenuController{
                 break;
             case "Configuraciones":
                 opcionSeleccionada.setText(opcion);
+                ruta = "/com/ppi_conexionu/funcionalidades_menu/ventana-configuraciones.fxml";
+                rutaImagen = "/imagenes/background/background_17.png";
+                image = new Image(getClass().getResource((rutaImagen)).toExternalForm());
+                fondo.setImage(image);
+                pane = FXMLLoader.load(getClass().getResource(ruta));
+                content.getChildren().setAll(fondo, pane);
                 break;
             case "Acerca de":
                 opcionSeleccionada.setText(opcion);
