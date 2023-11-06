@@ -2,7 +2,7 @@ package com.clases_controladoras.funcionalidades_menu;
 
 import com.clases.DataSingleton;
 import com.clases.Mensajes;
-import com.clases.Usuario;
+import com.clases.modelos.Usuario;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import org.apache.poi.ss.usermodel.Cell;

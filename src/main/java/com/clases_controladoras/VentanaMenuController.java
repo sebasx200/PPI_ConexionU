@@ -2,11 +2,10 @@ package com.clases_controladoras;
 
 import com.clases.DataSingleton;
 import com.clases.Mensajes;
-import com.clases.Usuario;
+import com.clases.modelos.Usuario;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -16,7 +15,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
-import java.net.URL;
 
 public class VentanaMenuController {
 

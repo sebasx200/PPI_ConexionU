@@ -1,9 +1,8 @@
 package com.clases_controladoras;
 
-import com.clases.AsesoriaTabla;
 import com.clases.DataSingleton;
 import com.clases.Mensajes;
-import com.clases.Usuario;
+import com.clases.modelos.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -19,8 +18,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class VentanaOficinaController {
     @FXML

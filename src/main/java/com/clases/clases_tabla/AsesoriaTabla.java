@@ -1,4 +1,4 @@
-package com.clases;
+package com.clases.clases_tabla;
 
 import javafx.beans.property.SimpleStringProperty;
 

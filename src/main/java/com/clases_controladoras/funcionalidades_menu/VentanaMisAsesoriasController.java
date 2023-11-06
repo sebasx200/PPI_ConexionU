@@ -1,6 +1,8 @@
 package com.clases_controladoras.funcionalidades_menu;
 
 import com.clases.*;
+import com.clases.clases_tabla.AsesoriaTabla;
+import com.clases.modelos.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

@@ -1,4 +1,4 @@
-package com.clases;
+package com.clases.modelos;
 
 public class Usuario {
     private String nombre;

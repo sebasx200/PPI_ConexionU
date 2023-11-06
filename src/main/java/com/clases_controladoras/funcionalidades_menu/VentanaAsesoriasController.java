@@ -1,6 +1,8 @@
 package com.clases_controladoras.funcionalidades_menu;
 
 import com.clases.*;
+import com.clases.modelos.Asesoria;
+import com.clases.modelos.Usuario;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;

@@ -1,7 +1,7 @@
 package com.clases_controladoras;
 
 import com.clases.DataSingleton;
-import com.clases.Usuario;
+import com.clases.modelos.Usuario;
 import com.clases.Mensajes;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +19,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
