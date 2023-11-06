@@ -1,4 +1,6 @@
-package com.clases;
+package com.clases.nodos;
+
+import com.clases.modelos.Asesoria;
 
 public class Nodo {
     private Nodo liga;

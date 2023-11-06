@@ -1,4 +1,7 @@
-package com.clases;
+package com.clases.nodos;
+
+import com.clases.Mensajes;
+import com.clases.modelos.Asesoria;
 
 public class ListaNodos {
     private Nodo punta;
