@@ -1,7 +1,7 @@
 package com.clases_controladoras;
 
 import com.clases.DataSingleton;
-import com.clases.Usuario;
+import com.clases.modelos.Usuario;
 import com.clases.Mensajes;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
