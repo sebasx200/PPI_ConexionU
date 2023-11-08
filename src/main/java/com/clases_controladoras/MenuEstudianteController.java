@@ -93,7 +93,7 @@ public class MenuEstudianteController extends VentanaMenuController{
             case "Agendar asesoria":
                 opcionSeleccionada.setText(opcion);
                 ruta = "/com/ppi_conexionu/funcionalidades_menu/ventana-asesorias.fxml";
-                rutaImagen = "/imagenes/background/background_18.png";
+                rutaImagen = "/imagenes/background/background_20.png";
                 image = new Image(getClass().getResource(rutaImagen).toExternalForm());
                 fondo.setImage(image);
                 pane = FXMLLoader.load(getClass().getResource(ruta));
@@ -123,7 +123,7 @@ public class MenuEstudianteController extends VentanaMenuController{
             case "Configuraciones":
                 opcionSeleccionada.setText(opcion);
                 ruta = "/com/ppi_conexionu/funcionalidades_menu/ventana-configuraciones.fxml";
-                rutaImagen = "/imagenes/background/background_17.png";
+                rutaImagen = "/imagenes/background/background_21.png";
                 image = new Image(getClass().getResource((rutaImagen)).toExternalForm());
                 fondo.setImage(image);
                 pane = FXMLLoader.load(getClass().getResource(ruta));

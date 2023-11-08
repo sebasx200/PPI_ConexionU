@@ -20,7 +20,7 @@
          <top>
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="750.0" BorderPane.alignment="CENTER_LEFT">
                <children>
-                  <Label text="Agendar nueva asesoría">
+                  <Label text="Agendar nueva asesoría" textFill="WHITE">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -53,39 +53,39 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Tipo de asesor">
+                  <Label text="Tipo de asesor" textFill="WHITE">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Asesor" GridPane.rowIndex="1">
+                  <Label text="Asesor" textFill="WHITE" GridPane.rowIndex="1">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Motivo asesoría" GridPane.rowIndex="2">
+                  <Label text="Motivo asesoría" textFill="WHITE" GridPane.rowIndex="2">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Fecha" GridPane.rowIndex="3">
+                  <Label text="Fecha" textFill="WHITE" GridPane.rowIndex="3">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Hora" GridPane.rowIndex="4">
+                  <Label text="Hora" textFill="WHITE" GridPane.rowIndex="4">
                      <font>
                         <Font name="Berlin Sans FB" size="18.0" />
                      </font>
                   </Label>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1">
                      <children>
-                        <CheckBox fx:id="checkDocente" mnemonicParsing="false" onAction="#onCheckDocenteAction" text="Docente">
+                        <CheckBox fx:id="checkDocente" mnemonicParsing="false" onAction="#onCheckDocenteAction" text="Docente" textFill="WHITE">
                            <font>
                               <Font name="Berlin Sans FB" size="18.0" />
                            </font>
                         </CheckBox>
-                        <CheckBox fx:id="checkMentor" mnemonicParsing="false" onAction="#onCheckMentorAction" text="Mentor">
+                        <CheckBox fx:id="checkMentor" mnemonicParsing="false" onAction="#onCheckMentorAction" text="Mentor" textFill="WHITE">
                            <font>
                               <Font name="Berlin Sans FB" size="18.0" />
                            </font>

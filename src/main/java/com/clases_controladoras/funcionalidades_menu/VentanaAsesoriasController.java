@@ -84,8 +84,7 @@ public class VentanaAsesoriasController {
     @FXML
     private void onComboAsesorClick() throws IOException {
         if(checkDocente.isSelected()){
-            comboAsesor.getItems().clear();
-            comboAsesor.getItems().setAll(recuperarDocentes());
+            
         } else if(checkMentor.isSelected()){
             comboAsesor.getItems().clear();
             comboAsesor.getItems().setAll(recuperarMentores());
@@ -146,11 +145,13 @@ public class VentanaAsesoriasController {
         if(validarDatos()){
             String estudiante = userInicioSesion.getNombre() + " " + userInicioSesion.getApellido();
             String user = usuario.getUsuario();
+            String userAsesor = comboAsesor.getValue();
             String asesor = comboAsesor.getValue();
             String motivo = comboMotivo.getValue();
             String fecha = getFecha();
             String hora = comboHora.getValue();
-            nuevaAsesoria = new Asesoria(estudiante, user,asesor, motivo, fecha, hora);
+
+            nuevaAsesoria = new Asesoria(estudiante, user, userAsesor, asesor, motivo, fecha, hora);
             asesorias.add(nuevaAsesoria);
 
             FileInputStream archivoExcel = new FileInputStream("src/main/resources/datos/registros.xlsx");
@@ -200,11 +201,13 @@ public class VentanaAsesoriasController {
                 for (int j = 0; j < fila.getLastCellNum(); j++) {
                     String nombre = dataFormatter.formatCellValue(fila.getCell(0));
                     String apellido = dataFormatter.formatCellValue(fila.getCell(1));
+                    String usuario = dataFormatter.formatCellValue(fila.getCell(3));
                     user.setNombre(nombre);
                     user.setApellido(apellido);
+                    user.setUsuario(usuario);
 
                 }
-                registroDocentes[i-1] = user.getNombre() + " " + user.getApellido();
+                registroDocentes[i-1] = user.getNombre() + ";" + user.getApellido() + ";" + user.getUsuario();
             }
         }
         return registroDocentes;

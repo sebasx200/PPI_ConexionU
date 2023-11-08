@@ -4,14 +4,16 @@ public class Asesoria {
 
     private String estudiante;
     private String usuario;
+    private String usuarioAsesor;
     private String asesor;
     private String motivo;
     private String fecha;
     private String hora;
 
-    public Asesoria(String estudiante, String usuario, String asesor, String motivo, String fecha, String hora) {
+    public Asesoria(String estudiante, String usuario, String usuarioAsesor, String asesor, String motivo, String fecha, String hora) {
         this.estudiante = estudiante;
         this.usuario = usuario;
+        this.usuarioAsesor = usuarioAsesor;
         this.asesor = asesor;
         this.motivo = motivo;
         this.fecha = fecha;
@@ -39,6 +41,14 @@ public class Asesoria {
 
     public void setAsesor(String asesor) {
         this.asesor = asesor;
+    }
+
+    public String getUsuarioAsesor() {
+        return usuarioAsesor;
+    }
+
+    public void setUsuarioAsesor(String usuarioAsesor) {
+        this.usuarioAsesor = usuarioAsesor;
     }
 
     public String getMotivo() {
@@ -69,6 +79,8 @@ public class Asesoria {
     public String toString() {
         return "Asesoria{" +
                 "estudiante='" + estudiante + '\'' +
+                ", usuario='" + usuario + '\'' +
+                ", usuarioAsesor='" + usuarioAsesor + '\'' +
                 ", asesor='" + asesor + '\'' +
                 ", motivo='" + motivo + '\'' +
                 ", fecha='" + fecha + '\'' +

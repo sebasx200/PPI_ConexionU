@@ -10,6 +10,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="panelRegistro" prefHeight="605.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clases_controladoras.VentanaRegistro">
@@ -133,6 +134,7 @@
                   <Font name="Berlin Sans FB" size="14.0" />
                </font>
             </Hyperlink>
+            <Line endX="70.3333740234375" endY="-0.6666641235351562" layoutX="239.0" layoutY="75.0" startX="-49.0" startY="-0.6666641235351562" />
          </children>
       </AnchorPane>
    </children>

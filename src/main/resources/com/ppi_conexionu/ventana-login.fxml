@@ -39,7 +39,7 @@
                         <Font name="Berlin Sans FB" size="14.0" />
                      </font>
                   </Label>
-                  <Line endX="100.0" layoutX="202.0" layoutY="81.0" startX="-79.0" startY="-7.62939453125E-6" />
+                  <Line endX="100.0" layoutX="202.0" layoutY="88.0" startX="-79.0" startY="-7.62939453125E-6" />
                   <ImageView layoutX="80.0" layoutY="138.0">
                      <image>
                         <Image url="@../../imagenes/iconos/usuario.png" />
