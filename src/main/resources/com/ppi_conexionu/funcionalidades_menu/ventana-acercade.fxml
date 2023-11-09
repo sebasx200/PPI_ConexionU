@@ -112,7 +112,7 @@
          <center>
             <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="texto" alignment="CENTER" contentDisplay="CENTER" style="-fx-text-fill: white;" StackPane.alignment="CENTER">
+                  <Label fx:id="texto" alignment="CENTER" contentDisplay="CENTER" style="-fx-text-fill: white;" wrapText="true" StackPane.alignment="CENTER">
                      <font>
                         <Font name="Berlin Sans FB" size="15.0" />
                      </font>
