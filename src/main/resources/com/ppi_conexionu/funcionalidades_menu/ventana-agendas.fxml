@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="539.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -30,21 +31,54 @@
                <GridPane.margin>
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font>
             </Label>
-            <Label text="Hora final" GridPane.rowIndex="3" />
-            <Label text="Hora inicio" GridPane.rowIndex="2" />
-            <Label text="Elección final" GridPane.rowIndex="4" />
+            <Label text="Hora final" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font></Label>
+            <Label text="Hora inicio" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font></Label>
+            <Label text="Elección final" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font></Label>
             <ComboBox prefWidth="150.0" promptText="Seleccionar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <ComboBox prefWidth="150.0" promptText="Seleccionar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
                <children>
-                  <CheckBox mnemonicParsing="false" text="Lun." />
-                  <CheckBox mnemonicParsing="false" text="Mar." />
-                  <CheckBox mnemonicParsing="false" text="Mié." />
-                  <CheckBox mnemonicParsing="false" text="Jue." />
-                  <CheckBox mnemonicParsing="false" text="Vie." />
-                  <CheckBox mnemonicParsing="false" text="Sáb." />
-                  <CheckBox mnemonicParsing="false" text="Dom." />
+                  <CheckBox mnemonicParsing="false" text="Lun.">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font></CheckBox>
+                  <CheckBox mnemonicParsing="false" text="Mar.">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font></CheckBox>
+                  <CheckBox mnemonicParsing="false" text="Mié.">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font></CheckBox>
+                  <CheckBox mnemonicParsing="false" text="Jue.">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font></CheckBox>
+                  <CheckBox mnemonicParsing="false" text="Vie.">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font></CheckBox>
+                  <CheckBox mnemonicParsing="false" text="Sáb.">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font></CheckBox>
+                  <CheckBox mnemonicParsing="false" text="Dom.">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font></CheckBox>
                </children>
             </HBox>
          </children>

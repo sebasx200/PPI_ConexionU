@@ -38,7 +38,7 @@
                               <Font name="Berlin Sans FB" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="agendarAsesoria" prefHeight="80.0" prefWidth="250.0" style="-fx-border-color: black;" text="Agendar asesoria">
+                        <Label fx:id="agendarAsesoria" prefHeight="80.0" prefWidth="250.0" style="-fx-border-color: black;" text="Abrir agenda para asesorias">
                            <graphic>
                               <ImageView>
                                  <image>

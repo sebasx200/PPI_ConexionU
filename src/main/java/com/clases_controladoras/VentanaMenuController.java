@@ -128,8 +128,14 @@ public class VentanaMenuController {
                 fondo.setImage(image);
                 content.getChildren().setAll(fondo, stackPane);
                 break;
-            case "Agendar asesoria":
+            case "Abrir agenda para asesorias":
                 opcionSeleccionada.setText(opcion);
+                ruta = "/com/ppi_conexionu/funcionalidades_menu/ventana-agendas.fxml";
+                rutaImagen = "/imagenes/background/background_3.png";
+                image = new Image(getClass().getResource((rutaImagen)).toExternalForm());
+                fondo.setImage(image);
+                pane = FXMLLoader.load(getClass().getResource(ruta));
+                content.getChildren().setAll(fondo, pane);
                 break;
             case "Mis asesorias":
                 opcionSeleccionada.setText(opcion);
