@@ -40,10 +40,17 @@ public class VentanaConfigController {
 
     private Usuario recuperarValoresUsuario() throws IOException {
         Usuario resultado = new Usuario();
-
+        int posHoja;
+        if(usuario.getPerfil().equals("Docente")){
+            posHoja = 0;
+        } else if(usuario.getPerfil().equals("Estudiante")){
+            posHoja = 1;
+        } else{
+            posHoja = 2;
+        }
         FileInputStream archivoExcel = new FileInputStream("src/main/resources/datos/registros.xlsx");
         XSSFWorkbook libroExcel = new XSSFWorkbook(archivoExcel);
-        XSSFSheet hoja = libroExcel.getSheetAt(1);
+        XSSFSheet hoja = libroExcel.getSheetAt(posHoja);
 
         DataFormatter dataFormatter = new DataFormatter();
 
