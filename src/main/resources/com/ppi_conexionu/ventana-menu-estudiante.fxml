@@ -93,13 +93,6 @@
                            </font>
                         </Label>
                         <Label fx:id="verLista" prefHeight="80.0" prefWidth="250.0" style="-fx-border-color: black;" text="Ver lista docentes">
-                           <graphic>
-                              <ImageView>
-                                 <image>
-                                    <Image url="@../../imagenes/iconos/profesor.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
                            <padding>
                               <Insets left="10.0" />
                            </padding>
@@ -109,6 +102,13 @@
                            <font>
                               <Font name="Berlin Sans FB" size="14.0" />
                            </font>
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../imagenes/iconos/maestro.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Label>
                         <Label fx:id="configuraciones" prefHeight="80.0" prefWidth="250.0" style="-fx-border-color: black;" text="Configuraciones">
                            <graphic>

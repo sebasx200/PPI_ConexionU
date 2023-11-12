@@ -168,6 +168,6 @@ public class Usuario {
     
     @Override
     public String toString() {
-        return nombre + apellido + documento + usuario + telefono + correo + password + oficina;
+        return nombre + " "+ apellido;
     }
 }
