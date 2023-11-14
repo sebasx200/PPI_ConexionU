@@ -44,9 +44,12 @@
                </font></Label>
             <ComboBox fx:id="horaInicial" prefWidth="150.0" promptText="Seleccionar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <ComboBox fx:id="horaFinal" prefWidth="150.0" promptText="Seleccionar" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button fx:id="botonConfirmar" mnemonicParsing="false" onAction="#onBotonConfirmarAction" text="Confirmar agendas" GridPane.rowIndex="5" />
+            <Button fx:id="botonConfirmar" mnemonicParsing="false" onAction="#onBotonConfirmarAction" text="Confirmar agendas" GridPane.rowIndex="4" />
             <ComboBox fx:id="comboDias" onMouseClicked="#onComboDiasClick" prefWidth="150.0" promptText="Seleccionar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Día de la semana" GridPane.rowIndex="1" />
+            <Label text="Día de la semana" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Berlin Sans FB" size="14.0" />
+               </font></Label>
          </children>
       </GridPane>
    </children>
