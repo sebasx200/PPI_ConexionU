@@ -6,8 +6,10 @@ import com.clases.modelos.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.paint.Color;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -19,6 +21,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class VentanaMisAsesoriasController {
+    @FXML
+    private Label titulo;
     @FXML
     private TableView<AsesoriaTabla> tabla;
     private ObservableList<AsesoriaTabla> listaUsuarios;
@@ -37,6 +41,8 @@ public class VentanaMisAsesoriasController {
     DataSingleton data = DataSingleton.getInstance();
 
     public void initialize(){
+        usuarioLogin = data.getUsuario();
+        colorTitulo();
         listaUsuarios = FXCollections.observableArrayList();
         obtenerRegistros();
         colNombre.setCellValueFactory(cellData -> cellData.getValue().estudianteProperty());
@@ -49,7 +55,12 @@ public class VentanaMisAsesoriasController {
     }
 
     private void obtenerRegistros(){
-        usuarioLogin = data.getUsuario();
+        int posUser;
+        if(usuarioLogin.getPerfil().equals("Estudiante")){
+            posUser = 1;
+        } else{
+            posUser = 2;
+        }
         try {
             FileInputStream archivoExcel = new FileInputStream("src/main/resources/datos/registros.xlsx");
             XSSFWorkbook libroExcel = new XSSFWorkbook(archivoExcel);
@@ -65,11 +76,11 @@ public class VentanaMisAsesoriasController {
                     for (int j = 0; j < fila.getLastCellNum(); j++) {
 
                         String nombre = dataFormatter.formatCellValue(fila.getCell(0));
-                        usuari = dataFormatter.formatCellValue(fila.getCell(1));
-                        String asesor = dataFormatter.formatCellValue(fila.getCell(2));
-                        String motivo = dataFormatter.formatCellValue(fila.getCell(3));
-                        String fecha = dataFormatter.formatCellValue(fila.getCell(4));
-                        String hora = dataFormatter.formatCellValue(fila.getCell(5));
+                        usuari = dataFormatter.formatCellValue(fila.getCell(posUser));
+                        String asesor = dataFormatter.formatCellValue(fila.getCell(3));
+                        String motivo = dataFormatter.formatCellValue(fila.getCell(4));
+                        String fecha = dataFormatter.formatCellValue(fila.getCell(5));
+                        String hora = dataFormatter.formatCellValue(fila.getCell(6));
                         usuario = new AsesoriaTabla(nombre, usuari, asesor, motivo, fecha, hora);
 
                     }
@@ -84,6 +95,11 @@ public class VentanaMisAsesoriasController {
         Map<String, AsesoriaTabla> asesoriaMap = new HashMap<>();
         for (AsesoriaTabla asesoria : listaUsuarios) {
             asesoriaMap.put(asesoria.getUsuario(), asesoria);
+        }
+    }
+    private void colorTitulo(){
+        if(usuarioLogin.getPerfil().equals("Estudiante")){
+            titulo.setTextFill(Color.WHITE);
         }
     }
 }

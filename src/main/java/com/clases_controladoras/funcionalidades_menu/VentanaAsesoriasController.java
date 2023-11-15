@@ -23,12 +23,14 @@ import java.util.ArrayList;
 public class VentanaAsesoriasController {
 
     @FXML
-    private ComboBox<String> comboAsesor, comboMotivo, comboHora;
+    private ComboBox<Usuario> comboAsesor;
+    @FXML
+    private ComboBox<String> comboMotivo, comboHora;
     @FXML
     private DatePicker elegirFecha;
     @FXML
     private CheckBox checkDocente, checkMentor;
-    private Usuario usuario;
+    private Usuario usuario, userDocente, userMentor;
     DataSingleton data = DataSingleton.getInstance();
 
     public void initialize() throws IOException {
@@ -84,7 +86,8 @@ public class VentanaAsesoriasController {
     @FXML
     private void onComboAsesorClick() throws IOException {
         if(checkDocente.isSelected()){
-            
+            comboAsesor.getItems().clear();
+            comboAsesor.getItems().setAll(recuperarDocentes());
         } else if(checkMentor.isSelected()){
             comboAsesor.getItems().clear();
             comboAsesor.getItems().setAll(recuperarMentores());
@@ -145,8 +148,8 @@ public class VentanaAsesoriasController {
         if(validarDatos()){
             String estudiante = userInicioSesion.getNombre() + " " + userInicioSesion.getApellido();
             String user = usuario.getUsuario();
-            String userAsesor = comboAsesor.getValue();
-            String asesor = comboAsesor.getValue();
+            String userAsesor = comboAsesor.getValue().getUsuario();
+            String asesor = comboAsesor.getValue().getNombre() + " " + comboAsesor.getValue().getApellido();
             String motivo = comboMotivo.getValue();
             String fecha = getFecha();
             String hora = comboHora.getValue();
@@ -164,10 +167,11 @@ public class VentanaAsesoriasController {
                 Row nuevaFila = hoja.createRow(ultimaFila + 1);
                 nuevaFila.createCell(0).setCellValue(asesoria.getEstudiante());
                 nuevaFila.createCell((1)).setCellValue((asesoria.getUsuario()));
-                nuevaFila.createCell(2).setCellValue(asesoria.getAsesor());
-                nuevaFila.createCell(3).setCellValue(asesoria.getMotivo());
-                nuevaFila.createCell(4).setCellValue(asesoria.getFecha());
-                nuevaFila.createCell(5).setCellValue(asesoria.getHora());
+                nuevaFila.createCell(2).setCellValue(asesoria.getUsuarioAsesor());
+                nuevaFila.createCell(3).setCellValue(asesoria.getAsesor());
+                nuevaFila.createCell(4).setCellValue(asesoria.getMotivo());
+                nuevaFila.createCell(5).setCellValue(asesoria.getFecha());
+                nuevaFila.createCell(6).setCellValue(asesoria.getHora());
                 ultimaFila ++ ;
             }
 
@@ -182,8 +186,7 @@ public class VentanaAsesoriasController {
         }
 
     }
-    private String[] recuperarDocentes() throws IOException {
-        Usuario user = new Usuario();
+    private Usuario[] recuperarDocentes() throws IOException {
 
         FileInputStream archivoExcel = new FileInputStream("src/main/resources/datos/registros.xlsx");
         XSSFWorkbook libroExcel = new XSSFWorkbook(archivoExcel);
@@ -193,7 +196,7 @@ public class VentanaAsesoriasController {
 
         int primeraFila = hoja.getFirstRowNum() + 1;
         int ultimaFila = hoja.getLastRowNum();
-        String [] registroDocentes = new String[ultimaFila];
+        Usuario [] registroDocentes = new Usuario[ultimaFila];
 
         for (int i = primeraFila; i <= ultimaFila; i++) {
             Row fila = hoja.getRow(i);
@@ -202,28 +205,27 @@ public class VentanaAsesoriasController {
                     String nombre = dataFormatter.formatCellValue(fila.getCell(0));
                     String apellido = dataFormatter.formatCellValue(fila.getCell(1));
                     String usuario = dataFormatter.formatCellValue(fila.getCell(3));
-                    user.setNombre(nombre);
-                    user.setApellido(apellido);
-                    user.setUsuario(usuario);
-
+                    userDocente = new Usuario();
+                    userDocente.setNombre(nombre);
+                    userDocente.setApellido(apellido);
+                    userDocente.setUsuario(usuario);
                 }
-                registroDocentes[i-1] = user.getNombre() + ";" + user.getApellido() + ";" + user.getUsuario();
+                registroDocentes[i-1] = userDocente;
             }
         }
         return registroDocentes;
     }
-    private String[] recuperarMentores() throws IOException {
-        Usuario user = new Usuario();
+    private Usuario[] recuperarMentores() throws IOException {
 
         FileInputStream archivoExcel = new FileInputStream("src/main/resources/datos/registros.xlsx");
         XSSFWorkbook libroExcel = new XSSFWorkbook(archivoExcel);
-        XSSFSheet hoja = libroExcel.getSheetAt(1);
+        XSSFSheet hoja = libroExcel.getSheetAt(2);
 
         DataFormatter dataFormatter = new DataFormatter();
 
         int primeraFila = hoja.getFirstRowNum() + 1;
         int ultimaFila = hoja.getLastRowNum();
-        String [] registroMentores = new String[ultimaFila];
+        Usuario [] registroMentores = new Usuario[ultimaFila];
 
         for (int i = primeraFila; i <= ultimaFila; i++) {
             Row fila = hoja.getRow(i);
@@ -231,11 +233,14 @@ public class VentanaAsesoriasController {
                 for (int j = 0; j < fila.getLastCellNum(); j++) {
                     String nombre = dataFormatter.formatCellValue(fila.getCell(0));
                     String apellido = dataFormatter.formatCellValue(fila.getCell(1));
-                    user.setNombre(nombre);
-                    user.setApellido(apellido);
+                    String usuario = dataFormatter.formatCellValue(fila.getCell(3));
+                    userMentor = new Usuario();
+                    userMentor.setNombre(nombre);
+                    userMentor.setApellido(apellido);
+                    userMentor.setUsuario(usuario);
 
                 }
-                registroMentores[i-1] = user.getNombre() + " " + user.getApellido();
+                registroMentores[i-1] = userMentor;
             }
         }
         return registroMentores;

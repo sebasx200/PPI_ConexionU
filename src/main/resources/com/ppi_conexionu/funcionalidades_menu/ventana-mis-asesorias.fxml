@@ -11,14 +11,14 @@
    <children>
       <VBox alignment="CENTER" fillWidth="false" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
          <children>
-            <Label text="Mis asesorías">
+            <Label fx:id="titulo" text="Mis asesorías">
                <font>
                   <Font name="Berlin Sans FB" size="24.0" />
                </font></Label>
             <TableView fx:id="tabla" prefHeight="400.0" prefWidth="700.0">
                <columns>
-                  <TableColumn fx:id="colNombre" prefWidth="137.59996873140335" text="Nombre" />
-                  <TableColumn fx:id="colAsesor" prefWidth="131.2000732421875" text="Asesor" />
+                  <TableColumn fx:id="colNombre" prefWidth="137.59996873140335" text="Nombre estudiante" />
+                  <TableColumn fx:id="colAsesor" prefWidth="131.2000732421875" text="Nombre asesor" />
                   <TableColumn fx:id="colMotivoAsesoria" prefWidth="135.199951171875" text="Motivo Asesoria" />
                   <TableColumn fx:id="colFecha" prefWidth="146.4000244140625" text="Fecha" />
                   <TableColumn fx:id="colHora" prefWidth="153.5999755859375" text="Hora" />
