@@ -61,7 +61,6 @@ public class VentanaMisAsesoriasController {
         } else{
             posUser = 2;
         }
-        System.out.println(posUser);
         try {
             FileInputStream archivoExcel = new FileInputStream("src/main/resources/datos/registros.xlsx");
             XSSFWorkbook libroExcel = new XSSFWorkbook(archivoExcel);
