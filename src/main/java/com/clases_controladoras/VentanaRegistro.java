@@ -77,7 +77,7 @@ public class VentanaRegistro {
         }
 
         /** Se valida que ingrese un nombre con mas de 3 letras */
-        if ((inputNombre.getText().length() < 3 || !inputNombre.getText().matches("^[a-zA-Z0-9]*$"))
+        if ((inputNombre.getText().length() < 3 || !inputNombre.getText().matches("^[a-zA-Z0-9 ]*$"))
                 && datosValidos == true) {
             datosValidos = false;
             Mensajes.mensajeInformativo(null,"El nombre " +

@@ -9,8 +9,10 @@ public class Asesoria {
     private String motivo;
     private String fecha;
     private String hora;
+    private String estado;
 
-    public Asesoria(String estudiante, String usuario, String usuarioAsesor, String asesor, String motivo, String fecha, String hora) {
+    public Asesoria(String estudiante, String usuario, String usuarioAsesor, String asesor, String motivo, String fecha,
+                    String hora, String estado) {
         this.estudiante = estudiante;
         this.usuario = usuario;
         this.usuarioAsesor = usuarioAsesor;
@@ -18,6 +20,7 @@ public class Asesoria {
         this.motivo = motivo;
         this.fecha = fecha;
         this.hora = hora;
+        this.estado = estado;
     }
     public String getEstudiante() {
         return estudiante;

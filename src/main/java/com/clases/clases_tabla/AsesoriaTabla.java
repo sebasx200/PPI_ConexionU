@@ -10,14 +10,16 @@ public class AsesoriaTabla {
     private SimpleStringProperty motivo;
     private SimpleStringProperty fecha;
     private SimpleStringProperty hora;
+    private SimpleStringProperty estado;
 
-    public AsesoriaTabla(String estudiante, String usuario, String asesor, String motivo, String fecha, String hora) {
+    public AsesoriaTabla(String estudiante, String usuario, String asesor, String motivo, String fecha, String hora, String estado) {
         this.estudiante = new SimpleStringProperty(estudiante);
         this.usuario = new SimpleStringProperty(usuario);
         this.asesor = new SimpleStringProperty(asesor);
         this.motivo = new SimpleStringProperty(motivo);
         this.fecha = new SimpleStringProperty(fecha);
         this.hora = new SimpleStringProperty(hora);
+        this.estado = new SimpleStringProperty(estado);
     }
 
     public String getEstudiante() {
@@ -56,6 +58,12 @@ public class AsesoriaTabla {
     public void setHora(String hora) {
         this.hora = new SimpleStringProperty(hora);
     }
+    public String getEstado() {
+        return estado.get();
+    }
+    public void setEstado(String estado) {
+        this.estado = new SimpleStringProperty(estado);
+    }
 
     public SimpleStringProperty estudianteProperty() {
         return estudiante;
@@ -75,6 +83,10 @@ public class AsesoriaTabla {
     public SimpleStringProperty horaProperty() {
         return hora;
     }
+    public SimpleStringProperty estadoProperty() {
+        return estado;
+    }
+
 
     @Override
     public String toString() {
@@ -84,6 +96,7 @@ public class AsesoriaTabla {
                 ", motivo='" + motivo + '\'' +
                 ", fecha='" + fecha + '\'' +
                 ", hora='" + hora + '\'' +
+                ", estado='" + estado + '\'' +
                 '}';
     }
 }

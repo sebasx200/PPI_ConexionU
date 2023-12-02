@@ -154,7 +154,7 @@ public class VentanaAsesoriasController {
             String fecha = getFecha();
             String hora = comboHora.getValue();
 
-            nuevaAsesoria = new Asesoria(estudiante, user, userAsesor, asesor, motivo, fecha, hora);
+            nuevaAsesoria = new Asesoria(estudiante, user, userAsesor, asesor, motivo, fecha, hora, "Activo");
             asesorias.add(nuevaAsesoria);
 
             FileInputStream archivoExcel = new FileInputStream("src/main/resources/datos/registros.xlsx");
@@ -172,6 +172,7 @@ public class VentanaAsesoriasController {
                 nuevaFila.createCell(4).setCellValue(asesoria.getMotivo());
                 nuevaFila.createCell(5).setCellValue(asesoria.getFecha());
                 nuevaFila.createCell(6).setCellValue(asesoria.getHora());
+                nuevaFila.createCell(7).setCellValue(asesoria.getHora());
                 ultimaFila ++ ;
             }
 

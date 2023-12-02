@@ -3,19 +3,25 @@ package com.clases_controladoras.funcionalidades_menu;
 import com.clases.*;
 import com.clases.clases_tabla.AsesoriaTabla;
 import com.clases.modelos.Usuario;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.util.Callback;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,10 +42,16 @@ public class VentanaMisAsesoriasController {
     private TableColumn<AsesoriaTabla, String> colFecha;
     @FXML
     private TableColumn<AsesoriaTabla, String> colHora;
+    @FXML
+    private TableColumn<AsesoriaTabla, String> colEstado;
+    @FXML
+    private TableColumn<AsesoriaTabla, Void> colAccion;
     private AsesoriaTabla usuario;
     private Usuario usuarioLogin;
     DataSingleton data = DataSingleton.getInstance();
 
+    /** Se recupera el usuario que inició sesión para validar el perfil y cambiar el color del título y recuperar los datos de la base
+     * de datos, se inicializan las columnas de las tablas y se le agregan los datos*/
     public void initialize(){
         usuarioLogin = data.getUsuario();
         colorTitulo();
@@ -50,10 +62,60 @@ public class VentanaMisAsesoriasController {
         colMotivoAsesoria.setCellValueFactory(cellData -> cellData.getValue().motivoProperty());
         colFecha.setCellValueFactory(cellData -> cellData.getValue().fechaProperty());
         colHora.setCellValueFactory(cellData -> cellData.getValue().horaProperty());
+        colEstado.setCellValueFactory(cellData -> cellData.getValue().estadoProperty());
+        /** Se agrega la columna en donde van a estar los botones de editar y eliminar asesoría y se les agrega una imagen a cada uno*/
+        colAccion.setCellFactory(new Callback<TableColumn<AsesoriaTabla, Void>, TableCell<AsesoriaTabla, Void>>() {
+            @Override
+            public TableCell<AsesoriaTabla, Void> call(final TableColumn<AsesoriaTabla, Void> param) {
+                return new TableCell<AsesoriaTabla, Void>() {
+                    private final Button editarButton = createButton("/imagenes/iconos/boligrafo.png");
+                    private final Button eliminarButton = createButton("/imagenes/iconos/boton-x.png");
+
+                    {
+                        editarButton.setOnAction(event -> {
+                            // aquí va a ir lo que hace el botón editar
+                            editarFila();
+                        });
+
+                        eliminarButton.setOnAction(event -> {
+                            // aquí va a ir lo que hace el botón eliminar
+                            int posFila = getTableRow().getIndex();
+                            System.out.println("Posicion " + posFila);
+                            cancelarFila(posFila, 5);
+                        });
+                    }
+                    /** se agregan los botones a las filas de la tabla en caso de que sí tenga registros*/
+                    @Override
+                    protected void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(new ButtonBox(editarButton, eliminarButton));
+                        }
+                    }
+                };
+            }
+        });
         tabla.setItems(listaUsuarios);
 
     }
 
+    public void editarFila(){
+        System.out.println("Hola Editar");
+
+    }
+
+    public void cancelarFila(int fila, int columna){
+        AsesoriaTabla asesoria = tabla.getItems().get(fila);
+        asesoria.setEstado("Cancelado");
+        TableColumn<AsesoriaTabla, String> col = (TableColumn<AsesoriaTabla, String>) tabla.getColumns().get(columna);
+        col.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEstado()));
+        tabla.refresh();
+
+    }
+
+/** Se recuperan los registro del usuario que inició sesión pasándole como clave el usuario*/
     private void obtenerRegistros(){
         int posUser;
         if(usuarioLogin.getPerfil().equals("Estudiante")){
@@ -81,7 +143,8 @@ public class VentanaMisAsesoriasController {
                         String motivo = dataFormatter.formatCellValue(fila.getCell(4));
                         String fecha = dataFormatter.formatCellValue(fila.getCell(5));
                         String hora = dataFormatter.formatCellValue(fila.getCell(6));
-                        usuario = new AsesoriaTabla(nombre, usuari, asesor, motivo, fecha, hora);
+                        String estado = dataFormatter.formatCellValue(fila.getCell(7));
+                        usuario = new AsesoriaTabla(nombre, usuari, asesor, motivo, fecha, hora, estado);
 
                     }
                     if (usuari.equals(data.getUsuario().getUsuario())) {
@@ -97,6 +160,21 @@ public class VentanaMisAsesoriasController {
             asesoriaMap.put(asesoria.getUsuario(), asesoria);
         }
     }
+    /** Se crea una clase auxiar que sirve para añadir los botones que van a ir en la tabla para que puedan acomodar de
+     * manera horizontal*/
+    private static class ButtonBox extends javafx.scene.layout.HBox {
+        public ButtonBox(Button... buttons) {
+            getChildren().addAll(buttons);
+        }
+    }
+    /** Función que crea los botones*/
+    private Button createButton(String imageName) {
+        Image image = new Image(getClass().getResourceAsStream(imageName));
+        ImageView imageView = new ImageView(image);
+        Button button = new Button("", imageView);
+        return button;
+    }
+    // se cambia el título de la ventana dependiendo del usuario.
     private void colorTitulo(){
         if(usuarioLogin.getPerfil().equals("Estudiante")){
             titulo.setTextFill(Color.WHITE);
