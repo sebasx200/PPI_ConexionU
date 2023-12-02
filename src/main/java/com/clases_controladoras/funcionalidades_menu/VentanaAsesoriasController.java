@@ -1,6 +1,7 @@
 package com.clases_controladoras.funcionalidades_menu;
 
 import com.clases.*;
+import com.clases.modelos.AgendaSemanal;
 import com.clases.modelos.Asesoria;
 import com.clases.modelos.Usuario;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -36,11 +38,11 @@ public class VentanaAsesoriasController {
     public void initialize() throws IOException {
         usuario = data.getUsuario();
         onElegirFechaAction();
-        llenarHoras();
     }
 
-    private void llenarHoras(){
-        for (int hora = 0; hora < 24; hora++) {
+    @FXML
+    private void onComboHoraClick(){
+        for (int hora = 6; hora < 12; hora++) {
             for (int minuto = 0; minuto < 60; minuto += 20) {
                 int horaFin = hora;
                 int minutoFin = minuto + 20;
@@ -58,19 +60,19 @@ public class VentanaAsesoriasController {
 
     @FXML
     private void onElegirFechaAction() {
-        // Configura la fábrica de celdas personalizada
         elegirFecha.setDayCellFactory(picker -> new DateCell() {
             @Override
             public void updateItem(LocalDate date, boolean empty) {
                 super.updateItem(date, empty);
-                LocalDate today = LocalDate.now();
-
-                // Deshabilita las fechas anteriores a la fecha actual
-                setDisable(date.isBefore(today));
+                // Deshabilita los días fuera de la semana actual
+                if (date.isBefore(LocalDate.now()) || date.isAfter(LocalDate.now().with(DayOfWeek.SUNDAY))) {
+                    setDisable(true);
+                } else {
+                    setDisable(false);
+                }
             }
         });
     }
-
     @FXML
     private void onCheckDocenteAction(){
         if(checkMentor.isSelected()){
