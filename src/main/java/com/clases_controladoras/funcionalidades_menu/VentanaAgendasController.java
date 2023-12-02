@@ -60,8 +60,36 @@ public class VentanaAgendasController {
                 XSSFSheet hoja = libroExcel.getSheetAt(4);
                 int existeRegistro = buscarUsuarioHoja(hoja, usuarioLogin.getUsuario());
                 if(existeRegistro != -1){
-                    
+                    int columnIndex = celdaDia;
+                    if (columnIndex != -1) {
+                        Row row = hoja.getRow(existeRegistro);
+                        Cell cell = row.getCell(columnIndex);
+                        if (cell == null) {
+                            cell = row.createCell(columnIndex);
+                        }
+                        cell.setCellValue(horaInicio + " - " + horaFin);
+                    } else {
+                        System.out.println("Error: No se encontró la columna del día de la semana.");
+                    }
+                } else{
+                    // El usuario no existe, agrega una nueva fila con los valores para el día de la semana
+                    int lastRowIndex = hoja.getLastRowNum();
+                    Row newRow = hoja.createRow(lastRowIndex + 1);
+                    newRow.createCell(0).setCellValue(userAsesor); // Supongamos que el usuario está en la primera columna
+                    int columnIndex = celdaDia;
+                    if (columnIndex != -1) {
+                        newRow.createCell(columnIndex).setCellValue(horaInicio + " - " + horaFin);
+                    } else {
+                        System.out.println("Error: No se encontró la columna del día de la semana.");
+                    }
                 }
+                try (FileOutputStream fileOut = new FileOutputStream("src/main/resources/datos/registros.xlsx")) {
+                    libroExcel.write(fileOut);
+                    Mensajes.mensajeInformativo("Registro ingresado", "La información ingresada fue registrada o actualizada correctamente");
+                } catch (Exception e){
+                    System.out.println(e.getMessage());
+                }
+
             }
         }
     }
