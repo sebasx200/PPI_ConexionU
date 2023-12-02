@@ -1,8 +1,10 @@
 package com.clases_controladoras.funcionalidades_menu;
 
 import com.clases.*;
+import com.clases.clases_tabla.NotificacionesTabla;
 import com.clases.modelos.AgendaSemanal;
 import com.clases.modelos.Asesoria;
+import com.clases.modelos.Notificacion;
 import com.clases.modelos.Usuario;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -19,6 +21,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -162,6 +165,7 @@ public class VentanaAsesoriasController {
             FileInputStream archivoExcel = new FileInputStream("src/main/resources/datos/registros.xlsx");
             XSSFWorkbook libroExcel = new XSSFWorkbook(archivoExcel);
             XSSFSheet hoja = libroExcel.getSheetAt(3);
+            XSSFSheet hoja1 = libroExcel.getSheetAt(5);
 
             int ultimaFila = hoja.getLastRowNum();
 
@@ -176,6 +180,19 @@ public class VentanaAsesoriasController {
                 nuevaFila.createCell(6).setCellValue(asesoria.getHora());
                 ultimaFila ++ ;
             }
+
+            String fechaHora = obtenerFechaHoraActual();
+            NotificacionesTabla notificacion = new NotificacionesTabla("Nueva asesoría agendada", fechaHora, usuario.getNombre()+usuario.getApellido(),
+                    comboAsesor.getValue().getUsuario(), "Se ha agendado una nueva asesoría, REVISAR EN MIS ASESORÍAS");
+
+            // El usuario no existe, agrega una nueva fila con los valores para el día de la semana
+            int lastRowIndex = hoja1.getLastRowNum();
+            Row newRow = hoja1.createRow(lastRowIndex + 1);
+            newRow.createCell(0).setCellValue(notificacion.getTitulo());
+            newRow.createCell(1).setCellValue(notificacion.getFechaHora());
+            newRow.createCell(2).setCellValue(notificacion.getEmisor());
+            newRow.createCell(3).setCellValue(notificacion.getMensaje());
+            newRow.createCell(4).setCellValue(notificacion.getReceptor());
 
             try (FileOutputStream archivoSalida = new FileOutputStream("src/main/resources/datos/registros.xlsx")) {
                 libroExcel.write(archivoSalida);
@@ -246,6 +263,16 @@ public class VentanaAsesoriasController {
             }
         }
         return registroMentores;
+    }
+    private String obtenerFechaHoraActual() {
+        // Obtiene la fecha y hora actual
+        LocalDateTime fechaHoraActual = LocalDateTime.now();
+
+        // Define el formato deseado
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yy HH:mm");
+
+        // Formatea la fecha y hora
+        return fechaHoraActual.format(formato);
     }
     private boolean validarDatos(){
         if(!checkDocente.isSelected() && !checkMentor.isSelected()){
