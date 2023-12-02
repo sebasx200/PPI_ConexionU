@@ -24,6 +24,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class VentanaAgendasController {
     @FXML
@@ -58,22 +59,8 @@ public class VentanaAgendasController {
                 XSSFWorkbook libroExcel = new XSSFWorkbook(archivoExcel);
                 XSSFSheet hoja = libroExcel.getSheetAt(4);
                 int existeRegistro = buscarUsuarioHoja(hoja, usuarioLogin.getUsuario());
-                System.out.println(existeRegistro);
                 if(existeRegistro != -1){
-                    Row fila = hoja.getRow(existeRegistro);
-                    actualizarFila(fila, agendaSemanal.getHoraInicial(), agendaSemanal.getHoraFinal());
-                } else {
-                    int ultimaFila = hoja.getLastRowNum();
-                    Row nuevaFila = hoja.createRow(ultimaFila + 1);
-                    nuevaFila.createCell(0).setCellValue(agendaSemanal.getUserAsesor());
-                    nuevaFila.createCell((celdaDia)).setCellValue(agendaSemanal.getHoraInicial() + "-" + agendaSemanal.getHoraFinal());
-
-                    try (FileOutputStream archivoSalida = new FileOutputStream("src/main/resources/datos/registros.xlsx")) {
-                        libroExcel.write(archivoSalida);
-                        Mensajes.mensajeInformativo("", "Se registró correctamente la información");
-                    } catch (IOException e) {
-                        System.out.println(e.getMessage());
-                    }
+                    
                 }
             }
         }
@@ -105,15 +92,12 @@ public class VentanaAgendasController {
         comboDias.getItems().setAll(dias);
     }
     private int buscarUsuarioHoja(Sheet hoja, String usuario){
-        DataFormatter dataFormatter = new DataFormatter();
-        for(int i = 0; i<hoja.getLastRowNum(); i++){
-            Row fila = hoja.getRow(i);
-            if(fila != null){
-                String celda = dataFormatter.formatCellValue(fila.getCell(0));
-                System.out.print(celda);
-                if(celda != null && celda.equals(usuario)){
-                    return i;
-                }
+        Iterator<Row> rowIterator = hoja.iterator();
+        while (rowIterator.hasNext()) {
+            Row row = rowIterator.next();
+            Cell cell = row.getCell(0); // Supongamos que el usuario está en la primera columna
+            if (cell != null && cell.getStringCellValue().equals(usuario)) {
+                return row.getRowNum();
             }
         }
         return -1;
@@ -121,7 +105,6 @@ public class VentanaAgendasController {
     private void actualizarFila(Row fila, String horaInicial, String horaFinal){
             System.out.println("El usuario ya tiene registros");
     }
-
 
     /** En este switch se traduce el día seleccionado por el usuario para que pueda calcularse la fecha*/
     private DayOfWeek traducirDia(String nombreDia) {
