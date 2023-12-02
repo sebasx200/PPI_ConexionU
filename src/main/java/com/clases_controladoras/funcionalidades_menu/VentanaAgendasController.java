@@ -8,7 +8,10 @@ import com.clases.modelos.Usuario;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -21,12 +24,13 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class VentanaAgendasController {
     @FXML
     private ComboBox<String> horaInicial, horaFinal, comboDias;
-    private AgendaSemanal agendaSemanal;
     private Usuario usuarioLogin;
+    private int celdaDia;
     DataSingleton data = DataSingleton.getInstance();
     public void initialize(){
         usuarioLogin = data.getUsuario();
@@ -47,36 +51,51 @@ public class VentanaAgendasController {
                     "El día " + dia + " " + fechaFormateada + " dará asesorías entre las horas " + horaInicio + "-" + horaFin,
                     "¿Está seguro/a de la información proporcionada?");
             if(mensaje){
-                ArrayList<AgendaSemanal> agendas = new ArrayList<>();
+
                 String userAsesor = usuarioLogin.getUsuario();
-                agendaSemanal = new AgendaSemanal(userAsesor, horaInicio, horaFin);
-                agendas.add(agendaSemanal);
+                AgendaSemanal agendaSemanal = new AgendaSemanal(userAsesor, horaInicio, horaFin);
 
                 FileInputStream archivoExcel = new FileInputStream("src/main/resources/datos/registros.xlsx");
                 XSSFWorkbook libroExcel = new XSSFWorkbook(archivoExcel);
                 XSSFSheet hoja = libroExcel.getSheetAt(4);
-
-                int ultimaFila = hoja.getLastRowNum();
-
-                for (AgendaSemanal agenda : agendas) {
-                    Row nuevaFila = hoja.createRow(ultimaFila + 1);
-                    nuevaFila.createCell(0).setCellValue(agenda.getUserAsesor());
-                    nuevaFila.createCell((1)).setCellValue(agenda.getHoraInicial()+"-"+agenda.getHoraFinal());
-                    ultimaFila++;
+                int existeRegistro = buscarUsuarioHoja(hoja, usuarioLogin.getUsuario());
+                if(existeRegistro != -1){
+                    int columnIndex = celdaDia;
+                    if (columnIndex != -1) {
+                        Row row = hoja.getRow(existeRegistro);
+                        Cell cell = row.getCell(columnIndex);
+                        if (cell == null) {
+                            cell = row.createCell(columnIndex);
+                        }
+                        cell.setCellValue(horaInicio + " - " + horaFin);
+                    } else {
+                        System.out.println("Error: No se encontró la columna del día de la semana.");
+                    }
+                } else{
+                    // El usuario no existe, agrega una nueva fila con los valores para el día de la semana
+                    int lastRowIndex = hoja.getLastRowNum();
+                    Row newRow = hoja.createRow(lastRowIndex + 1);
+                    newRow.createCell(0).setCellValue(userAsesor); // Supongamos que el usuario está en la primera columna
+                    int columnIndex = celdaDia;
+                    if (columnIndex != -1) {
+                        newRow.createCell(columnIndex).setCellValue(horaInicio + " - " + horaFin);
+                    } else {
+                        System.out.println("Error: No se encontró la columna del día de la semana.");
+                    }
                 }
-
-                try (FileOutputStream archivoSalida = new FileOutputStream("src/main/resources/datos/registros.xlsx")) {
-                    libroExcel.write(archivoSalida);
-                    Mensajes.mensajeInformativo("", "Se registró correctamente la información");
-                } catch (IOException e) {
+                try (FileOutputStream fileOut = new FileOutputStream("src/main/resources/datos/registros.xlsx")) {
+                    libroExcel.write(fileOut);
+                    Mensajes.mensajeInformativo("Registro ingresado", "La información ingresada fue registrada o actualizada correctamente");
+                } catch (Exception e){
                     System.out.println(e.getMessage());
                 }
+
             }
         }
     }
     /**aquí se llena el comboBox de la hora de inicio y final para que el usuario escoja las horas en las cuales
      * va a dar asesorías */
-    private void llenarHoras(){
+        private void llenarHoras(){
         for (int hora = 6; hora < 22; hora++) {
             for (int minuto = 0; minuto < 60; minuto += 60) {
                 int horaFin = hora;
@@ -100,22 +119,44 @@ public class VentanaAgendasController {
         comboDias.getItems().clear();
         comboDias.getItems().setAll(dias);
     }
+    private int buscarUsuarioHoja(Sheet hoja, String usuario){
+        Iterator<Row> rowIterator = hoja.iterator();
+        while (rowIterator.hasNext()) {
+            Row row = rowIterator.next();
+            Cell cell = row.getCell(0); // Supongamos que el usuario está en la primera columna
+            if (cell != null && cell.getStringCellValue().equals(usuario)) {
+                return row.getRowNum();
+            }
+        }
+        return -1;
+    }
+    private void actualizarFila(Row fila, String horaInicial, String horaFinal){
+            System.out.println("El usuario ya tiene registros");
+    }
+
     /** En este switch se traduce el día seleccionado por el usuario para que pueda calcularse la fecha*/
     private DayOfWeek traducirDia(String nombreDia) {
         switch (nombreDia) {
             case "Lunes":
+                celdaDia = 1;
                 return DayOfWeek.MONDAY;
             case "Martes":
+                celdaDia = 2;
                 return DayOfWeek.TUESDAY;
             case "Miércoles":
+                celdaDia = 3;
                 return DayOfWeek.WEDNESDAY;
             case "Jueves":
+                celdaDia = 4;
                 return DayOfWeek.THURSDAY;
             case "Viernes":
+                celdaDia = 5;
                 return DayOfWeek.FRIDAY;
             case "Sábado":
+                celdaDia = 6;
                 return DayOfWeek.SATURDAY;
             case "Domingo":
+                celdaDia = 7;
                 return DayOfWeek.SUNDAY;
             default:
                 throw new IllegalArgumentException("Nombre del día no válido: " + nombreDia);

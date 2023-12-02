@@ -92,7 +92,7 @@
                         </CheckBox>
                      </children>
                   </HBox>
-                  <ComboBox fx:id="comboHora" prefWidth="180.0" promptText="Seleccionar hora" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <ComboBox fx:id="comboHora" onMouseClicked="#onComboHoraClick" prefWidth="180.0" promptText="Seleccionar hora" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <DatePicker fx:id="elegirFecha" promptText="Seleccionar fecha" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <ComboBox fx:id="comboAsesor" onMouseClicked="#onComboAsesorClick" prefWidth="180.0" promptText="Seleccionar asesor" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <ComboBox fx:id="comboMotivo" onMouseClicked="#onComboMotivoClick" prefWidth="180.0" promptText="Seleccionar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
